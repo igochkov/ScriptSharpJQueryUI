@@ -1,0 +1,43 @@
+﻿@{
+    Layout = "~/Views/Shared/_ResizableLayout.cshtml";
+}
+<div id="demo-frame">
+    <div class="demo">
+        <style>
+            #container
+            {
+                width: 300px;
+                height: 300px;
+            }
+            #container h3
+            {
+                text-align: center;
+                margin: 0;
+                margin-bottom: 10px;
+            }
+            #resizable4
+            {
+                background-position: top left;
+                width: 150px;
+                height: 150px;
+            }
+            #resizable4, #container
+            {
+                padding: 0.5em;
+            }
+        </style>
+        <div id="container" class="ui-widget-content">
+            <h3 class="ui-widget-header">
+                Containment</h3>
+            <div id="resizable4" class="ui-state-active">
+                <h3 class="ui-widget-header">
+                    Resizable</h3>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="demo-description">
+    <p>
+        Define the boundaries of the resizable area. Use the <code>containment</code> option
+        to specify a parent DOM element or a jQuery selector, like 'document.'</p>
+</div>

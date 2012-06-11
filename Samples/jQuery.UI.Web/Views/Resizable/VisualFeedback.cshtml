@@ -1,0 +1,33 @@
+﻿@{
+    Layout = "~/Views/Shared/_ResizableLayout.cshtml";
+}
+<div id="demo-frame">
+    <div class="demo">
+        <style>
+            #resizable7
+            {
+                width: 150px;
+                height: 150px;
+                padding: 0.5em;
+            }
+            #resizable7 h3
+            {
+                text-align: center;
+                margin: 0;
+            }
+            .ui-resizable-ghost
+            {
+                border: 1px dotted gray;
+            }
+        </style>
+        <div id="resizable7" class="ui-widget-content">
+            <h3 class="ui-widget-header">
+                Ghost</h3>
+        </div>
+    </div>
+</div>
+<div class="demo-description">
+    <p>
+        Instead of showing the actual element during resize, set the <code>ghost</code>
+        option to true to show a semi-transparent part of the element.</p>
+</div>

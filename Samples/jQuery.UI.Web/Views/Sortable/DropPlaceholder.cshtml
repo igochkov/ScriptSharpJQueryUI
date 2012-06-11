@@ -1,0 +1,50 @@
+﻿@{
+    Layout = "~/Views/Shared/_SortableLayout.cshtml";
+}
+<div id="demo-frame">
+    <div class="demo">
+        <style>
+            #sortable2
+            {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                width: 60%;
+            }
+            #sortable2 li
+            {
+                margin: 0 5px 5px 5px;
+                padding: 5px;
+                font-size: 0.8em;
+                height: 1.5em;
+            }
+            html > body #sortable2 li
+            {
+                height: 1.5em;
+                line-height: 1.2em;
+            }
+            .ui-state-highlight
+            {
+                height: 1.5em;
+                line-height: 1.2em;
+            }
+        </style>
+        <ul id="sortable2">
+            <li class="ui-state-default">Item 1</li>
+            <li class="ui-state-default">Item 2</li>
+            <li class="ui-state-default">Item 3</li>
+            <li class="ui-state-default">Item 4</li>
+            <li class="ui-state-default">Item 5</li>
+            <li class="ui-state-default">Item 6</li>
+            <li class="ui-state-default">Item 7</li>
+        </ul>
+    </div>
+</div>
+<div class="demo-description">
+    <p>
+        When dragging a sortable item to a new location, other items will make room for
+        the that item by shifting to allow white space between them. Pass a class into the
+        <code>placeholder</code> option to style that space to be visible. Use the boolean
+        <code>forcePlaceholderSize</code> option to set dimensions on the placeholder.
+    </p>
+</div>

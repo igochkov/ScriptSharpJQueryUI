@@ -1,0 +1,23 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="demo-header">
+    <h2>Progressbar</h2>
+</div>
+<div id="demo-config">
+    <div id="demo-frame-wrapper">
+        <div id="theme-switcher"></div>
+        @RenderBody()
+    </div>
+    <div id="demo-config-menu">
+        <div class="demos-nav">
+            <h4>
+                Examples</h4>
+            <ul>
+                <li>@Html.ActionLink("Default functionality", "Default", "Progressbar")</li>
+                <li>@Html.ActionLink("Animated", "Animated", "Progressbar")</li>
+                <li>@Html.ActionLink("Resizable progressbar", "ResizableBar", "Progressbar")</li>
+            </ul>
+        </div>
+    </div>
+</div>

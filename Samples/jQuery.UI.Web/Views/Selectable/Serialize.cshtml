@@ -1,0 +1,52 @@
+﻿@{
+    Layout = "~/Views/Shared/_SelectableLayout.cshtml";
+}
+<div id="demo-frame">
+    <div class="demo">
+        <style>
+            #feedback
+            {
+                font-size: 1.4em;
+            }
+            #selectable2 .ui-selecting
+            {
+                background: #FECA40;
+            }
+            #selectable2 .ui-selected
+            {
+                background: #F39814;
+                color: white;
+            }
+            #selectable2
+            {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                width: 60%;
+            }
+            #selectable2 li
+            {
+                margin: 3px;
+                padding: 0.4em;
+                font-size: 1.4em;
+                height: 18px;
+            }
+        </style>
+        <p id="feedback">
+            <span>You've selected:</span> <span id="select-result">none</span>.
+        </p>
+        <ol id="selectable2">
+            <li class="ui-widget-content">Item 1</li>
+            <li class="ui-widget-content">Item 2</li>
+            <li class="ui-widget-content">Item 3</li>
+            <li class="ui-widget-content">Item 4</li>
+            <li class="ui-widget-content">Item 5</li>
+            <li class="ui-widget-content">Item 6</li>
+        </ol>
+    </div>
+</div>
+<div class="demo-description">
+    <p>
+        Write a function that fires on the <code>stop</code> event to collect the index
+        values of selected items. Present values as feedback, or pass as a data string.</p>
+</div>

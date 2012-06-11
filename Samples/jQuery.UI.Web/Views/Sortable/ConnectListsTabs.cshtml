@@ -1,0 +1,48 @@
+﻿@{
+    Layout = "~/Views/Shared/_SortableLayout.cshtml";
+}
+<style>
+    #tabs
+    {
+        font-size: 0.8em;
+    }
+    #sortable41 li, #sortable42 li
+    {
+        margin: 0 5px 5px 5px;
+        padding: 5px;
+        width: 120px;
+    }
+</style>
+<div id="demo-frame">
+    <div class="demo">
+        <div id="tabs">
+            <ul>
+                <li><a href="#tabs-1">Nunc tincidunt</a></li>
+                <li><a href="#tabs-2">Proin dolor</a></li>
+            </ul>
+            <div id="tabs-1">
+                <ul id="sortable41" class="connectedSortable2 ui-helper-reset">
+                    <li class="ui-state-default">Item 1</li>
+                    <li class="ui-state-default">Item 2</li>
+                    <li class="ui-state-default">Item 3</li>
+                    <li class="ui-state-default">Item 4</li>
+                    <li class="ui-state-default">Item 5</li>
+                </ul>
+            </div>
+            <div id="tabs-2">
+                <ul id="sortable42" class="connectedSortable2 ui-helper-reset">
+                    <li class="ui-state-highlight">Item 1</li>
+                    <li class="ui-state-highlight">Item 2</li>
+                    <li class="ui-state-highlight">Item 3</li>
+                    <li class="ui-state-highlight">Item 4</li>
+                    <li class="ui-state-highlight">Item 5</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="demo-description">
+    <p>
+        Sort items from one list into another and vice versa, by dropping the list item
+        on the appropriate tab above.</p>
+</div>

@@ -1,0 +1,51 @@
+﻿@{
+    Layout = "~/Views/Shared/_SortableLayout.cshtml";
+}
+<style>
+    #sortable51, #sortable52, #sortable53
+    {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        float: left;
+        margin-right: 10px;
+        background: #eee;
+        padding: 5px;
+        width: 143px;
+    }
+    #sortable51 li, #sortable52 li, #sortable53 li
+    {
+        margin: 5px;
+        padding: 5px;
+        font-size: 0.8em;
+        width: 120px;
+    }
+</style>
+<div id="demo-frame">
+    <div class="demo">
+        <ul id="sortable51" class='droptrue'>
+            <li class="ui-state-default">Can be dropped..</li>
+            <li class="ui-state-default">..on an empty list</li>
+            <li class="ui-state-default">Item 3</li>
+            <li class="ui-state-default">Item 4</li>
+            <li class="ui-state-default">Item 5</li>
+        </ul>
+        <ul id="sortable52" class='dropfalse'>
+            <li class="ui-state-highlight">Cannot be dropped..</li>
+            <li class="ui-state-highlight">..on an empty list</li>
+            <li class="ui-state-highlight">Item 3</li>
+            <li class="ui-state-highlight">Item 4</li>
+            <li class="ui-state-highlight">Item 5</li>
+        </ul>
+        <ul id="sortable53" class='droptrue'>
+        </ul>
+        <br clear="both" />
+    </div>
+</div>
+<div class="demo-description">
+    <p>
+        Prevent all items in a list from being dropped into a separate, empty list using
+        the <code>dropOnEmpty</code> option set to <code>false</code>. By default, sortable
+        items can be dropped on empty lists.
+    </p>
+</div>

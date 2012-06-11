@@ -1,0 +1,30 @@
+﻿@{
+    Layout = "~/Views/Shared/_ResizableLayout.cshtml";
+}
+<div id="demo-frame">
+    <div class="demo">
+        <style>
+            #resizable2
+            {
+                width: 160px;
+                height: 90px;
+                padding: 0.5em;
+            }
+            #resizable2 h3
+            {
+                text-align: center;
+                margin: 0;
+            }
+        </style>
+        <div id="resizable2" class="ui-widget-content">
+            <h3 class="ui-widget-header">
+                Preserve aspect ratio</h3>
+        </div>
+    </div>
+</div>
+<div class="demo-description">
+    <p>
+        Maintain the existing aspect ratio or set a new one to constrain the proportions
+        on resize. Set the <code>aspectRatio</code> option to true, and optionally pass
+        in a new ratio (i.e., 4/3)</p>
+</div>

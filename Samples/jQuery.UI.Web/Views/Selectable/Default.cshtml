@@ -1,0 +1,47 @@
+﻿@{
+    Layout = "~/Views/Shared/_SelectableLayout.cshtml";
+}
+<div id="demo-frame">
+    <div class="demo">
+        <style>
+            #selectable1 .ui-selecting
+            {
+                background: #FECA40;
+            }
+            #selectable1 .ui-selected
+            {
+                background: #F39814;
+                color: white;
+            }
+            #selectable1
+            {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                width: 60%;
+            }
+            #selectable1 li
+            {
+                margin: 3px;
+                padding: 0.4em;
+                font-size: 1.4em;
+                height: 18px;
+            }
+        </style>
+        <ol id="selectable1">
+            <li class="ui-widget-content">Item 1</li>
+            <li class="ui-widget-content">Item 2</li>
+            <li class="ui-widget-content">Item 3</li>
+            <li class="ui-widget-content">Item 4</li>
+            <li class="ui-widget-content">Item 5</li>
+            <li class="ui-widget-content">Item 6</li>
+            <li class="ui-widget-content">Item 7</li>
+        </ol>
+    </div>
+</div>
+<div class="demo-description">
+    <p>
+        Enable a DOM element (or group of elements) to be selectable. Draw a box with your
+        cursor to select items. Hold down the Ctrl key to make multiple non-adjacent selections.
+    </p>
+</div>
