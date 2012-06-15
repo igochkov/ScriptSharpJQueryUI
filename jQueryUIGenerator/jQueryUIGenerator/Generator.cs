@@ -271,11 +271,11 @@ namespace jQueryApi.UI {{
     [Imported]
     [IgnoreNamespace]
     [ScriptName(""Object"")]
-    public sealed class {0} {{
-{1}
+    public sealed class {0} {{{1}
     }}
 }}";
             string property = @"
+
         [IntrinsicProperty]
         public {1} {0} {{
             get {{
@@ -545,11 +545,13 @@ namespace jQueryApi.UI {
   <PropertyGroup>
     <Configuration Condition="" '$(Configuration)' == '' "">Debug</Configuration>
     <Platform Condition="" '$(Platform)' == '' "">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{824C1FEC-2455-4183-AFC6-891EDB88213A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <NoStdLib>True</NoStdLib>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\..\ScriptSharp.snk</AssemblyOriginatorKeyFile>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>jQueryApi.UI</RootNamespace>
     <AssemblyName>Script.jQuery.UI</AssemblyName>
@@ -558,28 +560,32 @@ namespace jQueryApi.UI {
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition="" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' "">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
+    <DebugSymbols>false</DebugSymbols>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Script.jQuery.UI.xml</DocumentationFile>
+    <OutputPath>..\..\..\..\bin\Debug\</OutputPath>
+    <DocumentationFile>..\..\..\..\bin\Debug\Script.jQuery.UI.xml</DocumentationFile>
+    <NoWarn>1591, 0661, 0660, 1684</NoWarn>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition="" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' "">
-    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Script.jQuery.UI.xml</DocumentationFile>
+    <OutputPath>..\..\..\..\bin\Release\</OutputPath>
+    <DocumentationFile>..\..\..\..\bin\Release\Script.jQuery.UI.xml</DocumentationFile>
+    <NoWarn>1591, 0661, 0660, 1684</NoWarn>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
 ";
             foreach (Entry entry in entries) {
-                content += @"<Compile Include=""" + Utils.PascalCase(entry.Name) + @"\*.cs"" />
+                content += @"    <Compile Include=""" + Utils.PascalCase(entry.Name) + @"\*.cs"" />
 ";
             }
 
@@ -587,15 +593,26 @@ namespace jQueryApi.UI {
     <Compile Include=""jQuerySize.cs"" />
     <Compile Include=""jQueryPosition.cs"" />
     <Compile Include=""Properties\AssemblyInfo.cs"" />
-    <None Include=""Properties\ScriptInfo.txt"">
+    <Compile Include=""..\..\..\ScriptSharp.cs"">
+      <Link>Properties\ScriptSharp.cs</Link>
+    </Compile>
+    <ScriptInfo Include=""Properties\ScriptInfo.txt"">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </ScriptInfo>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include=""mscorlib, Version=0.7.0.0, Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4, processorArchitecture=MSIL"" />
-    <Reference Include=""Script.jQuery, Version=0.7.0.0, Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4, processorArchitecture=MSIL"" />
-    <Reference Include=""Script.Web, Version=0.7.0.0, Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4, processorArchitecture=MSIL"" />
-    <Reference Include=""System"" />
+    <ProjectReference Include=""..\..\CoreLib\CoreLib.csproj"">
+      <Project>{36D4B098-A21C-4725-ACD3-400922885F38}</Project>
+      <Name>CoreLib</Name>
+    </ProjectReference>
+    <ProjectReference Include=""..\..\Web\Web.csproj"">
+      <Project>{3681A9A8-FC40-4125-B842-7775713C8DCE}</Project>
+      <Name>Web</Name>
+    </ProjectReference>
+    <ProjectReference Include=""..\jQuery.Core\jQuery.Core.csproj"">
+      <Project>{4A9F7CE0-5A45-4B28-AD01-05528709B6E4}</Project>
+      <Name>jQuery.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project=""$(MSBuildBinPath)\Microsoft.CSharp.targets"" />
   <Target Name=""AfterBuild"">
@@ -603,7 +620,7 @@ namespace jQueryApi.UI {
   </Target>
 </Project>";
 
-            using (StreamWriter file = new StreamWriter(Path.Combine(DestinationPath, "jQueryApi.UI.csproj"))) {
+            using (StreamWriter file = new StreamWriter(Path.Combine(DestinationPath, "jQuery.UI.csproj"))) {
                 file.WriteLine(content);
             }
 

@@ -75,7 +75,9 @@ namespace ScriptSharpJQueryUI {
             // using simple rules
             word = word.Replace("autocomplete", "AutoComplete")
                        .Replace("datepicker", "DatePicker")
-                       .Replace("progressbar", "ProgressBar");
+                       .Replace("progressbar", "ProgressBar")
+                       .Replace("tabsselect", "TabsSelect")
+                       .Replace("tabsload", "TabsLoad");
 
             return char.ToUpper(word[0]) + word.Substring(1);
         }
