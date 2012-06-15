@@ -39,7 +39,7 @@ namespace ScriptSharpJQueryUI {
 
             using (StreamWriter file = new StreamWriter(Path.Combine(dir.FullName, fileName + ".cs")))
             {
-                file.WriteLine(FileHeader(fileName + ".cs", folderName));
+                file.WriteLine(FileHeader(fileName + ".cs"));
                 file.WriteLine(content);
             }
         }
@@ -50,15 +50,15 @@ namespace ScriptSharpJQueryUI {
         /// <param name="fileName">File name.</param>
         /// <param name="entryName">jQueryUI entry name.</param>
         /// <returns>File header.</returns>
-        private static string FileHeader(string fileName, string entryName) {
+        private static string FileHeader(string fileName) {
             string header =
 @"// {0}
-// Script#/Libraries/jQuery/jQuery.UI/{1}
+// Script#/Libraries/jQuery/UI
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 ";
 
-            return string.Format(header, fileName, entryName);
+            return string.Format(header, fileName);
         }
 
         /// <summary>
