@@ -1,5 +1,5 @@
 // Default.cs
-// Script#/samples/jQuery.UI/jQuery.UI.Sample/Autocomplete
+// Script#/samples/jQuery.UI/jQuery.UI.Sample/AutoComplete
 // Copyright (c) Ivaylo Gochkov, 2012
 // Copyright (c) Microsoft Corporation.
 // This source code is subject to terms and conditions of the Microsoft 
@@ -9,7 +9,7 @@
 using jQueryApi;
 using jQueryApi.UI;
 
-namespace Sample.Autocomplete
+namespace Sample.AutoComplete
 {
     internal static class Default
     {
@@ -44,8 +44,8 @@ namespace Sample.Autocomplete
                 };
 
                 jQuery.Select("#autocompleteTags")
-                    .Plugin<AutocompleteObject>()
-                    .Autocomplete(new AutocompleteOptions(AutocompleteOption.Source, availableTags));
+                    .Plugin<AutoCompleteObject>()
+                    .AutoComplete(new AutoCompleteOptions(AutoCompleteOption.Source, availableTags));
             });
         }
     }

@@ -1,5 +1,5 @@
 // ResizableBar.cs
-// Script#/samples/jQuery.UI/jQuery.UI.Sample/Progressbar
+// Script#/samples/jQuery.UI/jQuery.UI.Sample/ProgressBar
 // Copyright (c) Ivaylo Gochkov, 2012
 // Copyright (c) Microsoft Corporation.
 // This source code is subject to terms and conditions of the Microsoft 
@@ -9,7 +9,7 @@
 using jQueryApi;
 using jQueryApi.UI;
 
-namespace Sample.Progressbar
+namespace Sample.ProgressBar
 {
     internal static class ResizableBar
     {
@@ -18,8 +18,8 @@ namespace Sample.Progressbar
             jQuery.OnDocumentReady(delegate()
             {
                 jQuery.Select("#progressbar3")
-                    .Plugin<ProgressbarObject>()
-                    .Progressbar(new ProgressbarOptions(ProgressbarOption.Value, 37));
+                    .Plugin<ProgressBarObject>()
+                    .ProgressBar(new ProgressBarOptions(ProgressBarOption.Value, 37));
 
                  jQuery.Select("#progressbarWrapper")
                     .Plugin<ResizableObject>()

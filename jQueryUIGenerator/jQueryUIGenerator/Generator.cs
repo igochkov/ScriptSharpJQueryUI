@@ -57,7 +57,7 @@ namespace ScriptSharpJQueryUI {
             }
 
             foreach (Entry entry in entries) {
-                Messages.WriteLine("Generating " + Path.Combine(DestinationPath, Utils.UppercaseFirst(entry.Name)));
+                Messages.WriteLine("Generating " + Path.Combine(DestinationPath, Utils.PascalCase(entry.Name)));
 
                 RenderEntry(entry);
             }
@@ -83,12 +83,14 @@ namespace ScriptSharpJQueryUI {
         }
 
         private void RenderObject(Entry entry) {
-            string className = Utils.UppercaseFirst(entry.Name) + @"Object";
+            string className = Utils.PascalCase(entry.Name) + @"Object";
 
             string content =
-@"using System.Runtime.CompilerServices;
+@"using System;
+using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI {{
+
     /// <summary>
     /// {1}
     /// </summary>
@@ -100,7 +102,10 @@ namespace jQueryApi.UI {{
     /// </example>
     [Imported]
     [IgnoreNamespace]
-    public sealed class {0} : jQueryObject {{{4}{5}{6}
+    public sealed class {0} : jQueryObject {{
+
+        private {0}() {{
+        }}{4}{5}{6}
     }}
 }}";
 
@@ -108,19 +113,25 @@ namespace jQueryApi.UI {{
 @"
 
         [ScriptName(""{0}"")]
-        public extern {1}Object {1}();";
+        public {1}Object {1}() {{
+            return null;
+        }}";
 
             string overload2 =
 @"
 
         [ScriptName(""{0}"")]
-        public extern {1}Object {1}({1}Options options);";
+        public {1}Object {1}({1}Options options) {{
+            return null;
+        }}";
 
             string overload3 =
 @"
 
         [ScriptName(""{0}"")]
-        public extern object {1}({1}Method method, params object[] options);";
+        public object {1}({1}Method method, params object[] options) {{
+            return null;
+        }}";
 
             string example = @"{0}
     /// <code>
@@ -136,38 +147,42 @@ namespace jQueryApi.UI {{
                                 , Utils.FormatXmlComment(entry.Description)
                                 , Utils.FormatXmlComment(entry.LongDescription)
                                 , (entry.Example != null) ? string.Format(example, Utils.FormatXmlComment(entry.Example.Description), Utils.FormatXmlComment(entry.Example.Code), Utils.FormatXmlComment(entry.Example.Html)) : string.Empty
-                                , string.Format(overload1, entry.Name, Utils.UppercaseFirst(entry.Name))
-                                , (entry.Options.Count > 0) ? string.Format(overload2, entry.Name, Utils.UppercaseFirst(entry.Name)) : string.Empty
-                                , (entry.Methods.Count > 0) ? string.Format(overload3, entry.Name, Utils.UppercaseFirst(entry.Name)) : string.Empty);
+                                , string.Format(overload1, entry.Name, Utils.PascalCase(entry.Name))
+                                , (entry.Options.Count > 0) ? string.Format(overload2, entry.Name, Utils.PascalCase(entry.Name)) : string.Empty
+                                , (entry.Methods.Count > 0) ? string.Format(overload3, entry.Name, Utils.PascalCase(entry.Name)) : string.Empty);
 
-            Utils.CreateFile(DestinationPath, Utils.UppercaseFirst(entry.Name), className, formatedContent);
+            Utils.CreateFile(DestinationPath, Utils.PascalCase(entry.Name), className, formatedContent);
         }
 
         private void RenderOptions(Entry entry) {
-            string className = Utils.UppercaseFirst(entry.Name) + @"Options";
+            string className = Utils.PascalCase(entry.Name) + @"Options";
 
             string content =
 @"using System;
 using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI {{
+
     [Imported]
     [IgnoreNamespace]
     [ScriptName(""Object"")]
     public sealed class {0} {{
-        public {0}() {{ }}
-        public {0}(params object[] nameValuePairs) {{ }}
 
-{1}
-{2}
-    }}
+        public {0}() {{
+        }}
+
+        public {0}(params object[] nameValuePairs) {{
+        }}
+{1}{2}    }}
 }}";
             StringBuilder eventsContent = new StringBuilder();
 
             foreach (Event @event in entry.Events.AsQueryable().OrderBy(e => e.Name)) {
                 if (!@event.Type.StartsWith("function")) {
                     if (!string.IsNullOrEmpty(@event.Description)) {
-                        eventsContent.Append(@"        /// <summary>
+                        eventsContent.Append(
+@"
+        /// <summary>
         /// " + Utils.FormatXmlComment(@event.Description) + @"
         /// </summary>");
                     }
@@ -177,12 +192,20 @@ namespace jQueryApi.UI {{
                     if (string.IsNullOrEmpty(@event.Type)) {
                         eventType = "jQueryEventHandler";
                     } else {
-                        eventType = Utils.UppercaseFirst(@event.Type.Replace(@event.Name.ToLower(), Utils.UppercaseFirst(@event.Name))) + @"EventHandler";
+                        eventType = Utils.PascalCase(@event.Type.Replace(@event.Name.ToLower(), Utils.PascalCase(@event.Name))) + @"EventHandler";
                     }
 
-                    eventsContent.AppendLine(@"
+                    eventsContent.AppendLine(
+@"
         [IntrinsicProperty]
-        public " + eventType + " " + Utils.UppercaseFirst(@event.Name) + " { get { return null; } set { } }");
+        public " + eventType + " " + Utils.PascalCase(@event.Name) + " {" +
+@"
+             get {
+                return null;
+             }
+             set {
+             }
+        }");
                 }
             }
 
@@ -192,32 +215,43 @@ namespace jQueryApi.UI {{
                                            .OrderBy(o => o.Name)
                                            .GroupBy(o => o.Name)) {
                 if (!string.IsNullOrEmpty(option.Min(o => o.Description))) {
-                    optionsContent.Append(@"        /// <summary>
+                    optionsContent.Append(
+@"
+        /// <summary>
         /// " + Utils.FormatXmlComment(option.Min(o => o.Description)) + @"
         /// </summary>");
                 }
 
                 optionsContent.AppendLine(@"
         [IntrinsicProperty]
-        public " + Utils.GetCSType(option.Min(o => o.Type)) + @" " + Utils.UppercaseFirst(option.Key) + @" { get { return " + Utils.GetDefaultValue(option.Min(o => o.Type)) + @"; } set { } }");
+        public " + Utils.GetCSType(option.Min(o => o.Type)) + @" " + Utils.PascalCase(option.Key) + @" {" +
+@"
+            get {
+                return " + Utils.GetDefaultValue(option.Min(o => o.Type)) + @";
+            }
+            set {
+            }
+        }");
             }
 
 
 
-            Utils.CreateFile(DestinationPath, Utils.UppercaseFirst(entry.Name), className
+            Utils.CreateFile(DestinationPath, Utils.PascalCase(entry.Name), className
                 , string.Format(content, className, eventsContent.ToString(), optionsContent.ToString()));
         }
 
         private void RenderEventHandler(string entryName, string eventType) {
-            string className = Utils.UppercaseFirst(eventType) + "EventHandler";
+            string className = Utils.PascalCase(eventType) + "EventHandler";
 
             string content =
-@"using System.Runtime.CompilerServices;
+@"using System;
+using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI {
+
     [Imported]
     [IgnoreNamespace]
-    public delegate void " + className + @"(jQueryEvent e, " + Utils.UppercaseFirst(eventType) + "Event " + eventType + @"Event);
+    public delegate void " + className + @"(jQueryEvent e, " + Utils.PascalCase(eventType) + "Event " + eventType + @"Event);
 }";
 
             Utils.CreateFile(DestinationPath, entryName, className, content);
@@ -229,19 +263,27 @@ namespace jQueryApi.UI {
             }
 
             string content =
-@"using System.Runtime.CompilerServices;
+@"using System;
+using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI {{
+
     [Imported]
     [IgnoreNamespace]
     [ScriptName(""Object"")]
-    public sealed class {0} {{
-{1}
+    public sealed class {0} {{{1}
     }}
 }}";
             string property = @"
+
         [IntrinsicProperty]
-        public {1} {0} {{ get {{ return {2}; }} set {{ }} }}";
+        public {1} {0} {{
+            get {{
+                return {2};
+            }}
+            set {{
+            }}
+        }}";
 
             string className;
 
@@ -250,22 +292,22 @@ namespace jQueryApi.UI {{
                 if (@event.Type.StartsWith("function")) continue;
                 if (string.IsNullOrEmpty(@event.Type)) continue;
 
-                string eventType = @event.Type.Replace(@event.Name.ToLower(), Utils.UppercaseFirst(@event.Name));
+                string eventType = @event.Type.Replace(@event.Name.ToLower(), Utils.PascalCase(@event.Name));
 
                 foreach (Argument arg in @event.Arguments) {
                     if (arg.Name != "ui") continue;
 
-                    className = Utils.UppercaseFirst(eventType) + "Event";
+                    className = Utils.PascalCase(eventType) + "Event";
 
                     StringBuilder properties = new StringBuilder();
 
                     foreach (Property prop in arg.Properties.OrderBy(p => p.Name)) {
-                        properties.Append(string.Format(property, Utils.UppercaseFirst(prop.Name), Utils.GetCSType(prop.Type), Utils.GetDefaultValue(prop.Type)));
+                        properties.Append(string.Format(property, Utils.PascalCase(prop.Name), Utils.GetCSType(prop.Type), Utils.GetDefaultValue(prop.Type)));
                     }
 
-                    RenderEventHandler(Utils.UppercaseFirst(entry.Name), eventType);
+                    RenderEventHandler(Utils.PascalCase(entry.Name), eventType);
 
-                    Utils.CreateFile(DestinationPath, Utils.UppercaseFirst(entry.Name)
+                    Utils.CreateFile(DestinationPath, Utils.PascalCase(entry.Name)
                                     , className
                                     , string.Format(content, className, properties.ToString()));
                 }
@@ -277,18 +319,19 @@ namespace jQueryApi.UI {{
                 return;
             }
 
-            string className = Utils.UppercaseFirst(entry.Name) + @"Option";
+            string className = Utils.PascalCase(entry.Name) + @"Option";
 
             string content =
-@"using System.Runtime.CompilerServices;
+@"using System;
+using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI {{
+
     [Imported]
     [IgnoreNamespace]
     [NamedValues]
     public enum {0} {{{1}
     }}
-
 }}";
             StringBuilder enumValues = new StringBuilder();
 
@@ -296,13 +339,14 @@ namespace jQueryApi.UI {{
                                            .OrderBy(o => o.Name)
                                            .GroupBy(o => o.Name)) {
                 enumValues.AppendLine();
+                enumValues.AppendLine();
                 enumValues.AppendLine("        /// <summary>");
                 enumValues.AppendLine("        /// " + Utils.FormatXmlComment(option.Min(o => o.Description)));
                 enumValues.AppendLine("        /// </summary>");
-                enumValues.Append("        " + Utils.UppercaseFirst(option.Key) + ",");
+                enumValues.Append("        " + Utils.PascalCase(option.Key) + ",");
             }
 
-            Utils.CreateFile(DestinationPath, Utils.UppercaseFirst(entry.Name), className
+            Utils.CreateFile(DestinationPath, Utils.PascalCase(entry.Name), className
                 , string.Format(content, className, enumValues.ToString().Trim(',')));
         }
 
@@ -311,31 +355,33 @@ namespace jQueryApi.UI {{
                 return;
             }
 
-            string className = Utils.UppercaseFirst(entry.Name) + @"Event";
+            string className = Utils.PascalCase(entry.Name) + @"Event";
 
             string content =
-@"using System.Runtime.CompilerServices;
+@"using System;
+using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI {{
+
     [Imported]
     [IgnoreNamespace]
     [NamedValues]
     public enum {0} {{{1}
     }}
-
 }}";
             StringBuilder enumValues = new StringBuilder();
 
             foreach (var @event in entry.Events.AsQueryable()
                                           .OrderBy(e => e.Name)) {
                 enumValues.AppendLine();
+                enumValues.AppendLine();
                 enumValues.AppendLine("        /// <summary>");
                 enumValues.AppendLine("        /// " + Utils.FormatXmlComment(@event.Description));
                 enumValues.AppendLine("        /// </summary>");
-                enumValues.Append("        " + Utils.UppercaseFirst(@event.Name) + ",");
+                enumValues.Append("        " + Utils.PascalCase(@event.Name) + ",");
             }
 
-            Utils.CreateFile(DestinationPath, Utils.UppercaseFirst(entry.Name), className
+            Utils.CreateFile(DestinationPath, Utils.PascalCase(entry.Name), className
                 , string.Format(content, className, enumValues.ToString().Trim(',')));
         }
 
@@ -344,18 +390,19 @@ namespace jQueryApi.UI {{
                 return;
             }
 
-            string className = Utils.UppercaseFirst(entry.Name) + @"Method";
+            string className = Utils.PascalCase(entry.Name) + @"Method";
 
             string content =
-@"using System.Runtime.CompilerServices;
+@"using System;
+using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI {{
+
     [Imported]
     [IgnoreNamespace]
     [NamedValues]
     public enum {0} {{{1}
     }}
-
 }}";
             StringBuilder enumValues = new StringBuilder();
 
@@ -363,34 +410,35 @@ namespace jQueryApi.UI {{
                                            .OrderBy(m => m.Name)
                                            .GroupBy(m => m.Name)) {
                 enumValues.AppendLine();
+                enumValues.AppendLine();
                 enumValues.AppendLine("        /// <summary>");
                 enumValues.AppendLine("        /// " + Utils.FormatXmlComment(method.Min(m => m.Description)));
                 enumValues.AppendLine("        /// </summary>");
-                enumValues.Append("        " + Utils.UppercaseFirst(method.Key) + ",");
+                enumValues.Append("        " + Utils.PascalCase(method.Key) + ",");
             }
 
-            Utils.CreateFile(DestinationPath, Utils.UppercaseFirst(entry.Name), className
+            Utils.CreateFile(DestinationPath, Utils.PascalCase(entry.Name), className
                 , string.Format(content, className, enumValues.ToString().Trim(',')));
         }
 
         private void RenderJqueryUI() {
-            string className = "jQueryObjectUI";
+            string className = "jQueryUIObject";
 
-            string content = @"using System.Runtime.CompilerServices;
+            string content =
+@"using System;
+using System.Runtime.CompilerServices;
 
-namespace jQueryApi.UI
-{
+namespace jQueryApi.UI {
+
     [Imported]
     [IgnoreNamespace]
-    public class " + className + @" : jQueryObject
-    {
-        public jQueryObjectUI scrollParent()
-        {
+    public class " + className + @" : jQueryObject {
+
+        public jQueryUIObject scrollParent() {
             return null;
         }
 
-        public jQueryObjectUI zIndex()
-        {
+        public jQueryUIObject zIndex() {
             return null;
         }
 
@@ -399,8 +447,7 @@ namespace jQueryApi.UI
         /// Not documented yet jQuery extension!
         /// </summary>
         /// <returns>The current jQueryObject.</returns>
-        public jQueryObjectUI DisableSelection()
-        {
+        public jQueryUIObject DisableSelection() {
             return null;
         }
 
@@ -409,8 +456,7 @@ namespace jQueryApi.UI
         /// Not documented yet jQuery extension!
         /// </summary>
         /// <returns>The current jQueryObject.</returns>
-        public jQueryObjectUI EnableSelection()
-        {
+        public jQueryUIObject EnableSelection() {
             return null;
         }
     }
@@ -421,19 +467,34 @@ namespace jQueryApi.UI
         private void RenderJquerySize() {
             string className = "jQuerySize";
 
-            string content = @"using System.Runtime.CompilerServices;
+            string content =
+@"using System;
+using System.Runtime.CompilerServices;
 
-namespace jQueryApi.UI
-{
+namespace jQueryApi.UI {
+
     [Imported]
     [IgnoreNamespace]
     [ScriptName(""Object"")]
     public sealed class " + className + @" {
-        [IntrinsicProperty]
-        public string Width { get { return null; } set { } }
 
         [IntrinsicProperty]
-        public string Height { get { return null; } set { } }
+        public string Height {
+            get {
+                return null;
+            }
+            set {
+            }
+        }
+
+        [IntrinsicProperty]
+        public string Width {
+            get {
+                return null;
+            }
+            set {
+            }
+        }
     }
 }";
             Utils.CreateFile(DestinationPath, string.Empty, className, content);
@@ -441,19 +502,34 @@ namespace jQueryApi.UI
 
         private void RenderJqueryPosition() {
             string className = "jQueryPosition";
-            string content = @"using System.Runtime.CompilerServices;
+            string content =
+@"using System;
+using System.Runtime.CompilerServices;
 
-namespace jQueryApi.UI
-{
+namespace jQueryApi.UI {
+
     [Imported]
     [IgnoreNamespace]
     [ScriptName(""Object"")]
     public sealed class " + className + @" {
-        [IntrinsicProperty]
-        public string Top { get { return null; } set { } }
 
         [IntrinsicProperty]
-        public string Left { get { return null; } set { } }
+        public string Left {
+            get {
+                return null;
+            }
+            set {
+            }
+        }
+
+        [IntrinsicProperty]
+        public string Top {
+            get {
+                return null;
+            }
+            set {
+            }
+        }
     }
 }";
             Utils.CreateFile(DestinationPath, string.Empty, className, content);
@@ -469,11 +545,13 @@ namespace jQueryApi.UI
   <PropertyGroup>
     <Configuration Condition="" '$(Configuration)' == '' "">Debug</Configuration>
     <Platform Condition="" '$(Platform)' == '' "">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{824C1FEC-2455-4183-AFC6-891EDB88213A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <NoStdLib>True</NoStdLib>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\..\ScriptSharp.snk</AssemblyOriginatorKeyFile>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>jQueryApi.UI</RootNamespace>
     <AssemblyName>Script.jQuery.UI</AssemblyName>
@@ -482,44 +560,59 @@ namespace jQueryApi.UI
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition="" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' "">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
+    <DebugSymbols>false</DebugSymbols>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Script.jQuery.UI.xml</DocumentationFile>
+    <OutputPath>..\..\..\..\bin\Debug\</OutputPath>
+    <DocumentationFile>..\..\..\..\bin\Debug\Script.jQuery.UI.xml</DocumentationFile>
+    <NoWarn>1591, 0661, 0660, 1684</NoWarn>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition="" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' "">
-    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Script.jQuery.UI.xml</DocumentationFile>
+    <OutputPath>..\..\..\..\bin\Release\</OutputPath>
+    <DocumentationFile>..\..\..\..\bin\Release\Script.jQuery.UI.xml</DocumentationFile>
+    <NoWarn>1591, 0661, 0660, 1684</NoWarn>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
 ";
             foreach (Entry entry in entries) {
-                content += @"<Compile Include=""" + Utils.UppercaseFirst(entry.Name) + @"\*.cs"" />
+                content += @"    <Compile Include=""" + Utils.PascalCase(entry.Name) + @"\*.cs"" />
 ";
             }
 
-            content += @"    <Compile Include=""jQueryObjectUI.cs"" />
+            content += @"    <Compile Include=""jQueryUIObject.cs"" />
     <Compile Include=""jQuerySize.cs"" />
     <Compile Include=""jQueryPosition.cs"" />
     <Compile Include=""Properties\AssemblyInfo.cs"" />
-    <None Include=""Properties\ScriptInfo.txt"">
+    <Compile Include=""..\..\..\ScriptSharp.cs"">
+      <Link>Properties\ScriptSharp.cs</Link>
+    </Compile>
+    <ScriptInfo Include=""Properties\ScriptInfo.txt"">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </ScriptInfo>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include=""mscorlib, Version=0.7.0.0, Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4, processorArchitecture=MSIL"" />
-    <Reference Include=""Script.jQuery, Version=0.7.0.0, Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4, processorArchitecture=MSIL"" />
-    <Reference Include=""Script.Web, Version=0.7.0.0, Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4, processorArchitecture=MSIL"" />
-    <Reference Include=""System"" />
+    <ProjectReference Include=""..\..\CoreLib\CoreLib.csproj"">
+      <Project>{36D4B098-A21C-4725-ACD3-400922885F38}</Project>
+      <Name>CoreLib</Name>
+    </ProjectReference>
+    <ProjectReference Include=""..\..\Web\Web.csproj"">
+      <Project>{3681A9A8-FC40-4125-B842-7775713C8DCE}</Project>
+      <Name>Web</Name>
+    </ProjectReference>
+    <ProjectReference Include=""..\jQuery.Core\jQuery.Core.csproj"">
+      <Project>{4A9F7CE0-5A45-4B28-AD01-05528709B6E4}</Project>
+      <Name>jQuery.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project=""$(MSBuildBinPath)\Microsoft.CSharp.targets"" />
   <Target Name=""AfterBuild"">
@@ -527,7 +620,7 @@ namespace jQueryApi.UI
   </Target>
 </Project>";
 
-            using (StreamWriter file = new StreamWriter(Path.Combine(DestinationPath, "jQueryApi.UI.csproj"))) {
+            using (StreamWriter file = new StreamWriter(Path.Combine(DestinationPath, "jQuery.UI.csproj"))) {
                 file.WriteLine(content);
             }
 
