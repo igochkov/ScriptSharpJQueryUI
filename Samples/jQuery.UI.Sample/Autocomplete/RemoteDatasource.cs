@@ -1,5 +1,5 @@
 // RemoteDatasource.cs
-// Script#/samples/jQuery.UI/jQuery.UI.Sample/Autocomplete
+// Script#/samples/jQuery.UI/jQuery.UI.Sample/AutoComplete
 // Copyright (c) Ivaylo Gochkov, 2012
 // Copyright (c) Microsoft Corporation.
 // This source code is subject to terms and conditions of the Microsoft 
@@ -10,18 +10,18 @@ using System.Runtime.CompilerServices;
 using jQueryApi;
 using jQueryApi.UI;
 
-namespace Sample.Autocomplete {
+namespace Sample.AutoComplete {
     internal static class RemoteDatasource {
         static RemoteDatasource() {
             jQuery.OnDocumentReady(delegate() {
                 jQuery.Select("#birds")
-                    .Plugin<AutocompleteObject>()
-                    .Autocomplete(new AutocompleteOptions(
-                        AutocompleteOption.Source, "Search",
-                        AutocompleteOption.MinLength, 2,
-                        AutocompleteEvent.Select, new AutocompleteSelectEventHandler(delegate(jQueryEvent e, AutocompleteSelectEvent ui) {
+                    .Plugin<AutoCompleteObject>()
+                    .AutoComplete(new AutoCompleteOptions(
+                        AutoCompleteOption.Source, "Search",
+                        AutoCompleteOption.MinLength, 2,
+                        AutoCompleteEvent.Select, new AutoCompleteSelectEventHandler(delegate(jQueryEvent e, AutoCompleteSelectEvent ui) {
                             Log(ui.Item != null
-                               ? "Selected: " + ((AutocompleteData)ui.Item).Value + " aka " + ((AutocompleteData)ui.Item).Id
+                               ? "Selected: " + ((AutoCompleteData)ui.Item).Value + " aka " + ((AutoCompleteData)ui.Item).Id
                                : "Nothing selected, input was " + jQuery.This.GetValue());
                 })));
             });
@@ -38,7 +38,7 @@ namespace Sample.Autocomplete {
     [Imported]
     [IgnoreNamespace]
     [ScriptName("Object")]
-    public class AutocompleteData {
+    public class AutoCompleteData {
         [IntrinsicProperty]
         public string Value { get { return string.Empty; } set { } }
         [IntrinsicProperty]

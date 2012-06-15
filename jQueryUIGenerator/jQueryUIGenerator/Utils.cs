@@ -55,20 +55,27 @@ namespace ScriptSharpJQueryUI {
 @"// {0}
 // Script#/Libraries/jQuery/jQuery.UI/{1}
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
-//";
+//
+";
 
             return string.Format(header, fileName, entryName);
         }
 
         /// <summary>
-        /// Capitalize the first letter of a word.
+        /// Convert the name into a pascal-cased name.
         /// </summary>
-        /// <param name="word">Word to be capitalized.</param>
-        /// <returns>Capitalized word.</returns>
-        public static string UppercaseFirst(string word) {
+        /// <param name="word">Word to be pascal-cased.</param>
+        /// <returns>Pascal-cased word.</returns>
+        public static string PascalCase(string word) {
             if (string.IsNullOrEmpty(word)) {
                 return string.Empty;
             }
+
+            // Quick and dirty way to cover specific multi-word names
+            // using simple rules
+            word = word.Replace("autocomplete", "AutoComplete")
+                       .Replace("datepicker", "DatePicker")
+                       .Replace("progressbar", "ProgressBar");
 
             return char.ToUpper(word[0]) + word.Substring(1);
         }
