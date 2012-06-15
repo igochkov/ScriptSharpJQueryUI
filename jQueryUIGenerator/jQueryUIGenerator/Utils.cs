@@ -39,7 +39,7 @@ namespace ScriptSharpJQueryUI {
 
             using (StreamWriter file = new StreamWriter(Path.Combine(dir.FullName, fileName + ".cs")))
             {
-                file.WriteLine(FileHeader(fileName + ".cs", folderName));
+                file.WriteLine(FileHeader(fileName + ".cs"));
                 file.WriteLine(content);
             }
         }
@@ -50,25 +50,34 @@ namespace ScriptSharpJQueryUI {
         /// <param name="fileName">File name.</param>
         /// <param name="entryName">jQueryUI entry name.</param>
         /// <returns>File header.</returns>
-        private static string FileHeader(string fileName, string entryName) {
+        private static string FileHeader(string fileName) {
             string header =
 @"// {0}
-// Script#/Libraries/jQuery/jQuery.UI/{1}
+// Script#/Libraries/jQuery/UI
 // This source code is subject to terms and conditions of the Apache License, Version 2.0.
-//";
+//
+";
 
-            return string.Format(header, fileName, entryName);
+            return string.Format(header, fileName);
         }
 
         /// <summary>
-        /// Capitalize the first letter of a word.
+        /// Convert the name into a pascal-cased name.
         /// </summary>
-        /// <param name="word">Word to be capitalized.</param>
-        /// <returns>Capitalized word.</returns>
-        public static string UppercaseFirst(string word) {
+        /// <param name="word">Word to be pascal-cased.</param>
+        /// <returns>Pascal-cased word.</returns>
+        public static string PascalCase(string word) {
             if (string.IsNullOrEmpty(word)) {
                 return string.Empty;
             }
+
+            // Quick and dirty way to cover specific multi-word names
+            // using simple rules
+            word = word.Replace("autocomplete", "AutoComplete")
+                       .Replace("datepicker", "DatePicker")
+                       .Replace("progressbar", "ProgressBar")
+                       .Replace("tabsselect", "TabsSelect")
+                       .Replace("tabsload", "TabsLoad");
 
             return char.ToUpper(word[0]) + word.Substring(1);
         }
