@@ -25,8 +25,8 @@ namespace Sample.Droppable
                     .Plugin<DroppableObject>()
                     .Droppable(new DroppableOptions("accept", "#draggableAcceptedElements"
                                                    , "activeClass", "ui-state-hover"
-                                                   , "hoverClass", "ui-state-active"                        
-                                                   , "drop", new DropEventHandler(delegate(jQueryEvent e, DropEvent ui)
+                                                   , "hoverClass", "ui-state-active"
+                                                   , "drop", new jQueryUIEventHandler<DropEvent>(delegate(jQueryEvent e, DropEvent ui)
                                                    {
                                                         jQuery.This
                                                               .AddClass("ui-state-highlight")

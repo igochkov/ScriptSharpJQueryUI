@@ -30,7 +30,7 @@ namespace Sample.Droppable
                     .Droppable(new DroppableOptions("activeClass", "ui-state-hover"
                                                    , "hoverClass", "ui-state-active"
                         , "drop"
-                        , new DropEventHandler(delegate(jQueryEvent e, DropEvent ui) 
+                        , new jQueryUIEventHandler<DropEvent>(delegate(jQueryEvent e, DropEvent ui) 
                         {
                             jQuery.This
                                   .AddClass("ui-state-highlight")

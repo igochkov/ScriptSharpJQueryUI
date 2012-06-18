@@ -31,7 +31,7 @@ namespace Sample.Sortable
                             .Droppable(new DroppableOptions(
                                 DroppableOption.Accept, ".connectedSortable2 li",
                                 DroppableOption.HoverClass, "ui-state-hover",
-                                DroppableEvent.Drop, new DropEventHandler(delegate(jQueryEvent e, DropEvent dropEvent) {
+                                DroppableEvents.Drop, new jQueryUIEventHandler<DropEvent>(delegate(jQueryEvent e, DropEvent dropEvent) {
                                     jQueryObject list = jQuery.Select(jQuery.This.Find("a").GetAttribute("href"))
                                                               .Find(".connectedSortable2");
 

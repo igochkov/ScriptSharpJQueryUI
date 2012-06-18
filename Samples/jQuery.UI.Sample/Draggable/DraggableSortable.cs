@@ -27,7 +27,7 @@ namespace Sample.Draggable
                                                    , "helper", "clone"
                                                    , "revert", "invalid"));
 
-                ((jQueryObjectUI)jQuery.Select("ul, li")).DisableSelection();
+                ((jQueryUIObject)jQuery.Select("ul, li")).DisableSelection();
             });
         }
     }

@@ -36,7 +36,7 @@ namespace Sample.Droppable
                      .Droppable(new DroppableOptions(
                         DroppableOption.Accept, "#gallery > li",
                         DroppableOption.ActiveClass, "ui-state-highlight",
-                        DroppableEvent.Drop, new DropEventHandler(delegate(jQueryEvent e, DropEvent ui)
+                        DroppableEvents.Drop, new jQueryUIEventHandler<DropEvent>(delegate(jQueryEvent e, DropEvent ui)
                         {
                             DeleteImage(ui.Draggable as jQueryObject);
                         })));
@@ -47,7 +47,7 @@ namespace Sample.Droppable
                       .Droppable(new DroppableOptions(
                         DroppableOption.Accept, "#trash li",
                         DroppableOption.ActiveClass, "custom-state-active",
-                        DroppableEvent.Drop, new DropEventHandler(delegate(jQueryEvent e, DropEvent ui)
+                        DroppableEvents.Drop, new jQueryUIEventHandler<DropEvent>(delegate(jQueryEvent e, DropEvent ui)
                         {
                             RecycleImage(ui.Draggable as jQueryObject);
                         })));

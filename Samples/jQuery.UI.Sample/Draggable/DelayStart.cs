@@ -26,7 +26,7 @@ namespace Sample.Draggable
                               .Plugin<DraggableObject>()
                               .Draggable(new DraggableOptions("delay", 1000));
 
-                ((jQueryObjectUI)jQuery.Select(".ui-draggable")).DisableSelection();
+                ((jQueryUIObject)jQuery.Select(".ui-draggable")).DisableSelection();
             });
         }
     }

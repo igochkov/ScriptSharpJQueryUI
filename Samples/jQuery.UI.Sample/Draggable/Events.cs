@@ -25,17 +25,17 @@ namespace Sample.Draggable
                 int[] counts = new int[] { 0, 0, 0 };
 
                 DraggableOptions options = new DraggableOptions();
-                options.Start = delegate(jQueryEvent e, DragStartEvent eventData)
+                options.Start = delegate(jQueryEvent e, jQueryObject eventData)
                 {
                     counts[0]++;
                     UpdateCounterStatus(start_counter, counts[0]);
                 };
-                options.Drag = delegate(jQueryEvent e, DragEvent eventData)
+                options.Drag = delegate(jQueryEvent e, jQueryObject eventData)
                 {
                     counts[1]++;
                     UpdateCounterStatus(drag_counter, counts[1]);
                 };
-                options.Stop = delegate(jQueryEvent e, DragStopEvent eventData)
+                options.Stop = delegate(jQueryEvent e, jQueryObject eventData)
                 {
                     counts[2]++;
                     UpdateCounterStatus(stop_counter, counts[2]);

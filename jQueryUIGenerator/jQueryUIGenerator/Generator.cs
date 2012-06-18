@@ -63,6 +63,7 @@ namespace ScriptSharpJQueryUI {
             }
 
             Messages.WriteLine("Generating jQueryUI base files.");
+            RenderEventHandler();
             RenderJqueryUI();
             RenderJquerySize();
             RenderJqueryPosition();
@@ -192,7 +193,12 @@ namespace jQueryApi.UI {{
                     if (string.IsNullOrEmpty(@event.Type)) {
                         eventType = "jQueryEventHandler";
                     } else {
-                        eventType = Utils.PascalCase(@event.Type.Replace(@event.Name.ToLower(), Utils.PascalCase(@event.Name))) + @"EventHandler";
+                        if (@event.Arguments.All(a => a.Properties.Count == 0)) {
+                            eventType = "jQueryUIEventHandler<jQueryObject>";
+                        } else {
+                            eventType = "jQueryUIEventHandler<" + Utils.PascalCase(@event.Type.Replace(@event.Name.ToLower(), Utils.PascalCase(@event.Name))) + "Event" + ">";
+                        }
+                        
                     }
 
                     eventsContent.AppendLine(
@@ -240,8 +246,8 @@ namespace jQueryApi.UI {{
                 , string.Format(content, className, eventsContent.ToString(), optionsContent.ToString()));
         }
 
-        private void RenderEventHandler(string entryName, string eventType) {
-            string className = Utils.PascalCase(eventType) + "EventHandler";
+        private void RenderEventHandler() {
+            string className = "jQueryUIEventHandler";
 
             string content =
 @"using System;
@@ -251,10 +257,10 @@ namespace jQueryApi.UI {
 
     [Imported]
     [IgnoreNamespace]
-    public delegate void " + className + @"(jQueryEvent e, " + Utils.PascalCase(eventType) + "Event " + eventType + @"Event);
+    public delegate void " + className + @"<T>(jQueryEvent e, T uiEvent);
 }";
 
-            Utils.CreateFile(DestinationPath, entryName, className, content);
+            Utils.CreateFile(DestinationPath, string.Empty, className, content);
         }
 
         private void RenderEvents(Entry entry) {
@@ -296,6 +302,7 @@ namespace jQueryApi.UI {{
 
                 foreach (Argument arg in @event.Arguments) {
                     if (arg.Name != "ui") continue;
+                    if (arg.Properties.Count == 0) continue;
 
                     className = Utils.PascalCase(eventType) + "Event";
 
@@ -304,9 +311,7 @@ namespace jQueryApi.UI {{
                     foreach (Property prop in arg.Properties.OrderBy(p => p.Name)) {
                         properties.Append(string.Format(property, Utils.PascalCase(prop.Name), Utils.GetCSType(prop.Type), Utils.GetDefaultValue(prop.Type)));
                     }
-
-                    RenderEventHandler(Utils.PascalCase(entry.Name), eventType);
-
+                    
                     Utils.CreateFile(DestinationPath, Utils.PascalCase(entry.Name)
                                     , className
                                     , string.Format(content, className, properties.ToString()));
@@ -355,7 +360,7 @@ namespace jQueryApi.UI {{
                 return;
             }
 
-            string className = Utils.PascalCase(entry.Name) + @"Event";
+            string className = Utils.PascalCase(entry.Name) + @"Events";
 
             string content =
 @"using System;
@@ -590,6 +595,7 @@ namespace jQueryApi.UI {
             }
 
             content += @"    <Compile Include=""jQueryUIObject.cs"" />
+    <Compile Include=""jQueryUIEventHandler.cs"" />
     <Compile Include=""jQuerySize.cs"" />
     <Compile Include=""jQueryPosition.cs"" />
     <Compile Include=""Properties\AssemblyInfo.cs"" />

@@ -17,19 +17,30 @@ namespace Sample.Draggable
         {
             jQuery.OnDocumentReady(delegate()
             {
+                DraggableOptions options;
+
+                options = new DraggableOptions();
+                options.Scroll = true;
+
                 jQuery.Select("#draggableAutoScroll1")
                       .Plugin<DraggableObject>()
-                      .Draggable(new DraggableOptions("scroll", true));
+                      .Draggable(options);
 
+                options = new DraggableOptions();
+                options.Scroll = true;
+                options.ScrollSensitivity = 100;
+                
                 jQuery.Select("#draggableAutoScroll2")
                       .Plugin<DraggableObject>()
-                      .Draggable(new DraggableOptions( "scroll", true
-                                                     , "scrollSensitivity", 100));
+                      .Draggable(options);
+
+                options = new DraggableOptions();
+                options.Snap = true;
+                options.ScrollSpeed = 100;
 
                 jQuery.Select("#draggableAutoScroll3")
                       .Plugin<DraggableObject>()
-                      .Draggable(new DraggableOptions( "snap", true
-                                                     , "scrollSpeed", 100));
+                      .Draggable(options);
             });
         }
     }

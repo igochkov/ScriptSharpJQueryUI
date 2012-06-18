@@ -33,7 +33,7 @@ namespace Sample.Droppable
                         , "hoverClass", "ui-state-hover"
                         , "accept", ":not(.ui-sortable-helper)"
                         , "drop"
-                        , new DropEventHandler(delegate(jQueryEvent e, DropEvent ui)
+                        , new jQueryUIEventHandler<DropEvent>(delegate(jQueryEvent e, DropEvent ui)
                         {
                             jQuery.This.Find(".placeholder").Remove();
                             jQuery.FromHtml("<li></li>").Text((ui.Draggable as jQueryObject).GetText()).AppendTo(jQuery.This);

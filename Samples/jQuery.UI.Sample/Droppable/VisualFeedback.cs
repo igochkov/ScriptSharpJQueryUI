@@ -21,8 +21,8 @@ namespace Sample.Droppable
                     .Plugin<DraggableObject>()
                     .Draggable();
 
-                DropEventHandler drop
-                    = new DropEventHandler(delegate(jQueryEvent e, DropEvent ui) 
+                jQueryUIEventHandler<DropEvent> drop
+                    = new jQueryUIEventHandler<DropEvent>(delegate(jQueryEvent e, DropEvent ui) 
                     {
                         jQuery.This
                                 .AddClass("ui-state-highlight")
@@ -32,14 +32,14 @@ namespace Sample.Droppable
 
                 jQuery.Select("#droppableVisualFeedback1")
                     .Plugin<DroppableObject>()
-                    .Droppable(new DroppableOptions("hoverClass", "ui-state-active"
-                                                   , "drop", drop));
+                    .Droppable(new DroppableOptions(DroppableOption.HoverClass, "ui-state-active"
+                                                   , DroppableEvents.Drop, drop));
 
                 jQuery.Select("#droppableVisualFeedback2")
                     .Plugin<DroppableObject>()
-                    .Droppable(new DroppableOptions("accept", "#draggableVisualFeedback2"
-                                                   , "activeClass", "ui-state-hover"
-                                                   , "drop", drop));
+                    .Droppable(new DroppableOptions(DroppableOption.Accept, "#draggableVisualFeedback2"
+                                                   , DroppableOption.ActiveClass, "ui-state-hover"
+                                                   , DroppableEvents.Drop, drop));
             });
         }
     }

@@ -25,7 +25,7 @@ namespace Sample.Draggable
                       .Plugin<DraggableObject>()
                       .Draggable(new DraggableOptions("cancel", "p.ui-widget-header"));
 
-                ((jQueryObjectUI)jQuery.Select("div, p")).DisableSelection();
+                ((jQueryUIObject)jQuery.Select("div, p")).DisableSelection();
             });
         }
     }

@@ -24,7 +24,7 @@ namespace Sample.Droppable
                 jQuery.Select("#droppableDroppableDefault")
                     .Plugin<DroppableObject>()
                     .Droppable(new DroppableOptions("drop"
-                        , new DropEventHandler(delegate(jQueryEvent e, DropEvent ui) 
+                        , new jQueryUIEventHandler<DropEvent>(delegate(jQueryEvent e, DropEvent ui) 
                         {
                             jQuery.This
                                   .AddClass("ui-state-highlight")

@@ -3,14 +3,14 @@
 
 (function($) {
 
-Type.registerNamespace('Sample.Autocomplete');
+Type.registerNamespace('Sample.AutoComplete');
 
 ////////////////////////////////////////////////////////////////////////////////
-// Sample.Autocomplete._remoteDatasource
+// Sample.AutoComplete._remoteDatasource
 
-Sample.Autocomplete._remoteDatasource = function Sample_Autocomplete__remoteDatasource() {
+Sample.AutoComplete._remoteDatasource = function Sample_AutoComplete__remoteDatasource() {
 }
-Sample.Autocomplete._remoteDatasource._log = function Sample_Autocomplete__remoteDatasource$_log(message) {
+Sample.AutoComplete._remoteDatasource._log = function Sample_AutoComplete__remoteDatasource$_log(message) {
     /// <param name="message" type="String">
     /// </param>
     $('<div/>').text(message).prependTo('#log');
@@ -19,9 +19,9 @@ Sample.Autocomplete._remoteDatasource._log = function Sample_Autocomplete__remot
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// Sample.Autocomplete._default
+// Sample.AutoComplete._default
 
-Sample.Autocomplete._default = function Sample_Autocomplete__default() {
+Sample.AutoComplete._default = function Sample_AutoComplete__default() {
 }
 
 
@@ -366,31 +366,31 @@ Sample.Droppable._default = function Sample_Droppable__default() {
 }
 
 
-Type.registerNamespace('Sample.Progressbar');
+Type.registerNamespace('Sample.ProgressBar');
 
 ////////////////////////////////////////////////////////////////////////////////
-// Sample.Progressbar._resizableBar
+// Sample.ProgressBar._resizableBar
 
-Sample.Progressbar._resizableBar = function Sample_Progressbar__resizableBar() {
+Sample.ProgressBar._resizableBar = function Sample_ProgressBar__resizableBar() {
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// Sample.Progressbar._animated
+// Sample.ProgressBar._animated
 
-Sample.Progressbar._animated = function Sample_Progressbar__animated() {
+Sample.ProgressBar._animated = function Sample_ProgressBar__animated() {
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// Sample.Progressbar._default
+// Sample.ProgressBar._default
 
-Sample.Progressbar._default = function Sample_Progressbar__default() {
+Sample.ProgressBar._default = function Sample_ProgressBar__default() {
 }
 
 
-Sample.Autocomplete._remoteDatasource.registerClass('Sample.Autocomplete._remoteDatasource');
-Sample.Autocomplete._default.registerClass('Sample.Autocomplete._default');
+Sample.AutoComplete._remoteDatasource.registerClass('Sample.AutoComplete._remoteDatasource');
+Sample.AutoComplete._default.registerClass('Sample.AutoComplete._default');
 Sample.Sortable._connectLists.registerClass('Sample.Sortable._connectLists');
 Sample.Sortable._connectListsTabs.registerClass('Sample.Sortable._connectListsTabs');
 Sample.Sortable._portlets.registerClass('Sample.Sortable._portlets');
@@ -432,14 +432,18 @@ Sample.Droppable._revert.registerClass('Sample.Droppable._revert');
 Sample.Droppable._shoppingCart.registerClass('Sample.Droppable._shoppingCart');
 Sample.Droppable._photoManager.registerClass('Sample.Droppable._photoManager');
 Sample.Droppable._default.registerClass('Sample.Droppable._default');
-Sample.Progressbar._resizableBar.registerClass('Sample.Progressbar._resizableBar');
-Sample.Progressbar._animated.registerClass('Sample.Progressbar._animated');
-Sample.Progressbar._default.registerClass('Sample.Progressbar._default');
+Sample.ProgressBar._resizableBar.registerClass('Sample.ProgressBar._resizableBar');
+Sample.ProgressBar._animated.registerClass('Sample.ProgressBar._animated');
+Sample.ProgressBar._default.registerClass('Sample.ProgressBar._default');
 (function () {
     $(function() {
-        $('#birds').autocomplete({ source: 'Search', minLength: 2, select: function(e, ui) {
-            Sample.Autocomplete._remoteDatasource._log((ui.item != null) ? 'Selected: ' + (ui.item).value + ' aka ' + (ui.item).id : 'Nothing selected, input was ' + $(this).val());
-        } });
+        var options = {};
+        options.source = 'Search';
+        options.minLength = 2;
+        options.select = function(e, ui) {
+            Sample.AutoComplete._remoteDatasource._log((ui.item != null) ? 'Selected: ' + (ui.item).value + ' aka ' + (ui.item).id : 'Nothing selected, input was ' + $(this).val());
+        };
+        $('#birds').autocomplete(options);
     });
 })();
 (function () {
@@ -598,9 +602,18 @@ Sample.Progressbar._default.registerClass('Sample.Progressbar._default');
 })();
 (function () {
     $(function() {
-        $('#draggableAutoScroll1').draggable({ scroll: true });
-        $('#draggableAutoScroll2').draggable({ scroll: true, scrollSensitivity: 100 });
-        $('#draggableAutoScroll3').draggable({ snap: true, scrollSpeed: 100 });
+        var options;
+        options = {};
+        options.scroll = true;
+        $('#draggableAutoScroll1').draggable(options);
+        options = {};
+        options.scroll = true;
+        options.scrollSensitivity = 100;
+        $('#draggableAutoScroll2').draggable(options);
+        options = {};
+        options.snap = true;
+        options.scrollSpeed = 100;
+        $('#draggableAutoScroll3').draggable(options);
     });
 })();
 (function () {

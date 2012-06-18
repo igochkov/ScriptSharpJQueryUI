@@ -14,16 +14,20 @@ namespace Sample.AutoComplete {
     internal static class RemoteDatasource {
         static RemoteDatasource() {
             jQuery.OnDocumentReady(delegate() {
+
+                AutoCompleteOptions options = new AutoCompleteOptions();
+                options.Source = "Search";
+                options.MinLength = 2;
+                options.Select = new jQueryUIEventHandler<AutoCompleteSelectEvent>(delegate(jQueryEvent e, AutoCompleteSelectEvent ui) {
+                    Log(ui.Item != null
+                       ? "Selected: " + ((AutoCompleteData)ui.Item).Value + " aka " + ((AutoCompleteData)ui.Item).Id
+                       : "Nothing selected, input was " + jQuery.This.GetValue());
+                });
+
+
                 jQuery.Select("#birds")
-                    .Plugin<AutoCompleteObject>()
-                    .AutoComplete(new AutoCompleteOptions(
-                        AutoCompleteOption.Source, "Search",
-                        AutoCompleteOption.MinLength, 2,
-                        AutoCompleteEvent.Select, new AutoCompleteSelectEventHandler(delegate(jQueryEvent e, AutoCompleteSelectEvent ui) {
-                            Log(ui.Item != null
-                               ? "Selected: " + ((AutoCompleteData)ui.Item).Value + " aka " + ((AutoCompleteData)ui.Item).Id
-                               : "Nothing selected, input was " + jQuery.This.GetValue());
-                })));
+                      .Plugin<AutoCompleteObject>()
+                      .AutoComplete(options);
             });
 
 

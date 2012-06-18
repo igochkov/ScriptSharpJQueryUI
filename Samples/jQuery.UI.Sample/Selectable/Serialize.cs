@@ -20,8 +20,8 @@ namespace Sample.Selectable
             {
                 jQuery.Select("#selectable2")
                       .Plugin<SelectableObject>()
-                      .Selectable(new SelectableOptions(SelectableEvent.Stop,
-                new SelectableStopEventHandler(delegate(jQueryEvent e, SelectableStopEvent uiEvent)
+                      .Selectable(new SelectableOptions(SelectableEvents.Stop,
+                new jQueryUIEventHandler<jQueryObject>(delegate(jQueryEvent e, jQueryObject uiEvent)
                 {
                     jQueryObject result = jQuery.Select("#select-result").Empty();
 
