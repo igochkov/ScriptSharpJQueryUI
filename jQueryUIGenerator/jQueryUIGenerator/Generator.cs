@@ -65,8 +65,6 @@ namespace ScriptSharpJQueryUI {
             Messages.WriteLine("Generating jQueryUI base files.");
             RenderEventHandler();
             RenderJqueryUI();
-            RenderJquerySize();
-            RenderJqueryPosition();
         }
 
         private void RenderEntry(Entry entry) {
@@ -469,77 +467,6 @@ namespace jQueryApi.UI {
             Utils.CreateFile(DestinationPath, string.Empty, className, content);
         }
 
-        private void RenderJquerySize() {
-            string className = "jQuerySize";
-
-            string content =
-@"using System;
-using System.Runtime.CompilerServices;
-
-namespace jQueryApi.UI {
-
-    [Imported]
-    [IgnoreNamespace]
-    [ScriptName(""Object"")]
-    public sealed class " + className + @" {
-
-        [IntrinsicProperty]
-        public string Height {
-            get {
-                return null;
-            }
-            set {
-            }
-        }
-
-        [IntrinsicProperty]
-        public string Width {
-            get {
-                return null;
-            }
-            set {
-            }
-        }
-    }
-}";
-            Utils.CreateFile(DestinationPath, string.Empty, className, content);
-        }
-
-        private void RenderJqueryPosition() {
-            string className = "jQueryPosition";
-            string content =
-@"using System;
-using System.Runtime.CompilerServices;
-
-namespace jQueryApi.UI {
-
-    [Imported]
-    [IgnoreNamespace]
-    [ScriptName(""Object"")]
-    public sealed class " + className + @" {
-
-        [IntrinsicProperty]
-        public string Left {
-            get {
-                return null;
-            }
-            set {
-            }
-        }
-
-        [IntrinsicProperty]
-        public string Top {
-            get {
-                return null;
-            }
-            set {
-            }
-        }
-    }
-}";
-            Utils.CreateFile(DestinationPath, string.Empty, className, content);
-        }
-
         /// <summary>
         /// Renders project file with included all generated files.
         /// </summary>
@@ -596,8 +523,6 @@ namespace jQueryApi.UI {
 
             content += @"    <Compile Include=""jQueryUIObject.cs"" />
     <Compile Include=""jQueryUIEventHandler.cs"" />
-    <Compile Include=""jQuerySize.cs"" />
-    <Compile Include=""jQueryPosition.cs"" />
     <Compile Include=""Properties\AssemblyInfo.cs"" />
     <Compile Include=""..\..\..\ScriptSharp.cs"">
       <Link>Properties\ScriptSharp.cs</Link>
