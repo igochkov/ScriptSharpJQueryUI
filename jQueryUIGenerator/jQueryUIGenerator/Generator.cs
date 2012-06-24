@@ -101,10 +101,11 @@ namespace jQueryApi.UI {{
     /// </example>
     [Imported]
     [IgnoreNamespace]
+    {8}
     public sealed class {0} : jQueryObject {{
 
         private {0}() {{
-        }}{4}{5}{6}
+        }}{4}{5}{6}{7}
     }}
 }}";
 
@@ -132,6 +133,43 @@ namespace jQueryApi.UI {{
             return null;
         }}";
 
+            string overload4 =
+            @"
+
+        [ScriptName(""{0}"")]
+        public static WidgetObject Widget(string name, params object[] options) {{
+            return null;
+        }}
+
+        [IntrinsicProperty]
+        public jQueryObject Element {{
+            get {{
+                return null; 
+            }}
+        }}
+
+        [IntrinsicProperty]
+        public object Options {{
+            get {{
+                return null; 
+            }}
+        }}
+
+        [ScriptName(""destroy"")]
+        public void Destroy() {{            
+        }}
+
+        [ScriptName(""option"")]
+        public WidgetObject Option(object key, object value) {{
+            return null;
+        }}
+
+        [ScriptName(""option"")]
+        public WidgetObject Option(object options) {{
+            return null;
+        }}
+";
+
             string example = @"{0}
     /// <code>
     /// {1}
@@ -140,15 +178,33 @@ namespace jQueryApi.UI {{
     /// {2}
     /// </code>";
 
-            string formatedContent
-                = string.Format(content
-                                , className
-                                , Utils.FormatXmlComment(entry.Description)
-                                , Utils.FormatXmlComment(entry.LongDescription)
-                                , (entry.Example != null) ? string.Format(example, Utils.FormatXmlComment(entry.Example.Description), Utils.FormatXmlComment(entry.Example.Code), Utils.FormatXmlComment(entry.Example.Html)) : string.Empty
-                                , string.Format(overload1, entry.Name, Utils.PascalCase(entry.Name), (entry.Name.ToLower() == "position" || entry.Name.ToLower() == "size") ? "new " : string.Empty)
-                                , (entry.Options.Count > 0) ? string.Format(overload2, entry.Name, Utils.PascalCase(entry.Name)) : string.Empty
-                                , (entry.Methods.Count > 0) ? string.Format(overload3, entry.Name, Utils.PascalCase(entry.Name)) : string.Empty);
+            string formatedContent = string.Empty;
+
+            if (entry.Name.ToLower() == "widget") {
+                formatedContent
+                        = string.Format(content
+                                        , className
+                                        , Utils.FormatXmlComment(entry.Description.Replace("<entryname />", entry.Name))
+                                        , Utils.FormatXmlComment(entry.LongDescription.Replace("<entryname />", entry.Name))
+                                        , (entry.Example != null) ? string.Format(example, Utils.FormatXmlComment(entry.Example.Description), Utils.FormatXmlComment(entry.Example.Code), Utils.FormatXmlComment(entry.Example.Html)) : string.Empty
+                                        , string.Empty
+                                        , string.Empty
+                                        , string.Empty
+                                        , string.Format(overload4, entry.Name, Utils.PascalCase(entry.Name))
+                                        , "[ScriptName(\"$\")]");
+            } else {
+                formatedContent
+                    = string.Format(content
+                                    , className
+                                    , Utils.FormatXmlComment(entry.Description.Replace("<entryname />", entry.Name))
+                                    , Utils.FormatXmlComment(entry.LongDescription.Replace("<entryname />", entry.Name))
+                                    , (entry.Example != null) ? string.Format(example, Utils.FormatXmlComment(entry.Example.Description), Utils.FormatXmlComment(entry.Example.Code), Utils.FormatXmlComment(entry.Example.Html)) : string.Empty
+                                    , string.Format(overload1, entry.Name, Utils.PascalCase(entry.Name), (entry.Name.ToLower() == "position" || entry.Name.ToLower() == "size") ? "new " : string.Empty)
+                                    , (entry.Options.Count > 0) ? string.Format(overload2, entry.Name, Utils.PascalCase(entry.Name)) : string.Empty
+                                    , (entry.Methods.Count > 0) ? string.Format(overload3, entry.Name, Utils.PascalCase(entry.Name)) : string.Empty
+                                    , string.Empty
+                                    , string.Empty);
+            }
 
             Utils.CreateFile(DestinationPath, Utils.PascalCase(entry.Name), className, formatedContent);
         }
@@ -182,7 +238,7 @@ namespace jQueryApi.UI {{
                         eventsContent.Append(
 @"
         /// <summary>
-        /// " + Utils.FormatXmlComment(@event.Description) + @"
+        /// " + Utils.FormatXmlComment(@event.Description.Replace("<entryname />", entry.Name)) + @"
         /// </summary>");
                     }
 
@@ -222,7 +278,7 @@ namespace jQueryApi.UI {{
                     optionsContent.Append(
 @"
         /// <summary>
-        /// " + Utils.FormatXmlComment(option.Min(o => o.Description)) + @"
+        /// " + Utils.FormatXmlComment(option.Min(o => o.Description).Replace("<entryname />", entry.Name)) + @"
         /// </summary>");
                 }
 
@@ -344,7 +400,7 @@ namespace jQueryApi.UI {{
                 enumValues.AppendLine();
                 enumValues.AppendLine();
                 enumValues.AppendLine("        /// <summary>");
-                enumValues.AppendLine("        /// " + Utils.FormatXmlComment(option.Min(o => o.Description)));
+                enumValues.AppendLine("        /// " + Utils.FormatXmlComment(option.Min(o => o.Description).Replace("<entryname />", entry.Name)));
                 enumValues.AppendLine("        /// </summary>");
                 enumValues.Append("        " + Utils.PascalCase(option.Key) + ",");
             }
@@ -379,7 +435,7 @@ namespace jQueryApi.UI {{
                 enumValues.AppendLine();
                 enumValues.AppendLine();
                 enumValues.AppendLine("        /// <summary>");
-                enumValues.AppendLine("        /// " + Utils.FormatXmlComment(@event.Description));
+                enumValues.AppendLine("        /// " + Utils.FormatXmlComment(@event.Description.Replace("<entryname />", entry.Name)));
                 enumValues.AppendLine("        /// </summary>");
                 enumValues.Append("        " + Utils.PascalCase(@event.Name) + ",");
             }
@@ -416,7 +472,7 @@ namespace jQueryApi.UI {{
                 enumValues.AppendLine();
                 enumValues.AppendLine();
                 enumValues.AppendLine("        /// <summary>");
-                enumValues.AppendLine("        /// " + Utils.FormatXmlComment(method.Min(m => m.Description)));
+                enumValues.AppendLine("        /// " + Utils.FormatXmlComment(method.Min(m => m.Description).Replace("<entryname />", entry.Name)));
                 enumValues.AppendLine("        /// </summary>");
                 if (Utils.PascalCase(method.Key).ToLower() != method.Key.ToLower()) {
                     enumValues.AppendLine("        [ScriptName(\"" + method.Key + "\")]");
@@ -441,11 +497,23 @@ namespace jQueryApi.UI {
     [IgnoreNamespace]
     public class " + className + @" : jQueryObject {
 
-        public jQueryUIObject scrollParent() {
+        public new jQueryUIObject Focus() {
             return null;
         }
 
-        public jQueryUIObject zIndex() {
+        public jQueryUIObject ScrollParent() {
+            return null;
+        }
+
+        public jQueryUIObject ZIndex() {
+            return null;
+        }
+
+        public jQueryUIObject UniqueId() {
+            return null;
+        }
+
+        public jQueryUIObject RemoveUniqueId() {
             return null;
         }
 
