@@ -112,7 +112,7 @@ namespace jQueryApi.UI {{
 @"
 
         [ScriptName(""{0}"")]
-        public {1}Object {1}() {{
+        public {2}{1}Object {1}() {{
             return null;
         }}";
 
@@ -146,7 +146,7 @@ namespace jQueryApi.UI {{
                                 , Utils.FormatXmlComment(entry.Description)
                                 , Utils.FormatXmlComment(entry.LongDescription)
                                 , (entry.Example != null) ? string.Format(example, Utils.FormatXmlComment(entry.Example.Description), Utils.FormatXmlComment(entry.Example.Code), Utils.FormatXmlComment(entry.Example.Html)) : string.Empty
-                                , string.Format(overload1, entry.Name, Utils.PascalCase(entry.Name))
+                                , string.Format(overload1, entry.Name, Utils.PascalCase(entry.Name), (entry.Name.ToLower() == "position" || entry.Name.ToLower() == "size") ? "new " : string.Empty)
                                 , (entry.Options.Count > 0) ? string.Format(overload2, entry.Name, Utils.PascalCase(entry.Name)) : string.Empty
                                 , (entry.Methods.Count > 0) ? string.Format(overload3, entry.Name, Utils.PascalCase(entry.Name)) : string.Empty);
 
@@ -196,7 +196,7 @@ namespace jQueryApi.UI {{
                         } else {
                             eventType = "jQueryUIEventHandler<" + Utils.PascalCase(@event.Type.Replace(@event.Name.ToLower(), Utils.PascalCase(@event.Name))) + "Event" + ">";
                         }
-                        
+
                     }
 
                     eventsContent.AppendLine(
@@ -309,7 +309,7 @@ namespace jQueryApi.UI {{
                     foreach (Property prop in arg.Properties.OrderBy(p => p.Name)) {
                         properties.Append(string.Format(property, Utils.PascalCase(prop.Name), Utils.GetCSType(prop.Type), Utils.GetDefaultValue(prop.Type)));
                     }
-                    
+
                     Utils.CreateFile(DestinationPath, Utils.PascalCase(entry.Name)
                                     , className
                                     , string.Format(content, className, properties.ToString()));
@@ -409,14 +409,18 @@ namespace jQueryApi.UI {{
 }}";
             StringBuilder enumValues = new StringBuilder();
 
-            foreach (var method in entry.Methods.AsQueryable()
-                                           .OrderBy(m => m.Name)
-                                           .GroupBy(m => m.Name)) {
+            foreach (var method in entry.Methods
+                                        .AsQueryable()
+                                        .OrderBy(m => m.Name)
+                                        .GroupBy(m => m.Name)) {
                 enumValues.AppendLine();
                 enumValues.AppendLine();
                 enumValues.AppendLine("        /// <summary>");
                 enumValues.AppendLine("        /// " + Utils.FormatXmlComment(method.Min(m => m.Description)));
                 enumValues.AppendLine("        /// </summary>");
+                if (Utils.PascalCase(method.Key).ToLower() != method.Key.ToLower()) {
+                    enumValues.AppendLine("        [ScriptName(\"" + method.Key + "\")]");
+                }
                 enumValues.Append("        " + Utils.PascalCase(method.Key) + ",");
             }
 

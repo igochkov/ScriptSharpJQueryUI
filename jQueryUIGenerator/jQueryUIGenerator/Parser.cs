@@ -199,9 +199,6 @@ namespace ScriptSharpJQueryUI {
 
                 Method method = new Method();
                 method.Name = GetAttributeStringValue(xmlMethod, "name");
-                // ingnore methods starting wiht underscore
-                if (method.Name.StartsWith("_")) continue;
-
                 method.Description = GetNodeInnerXml(xmlMethod, "desc");
                 method.Arguments = ParseArguments(GetNodeList(xmlMethod, "argument"));
                 method.Signatures = ParseSignatures(GetNodeList(xmlMethod, "signature"));

@@ -77,7 +77,8 @@ namespace ScriptSharpJQueryUI {
                        .Replace("datepicker", "DatePicker")
                        .Replace("progressbar", "ProgressBar")
                        .Replace("tabsselect", "TabsSelect")
-                       .Replace("tabsload", "TabsLoad");
+                       .Replace("tabsload", "TabsLoad")
+                       .TrimStart('_');
 
             return char.ToUpper(word[0]) + word.Substring(1);
         }
@@ -148,6 +149,8 @@ namespace ScriptSharpJQueryUI {
                         return "bool";
                     case "function":
                         return "Action";
+                    case "jquery":
+                        return "jQueryObject";
                     default:
                         return type;
                 }
