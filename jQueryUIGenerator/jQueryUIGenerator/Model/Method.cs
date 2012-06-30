@@ -20,6 +20,7 @@ using System.Collections.Generic;
 namespace ScriptSharpJQueryUI.Model {
     public class Method {
         public string Name { get; set; }
+        public string ReturnType { get; set; }
         public string Description { get; set; }
         public IList<Argument> Arguments { get; set; }
         public IList<Signature> Signatures { get; set; }

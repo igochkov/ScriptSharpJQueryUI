@@ -15,8 +15,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using ScriptSharpJQueryUI.Model;
 
 namespace ScriptSharpJQueryUI {
     /// <summary>
@@ -73,7 +75,8 @@ namespace ScriptSharpJQueryUI {
 
             // Quick and dirty way to cover specific multi-word names
             // using simple rules
-            word = word.Replace("autocomplete", "AutoComplete")
+            word = word.Replace("ui", "UI")
+                       .Replace("autocomplete", "AutoComplete")
                        .Replace("datepicker", "DatePicker")
                        .Replace("progressbar", "ProgressBar")
                        .Replace("tabsselect", "TabsSelect")
@@ -151,6 +154,10 @@ namespace ScriptSharpJQueryUI {
                         return "Action";
                     case "jquery":
                         return "jQueryObject";
+                    case "event":
+                        return "jQueryEvent";
+                    case "rest":
+                        return "params object[]";
                     default:
                         return type;
                 }
