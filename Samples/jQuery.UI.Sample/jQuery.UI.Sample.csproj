@@ -108,7 +108,7 @@
     <Compile Include="Widget\ColorizeMethod.cs" />
     <Compile Include="Widget\ColorizeObject.cs" />
     <Compile Include="Widget\ColorizeOption.cs" />
-    <Compile Include="Widget\ColorizrOptions.cs" />
+    <Compile Include="Widget\ColorizeOptions.cs" />
     <Compile Include="Widget\Default.cs" />
   </ItemGroup>
   <ItemGroup>
