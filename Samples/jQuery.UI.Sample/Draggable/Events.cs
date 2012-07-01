@@ -1,15 +1,11 @@
 // Events.cs
 // Script#/samples/jQuery.UI/jQuery.UI.Sample/Draggable
 // Copyright (c) Ivaylo Gochkov, 2012
-// Copyright (c) Microsoft Corporation.
-// This source code is subject to terms and conditions of the Microsoft 
-// Public License. A copy of the license can be found in License.txt.
+// This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
-using System.Runtime.CompilerServices;
 using jQueryApi;
-using System;
-using jQueryApi.UI;
+using jQueryApi.UI.Interactions;
 
 namespace Sample.Draggable
 {
@@ -25,17 +21,17 @@ namespace Sample.Draggable
                 int[] counts = new int[] { 0, 0, 0 };
 
                 DraggableOptions options = new DraggableOptions();
-                options.Start = delegate(jQueryEvent e, jQueryObject eventData)
+                options.Start = delegate(jQueryEvent e, DragStartEvent eventData)
                 {
                     counts[0]++;
                     UpdateCounterStatus(start_counter, counts[0]);
                 };
-                options.Drag = delegate(jQueryEvent e, jQueryObject eventData)
+                options.Drag = delegate(jQueryEvent e, DragEvent eventData)
                 {
                     counts[1]++;
                     UpdateCounterStatus(drag_counter, counts[1]);
                 };
-                options.Stop = delegate(jQueryEvent e, jQueryObject eventData)
+                options.Stop = delegate(jQueryEvent e, DragStopEvent eventData)
                 {
                     counts[2]++;
                     UpdateCounterStatus(stop_counter, counts[2]);

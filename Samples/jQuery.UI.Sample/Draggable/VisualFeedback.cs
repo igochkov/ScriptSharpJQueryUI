@@ -1,15 +1,13 @@
 // VisualFeedback.cs
 // Script#/samples/jQuery.UI/jQuery.UI.Sample/Draggable
 // Copyright (c) Ivaylo Gochkov, 2012
-// Copyright (c) Microsoft Corporation.
-// This source code is subject to terms and conditions of the Microsoft 
-// Public License. A copy of the license can be found in License.txt.
+// This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
-using jQueryApi;
-using jQueryApi.UI;
-using System.Collections;
 using System;
+using System.Collections;
+using jQueryApi;
+using jQueryApi.UI.Interactions;
 
 namespace Sample.Draggable
 {
@@ -21,12 +19,12 @@ namespace Sample.Draggable
             {
                 jQuery.Select("#draggableVisual1")
                       .Plugin<DraggableObject>()
-                      .Draggable(new DraggableOptions("helper", "original"));
+                      .Draggable(new DraggableOptions(DraggableOption.Helper, "original"));
 
                 jQuery.Select("#draggableVisual2")
                       .Plugin<DraggableObject>()
-                      .Draggable(new DraggableOptions("opacity", 0.7f
-                                                     , "helper", "clone"));
+                      .Draggable(new DraggableOptions(DraggableOption.Opacity, 0.7f
+                                                     , DraggableOption.Helper, "clone"));
 
 
                 DraggableOptions options = new DraggableOptions();
@@ -43,7 +41,7 @@ namespace Sample.Draggable
 
                 jQuery.Select("#draggableVisualSet div")
                       .Plugin<DraggableObject>()
-                      .Draggable(new DraggableOptions("stack", "#draggableVisualSet div"));
+                      .Draggable(new DraggableOptions(DraggableOption.Stack, "#draggableVisualSet div"));
             });
         }
     }

@@ -1,14 +1,14 @@
 // ShoppingCart.cs
 // Script#/samples/jQuery.UI/jQuery.UI.Sample/Droppable
 // Copyright (c) Ivaylo Gochkov, 2012
-// Copyright (c) Microsoft Corporation.
-// This source code is subject to terms and conditions of the Microsoft 
-// Public License. A copy of the license can be found in License.txt.
+// This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
+using System;
 using jQueryApi;
 using jQueryApi.UI;
-using System;
+using jQueryApi.UI.Interactions;
+using jQueryApi.UI.Widgets;
 
 namespace Sample.Droppable
 {
@@ -24,23 +24,23 @@ namespace Sample.Droppable
 
                 jQuery.Select("#catalog li")
                     .Plugin<DraggableObject>()
-                    .Draggable(new DraggableOptions("appendTo", "body"
-                                                   , "helper", "clone"));
+                    .Draggable(new DraggableOptions(DraggableOption.AppendTo, "body"
+                                                   , DraggableOption.Helper, "clone"));
 
                 jQuery.Select("#cart ol")
                     .Plugin<DroppableObject>()
-                    .Droppable(new DroppableOptions("activeClass", "ui-state-default"
-                        , "hoverClass", "ui-state-hover"
-                        , "accept", ":not(.ui-sortable-helper)"
-                        , "drop"
+                    .Droppable(new DroppableOptions(DroppableOption.ActiveClass, "ui-state-default"
+                        , DroppableOption.HoverClass, "ui-state-hover"
+                        , DroppableOption.Accept, ":not(.ui-sortable-helper)"
+                        , DroppableEvents.Drop
                         , new jQueryUIEventHandler<DropEvent>(delegate(jQueryEvent e, DropEvent ui)
                         {
                             jQuery.This.Find(".placeholder").Remove();
-                            jQuery.FromHtml("<li></li>").Text((ui.Draggable as jQueryObject).GetText()).AppendTo(jQuery.This);
+                            jQuery.FromHtml("<li></li>").Text(ui.Draggable.GetText()).AppendTo(jQuery.This);
                         })))
                     .Plugin<SortableObject>()
-                    .Sortable(new SortableOptions("items", "li:not(.placeholder)"
-                        , "sort"
+                    .Sortable(new SortableOptions(SortableOption.Items, "li:not(.placeholder)"
+                        , SortableEvents.Sort
                         , new Action(delegate()
                         {
                             // gets added unintentionally by droppable interacting with sortable

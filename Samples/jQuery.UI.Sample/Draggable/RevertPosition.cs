@@ -1,13 +1,11 @@
 // RevertPosition.cs
 // Script#/samples/jQuery.UI/jQuery.UI.Sample/Draggable
 // Copyright (c) Ivaylo Gochkov, 2012
-// Copyright (c) Microsoft Corporation.
-// This source code is subject to terms and conditions of the Microsoft 
-// Public License. A copy of the license can be found in License.txt.
+// This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
 using jQueryApi;
-using jQueryApi.UI;
+using jQueryApi.UI.Interactions;
 
 namespace Sample.Draggable
 {
@@ -19,12 +17,12 @@ namespace Sample.Draggable
             {
                 jQuery.Select("#draggableRevert1")
                       .Plugin<DraggableObject>()
-                      .Draggable(new DraggableOptions("revert", true));
+                      .Draggable(new DraggableOptions(DraggableOption.Revert, true));
 
                 jQuery.Select("#draggableRevert2")
                       .Plugin<DraggableObject>()
-                      .Draggable(new DraggableOptions("revert", true
-                                                     , "helper", "clone"));
+                      .Draggable(new DraggableOptions( DraggableOption.Revert, true
+                                                     , DraggableOption.Helper, "clone"));
             });
         }
     }

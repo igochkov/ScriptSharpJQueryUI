@@ -25,6 +25,27 @@ Sample.AutoComplete._default = function Sample_AutoComplete__default() {
 }
 
 
+Type.registerNamespace('Sample.Position');
+
+////////////////////////////////////////////////////////////////////////////////
+// Sample.Position._cycling
+
+Sample.Position._cycling = function Sample_Position__cycling() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Sample.Position._default
+
+Sample.Position._default = function Sample_Position__default() {
+}
+Sample.Position._default._position = function Sample_Position__default$_position(e) {
+    /// <param name="e" type="jQueryEvent">
+    /// </param>
+    $('.positionable').position({ my: $('#my_horizontal').val() + ' ' + $('#my_vertical').val(), at: $('#at_horizontal').val() + ' ' + $('#at_vertical').val(), offset: $('#offset').val(), collision: $('#collision_horizontal').val() + ' ' + $('#collision_vertical').val() });
+}
+
+
 Type.registerNamespace('Sample.Sortable');
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -389,8 +410,19 @@ Sample.ProgressBar._default = function Sample_ProgressBar__default() {
 }
 
 
+Type.registerNamespace('Sample.Widget');
+
+////////////////////////////////////////////////////////////////////////////////
+// Sample.Widget._default
+
+Sample.Widget._default = function Sample_Widget__default() {
+}
+
+
 Sample.AutoComplete._remoteDatasource.registerClass('Sample.AutoComplete._remoteDatasource');
 Sample.AutoComplete._default.registerClass('Sample.AutoComplete._default');
+Sample.Position._cycling.registerClass('Sample.Position._cycling');
+Sample.Position._default.registerClass('Sample.Position._default');
 Sample.Sortable._connectLists.registerClass('Sample.Sortable._connectLists');
 Sample.Sortable._connectListsTabs.registerClass('Sample.Sortable._connectListsTabs');
 Sample.Sortable._portlets.registerClass('Sample.Sortable._portlets');
@@ -435,6 +467,7 @@ Sample.Droppable._default.registerClass('Sample.Droppable._default');
 Sample.ProgressBar._resizableBar.registerClass('Sample.ProgressBar._resizableBar');
 Sample.ProgressBar._animated.registerClass('Sample.ProgressBar._animated');
 Sample.ProgressBar._default.registerClass('Sample.ProgressBar._default');
+Sample.Widget._default.registerClass('Sample.Widget._default');
 (function () {
     $(function() {
         var options = {};
@@ -450,6 +483,18 @@ Sample.ProgressBar._default.registerClass('Sample.ProgressBar._default');
     $(function() {
         var availableTags = [ 'ActionScript', 'AppleScript', 'Asp', 'BASIC', 'C', 'C++', 'Clojure', 'COBOL', 'ColdFusion', 'Erlang', 'Fortran', 'Groovy', 'Haskell', 'Java', 'JavaScript', 'Lisp', 'Perl', 'PHP', 'Python', 'Ruby', 'Scala', 'Scheme' ];
         $('#autocompleteTags').autocomplete({ source: availableTags });
+    });
+})();
+(function () {
+    $(function() {
+    });
+})();
+(function () {
+    $(function() {
+        $('.positionable').css('opacity', '0.5');
+        $(':input').bind('click keyup change', Sample.Position._default._position);
+        $('#parent').draggable({ drag: Sample.Position._default._position });
+        Sample.Position._default._position(null);
     });
 })();
 (function () {
@@ -620,7 +665,7 @@ Sample.ProgressBar._default.registerClass('Sample.ProgressBar._default');
     $(function() {
         $('#sortable').sortable({ revert: true });
         $('#draggableSortable').draggable({ connectToSortable: '#sortable', helper: 'clone', revert: 'invalid' });
-        ($('ul, li')).disableSelection();
+        $('ul, li').disableSelection();
     });
 })();
 (function () {
@@ -634,7 +679,7 @@ Sample.ProgressBar._default.registerClass('Sample.ProgressBar._default');
     $(function() {
         $('#draggableHandle1').draggable({ handle: 'p' });
         $('#draggableHandle2').draggable({ cancel: 'p.ui-widget-header' });
-        ($('div, p')).disableSelection();
+        $('div, p').disableSelection();
     });
 })();
 (function () {
@@ -666,7 +711,7 @@ Sample.ProgressBar._default.registerClass('Sample.ProgressBar._default');
     $(function() {
         $('#draggableDelay').draggable({ distance: 20 });
         $('#draggableDelay2').draggable({ delay: 1000 });
-        ($('.ui-draggable')).disableSelection();
+        $('.ui-draggable').disableSelection();
     });
 })();
 (function () {
@@ -743,7 +788,7 @@ Sample.ProgressBar._default.registerClass('Sample.ProgressBar._default');
         $('#catalog li').draggable({ appendTo: 'body', helper: 'clone' });
         $('#cart ol').droppable({ activeClass: 'ui-state-default', hoverClass: 'ui-state-hover', accept: ':not(.ui-sortable-helper)', drop: function(e, ui) {
             $(this).find('.placeholder').remove();
-            $('<li></li>').text((Type.safeCast(ui.draggable, jQueryObject)).text()).appendTo($(this));
+            $('<li></li>').text(ui.draggable.text()).appendTo($(this));
         } }).sortable({ items: 'li:not(.placeholder)', sort: function() {
             $(this).removeClass('ui-state-default');
         } });
@@ -753,10 +798,10 @@ Sample.ProgressBar._default.registerClass('Sample.ProgressBar._default');
     $(function() {
         $('li', $('#gallery')).draggable({ cancel: 'a.ui-icon', revert: 'invalid', containment: ($('#demo-frame').length > 0) ? '#demo-frame' : 'document', helper: 'clone', cursor: 'move' });
         $('#trash').droppable({ accept: '#gallery > li', activeClass: 'ui-state-highlight', drop: function(e, ui) {
-            Sample.Droppable._photoManager._deleteImage(Type.safeCast(ui.draggable, jQueryObject));
+            Sample.Droppable._photoManager._deleteImage(ui.draggable);
         } });
         $('#gallery').droppable({ accept: '#trash li', activeClass: 'custom-state-active', drop: function(e, ui) {
-            Sample.Droppable._photoManager._recycleImage(Type.safeCast(ui.draggable, jQueryObject));
+            Sample.Droppable._photoManager._recycleImage(ui.draggable);
         } });
         $('ul.gallery > li').click(function(e) {
             var item = $(this);
@@ -797,6 +842,54 @@ Sample.ProgressBar._default.registerClass('Sample.ProgressBar._default');
 (function () {
     $(function() {
         $('#progressbar1').progressbar({ value: 37 });
+    });
+})();
+(function () {
+    $(function() {
+        $.widget('custom.colorize', { options: { red: 255, green: 0, blue: 0, change: null, random: null }, _create: function() {
+            this.element.addClass('custom-colorize').disableSelection();
+            this.changer = $('<button>', { text: 'change', 'class': 'custom-colorize-changer' }).appendTo(this.element).button();
+            var that = this;
+            this.changer.bind('click.colorize', function(e) {
+                if ((that.options).disabled) {
+                    return;
+                }
+                that.random.apply(that, arguments);
+            });
+            this._refresh();
+        }, _refresh: function() {
+            this.element.css('background-color', 'rgb(' + (this.options).red + ',' + (this.options).green + ',' + (this.options).blue + ')');
+            this._trigger('change');
+        }, random: function(e) {
+            var colors = { red: Math.floor(Math.random() * 256), green: Math.floor(Math.random() * 256), blue: Math.floor(Math.random() * 256) };
+            if (this._trigger('random', e, colors)) {
+                this.option(colors);
+            }
+        }, destroy: function() {
+            this.changer.remove();
+            this.element.removeClass('custom-colorize').enableSelection().css('background-color', 'transparent');
+        }, _setOptions: function() {
+            $.Widget.prototype._setOptions.apply(this, arguments);
+            this._refresh();
+        }, _setOption: function(key, value) {
+            if (new RegExp('red|green|blue').test(key) && (value < 0 || value > 255)) {
+                return;
+            }
+            $.Widget.prototype._setOption.call(this, key, value);
+        } });
+        $('#my-widget1').colorize();
+        $('#my-widget2').colorize({ red: 60, blue: 60 });
+        $('#my-widget3').colorize({ green: 128, random: function(e, ui) {
+            return ui.green > 128;
+        } });
+        $('#disable').toggle(function(e) {
+            $(':custom-colorize').colorize('disable');
+        }, function(e) {
+            $(':custom-colorize').colorize('enable');
+        });
+        $('#black').click(function(e) {
+            $(':custom-colorize').colorize('option', { red: 0, green: 0, blue: 0 });
+        });
     });
 })();
 })(jQuery);

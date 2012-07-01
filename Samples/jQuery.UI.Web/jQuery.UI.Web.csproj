@@ -70,12 +70,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AutocompleteController.cs" />
+    <Compile Include="Controllers\PositionController.cs" />
     <Compile Include="Controllers\ProgressbarController.cs" />
     <Compile Include="Controllers\DraggableController.cs" />
     <Compile Include="Controllers\DroppableController.cs" />
     <Compile Include="Controllers\ResizableController.cs" />
     <Compile Include="Controllers\SelectableController.cs" />
     <Compile Include="Controllers\SortableController.cs" />
+    <Compile Include="Controllers\WidgetController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -112,9 +114,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Views\Shared\_DraggableLayout.cshtml" />
   </ItemGroup>
@@ -306,6 +306,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Autocomplete\MultipleRemote.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_PositionLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_WidgetLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Widget\Default.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Position\Cycling.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Position\Default.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

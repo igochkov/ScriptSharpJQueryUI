@@ -1,13 +1,12 @@
 // Revert.cs
 // Script#/samples/jQuery.UI/jQuery.UI.Sample/Droppable
 // Copyright (c) Ivaylo Gochkov, 2012
-// Copyright (c) Microsoft Corporation.
-// This source code is subject to terms and conditions of the Microsoft 
-// Public License. A copy of the license can be found in License.txt.
+// This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
 using jQueryApi;
 using jQueryApi.UI;
+using jQueryApi.UI.Interactions;
 
 namespace Sample.Droppable
 {
@@ -19,17 +18,17 @@ namespace Sample.Droppable
             {
                 jQuery.Select("#draggableRevert10")
                     .Plugin<DraggableObject>()
-                    .Draggable(new DraggableOptions("revert", "valid"));
+                    .Draggable(new DraggableOptions(DraggableOption.Revert, "valid"));
 
                 jQuery.Select("#draggableRevert20")
                     .Plugin<DraggableObject>()
-                    .Draggable(new DraggableOptions("revert", "invalid"));
+                    .Draggable(new DraggableOptions(DraggableOption.Revert, "invalid"));
 
                 jQuery.Select("#droppableRevert10")
                     .Plugin<DroppableObject>()
-                    .Droppable(new DroppableOptions("activeClass", "ui-state-hover"
-                                                   , "hoverClass", "ui-state-active"
-                        , "drop"
+                    .Droppable(new DroppableOptions(DroppableOption.ActiveClass, "ui-state-hover"
+                                                   , DroppableOption.HoverClass, "ui-state-active"
+                        , DroppableEvents.Drop
                         , new jQueryUIEventHandler<DropEvent>(delegate(jQueryEvent e, DropEvent ui) 
                         {
                             jQuery.This

@@ -1,13 +1,11 @@
 // Snap.cs
 // Script#/samples/jQuery.UI/jQuery.UI.Sample/Draggable
 // Copyright (c) Ivaylo Gochkov, 2012
-// Copyright (c) Microsoft Corporation.
-// This source code is subject to terms and conditions of the Microsoft 
-// Public License. A copy of the license can be found in License.txt.
+// This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
 using jQueryApi;
-using jQueryApi.UI;
+using jQueryApi.UI.Interactions;
 
 namespace Sample.Draggable
 {
@@ -19,24 +17,24 @@ namespace Sample.Draggable
             {
                 jQuery.Select("#draggableSnap1")
                       .Plugin<DraggableObject>()
-                      .Draggable(new DraggableOptions("snap", true));
+                      .Draggable(new DraggableOptions(DraggableOption.Snap, true));
 
                 jQuery.Select("#draggableSnap2")
                       .Plugin<DraggableObject>()
-                      .Draggable(new DraggableOptions("snap", ".ui-widget-header"));
+                      .Draggable(new DraggableOptions(DraggableOption.Snap, ".ui-widget-header"));
 
                 jQuery.Select("#draggableSnap3")
                       .Plugin<DraggableObject>()
-                      .Draggable(new DraggableOptions("snap", ".ui-widget-header"
-                                                     , "snapMode", "outer"));
+                      .Draggable(new DraggableOptions( DraggableOption.Snap, ".ui-widget-header"
+                                                     , DraggableOption.SnapMode, "outer"));
 
                 jQuery.Select("#draggableSnap4")
                       .Plugin<DraggableObject>()
-                      .Draggable(new DraggableOptions("grid", new int[] { 20, 20 }));
+                      .Draggable(new DraggableOptions(DraggableOption.Grid, new int[] { 20, 20 }));
 
                 jQuery.Select("#draggableSnap5")
                       .Plugin<DraggableObject>()
-                      .Draggable(new DraggableOptions("grid", new int[] { 80, 80 }));
+                      .Draggable(new DraggableOptions(DraggableOption.Grid, new int[] { 80, 80 }));
             });
         }
     }

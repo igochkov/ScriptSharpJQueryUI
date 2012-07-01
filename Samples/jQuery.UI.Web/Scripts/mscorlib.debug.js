@@ -2,9 +2,6 @@
 //! More information at http://projects.nikhilk.net/ScriptSharp
 //!
 
-///////////////////////////////////////////////////////////////////////////////
-// Globals
-
 (function () {
   var globals = {
     version: '0.7.4.0',
@@ -416,7 +413,7 @@ String.prototype.indexOfAny = function String$indexOfAny(chars, startIndex, coun
 
 String.prototype.insert = function String$insert(index, value) {
     if (!value) {
-        return this;
+        return this.valueOf();
     }
     if (!index) {
         return value + this;
@@ -461,7 +458,7 @@ String.prototype.padLeft = function String$padLeft(totalWidth, ch) {
         ch = ch || ' ';
         return String.fromChar(ch, totalWidth - this.length) + this;
     }
-    return this;
+    return this.valueOf();
 }
 
 String.prototype.padRight = function String$padRight(totalWidth, ch) {
@@ -469,7 +466,7 @@ String.prototype.padRight = function String$padRight(totalWidth, ch) {
         ch = ch || ' ';
         return this + String.fromChar(ch, totalWidth - this.length);
     }
-    return this;
+    return this.valueOf();
 }
 
 String.prototype.remove = function String$remove(index, count) {
@@ -1572,12 +1569,12 @@ ss.IDisposable.registerInterface('IDisposable');
 // StringBuilder
 
 ss.StringBuilder = function StringBuilder$(s) {
-    this._parts = !ss.isNullOrUndefined(s) ? [s] : [];
+    this._parts = ss.isNullOrUndefined(s) || s === '' ? [] : [s];
     this.isEmpty = this._parts.length == 0;
 }
 ss.StringBuilder.prototype = {
     append: function StringBuilder$append(s) {
-        if (!ss.isNullOrUndefined(s)) {
+        if (!ss.isNullOrUndefined(s) && s !== '') {
             this._parts.add(s);
             this.isEmpty = false;
         }
@@ -1613,51 +1610,48 @@ ss.EventArgs.registerClass('EventArgs');
 ss.EventArgs.Empty = new ss.EventArgs();
 
 ///////////////////////////////////////////////////////////////////////////////
-// XMLHttpRequest
+// XMLHttpRequest and XML parsing helpers
 
 if (!window.XMLHttpRequest) {
-    window.XMLHttpRequest = function() {
-        var progIDs = [ 'Msxml2.XMLHTTP', 'Microsoft.XMLHTTP' ];
+  window.XMLHttpRequest = function() {
+    var progIDs = [ 'Msxml2.XMLHTTP', 'Microsoft.XMLHTTP' ];
 
-        for (var i = 0; i < progIDs.length; i++) {
-            try {
-                var xmlHttp = new ActiveXObject(progIDs[i]);
-                return xmlHttp;
-            }
-            catch (ex) {
-            }
-        }
-
-        return null;
-    }
-}
-
-///////////////////////////////////////////////////////////////////////////////
-// XmlDocumentParser
-
-ss.parseXml = function(markup) {
-    try {
-        if (DOMParser) {
-            var domParser = new DOMParser();
-            return domParser.parseFromString(markup, 'text/xml');
-        }
-        else {
-            var progIDs = [ 'Msxml2.DOMDocument.3.0', 'Msxml2.DOMDocument' ];
-        
-            for (var i = 0; i < progIDs.length; i++) {
-                var xmlDOM = new ActiveXObject(progIDs[i]);
-                xmlDOM.async = false;
-                xmlDOM.loadXML(markup);
-                xmlDOM.setProperty('SelectionLanguage', 'XPath');
-                
-                return xmlDOM;
-            }
-        }
-    }
-    catch (ex) {
+    for (var i = 0; i < progIDs.length; i++) {
+      try {
+        var xmlHttp = new ActiveXObject(progIDs[i]);
+        return xmlHttp;
+      }
+      catch (ex) {
+      }
     }
 
     return null;
+  }
+}
+
+ss.parseXml = function(markup) {
+  try {
+    if (DOMParser) {
+      var domParser = new DOMParser();
+      return domParser.parseFromString(markup, 'text/xml');
+    }
+    else {
+      var progIDs = [ 'Msxml2.DOMDocument.3.0', 'Msxml2.DOMDocument' ];
+        
+      for (var i = 0; i < progIDs.length; i++) {
+        var xmlDOM = new ActiveXObject(progIDs[i]);
+        xmlDOM.async = false;
+        xmlDOM.loadXML(markup);
+        xmlDOM.setProperty('SelectionLanguage', 'XPath');
+                
+        return xmlDOM;
+      }
+    }
+  }
+  catch (ex) {
+  }
+
+  return null;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

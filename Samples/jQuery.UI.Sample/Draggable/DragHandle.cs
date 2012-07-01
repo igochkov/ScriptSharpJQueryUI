@@ -1,13 +1,12 @@
 // DragHandle.cs
 // Script#/samples/jQuery.UI/jQuery.UI.Sample/Draggable
 // Copyright (c) Ivaylo Gochkov, 2012
-// Copyright (c) Microsoft Corporation.
-// This source code is subject to terms and conditions of the Microsoft 
-// Public License. A copy of the license can be found in License.txt.
+// This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
 using jQueryApi;
-using jQueryApi.UI;
+using jQueryApi.UI.Interactions;
+using jQueryApi.UI.Utilities;
 
 namespace Sample.Draggable
 {
@@ -19,13 +18,15 @@ namespace Sample.Draggable
             {
                 jQuery.Select("#draggableHandle1")
                       .Plugin<DraggableObject>()
-                      .Draggable(new DraggableOptions("handle", "p"));
+                      .Draggable(new DraggableOptions(DraggableOption.Handle, "p"));
 
                 jQuery.Select("#draggableHandle2")
                       .Plugin<DraggableObject>()
-                      .Draggable(new DraggableOptions("cancel", "p.ui-widget-header"));
+                      .Draggable(new DraggableOptions(DraggableOption.Cancel, "p.ui-widget-header"));
 
-                ((jQueryUIObject)jQuery.Select("div, p")).DisableSelection();
+                jQuery.Select("div, p")
+                      .Plugin<jQueryUIObject>()
+                      .DisableSelection();
             });
         }
     }

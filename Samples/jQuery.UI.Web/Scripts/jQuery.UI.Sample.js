@@ -3,25 +3,28 @@
 Type.registerNamespace('Sample.AutoComplete');Sample.AutoComplete.jQueryUISample$0=function(){}
 Sample.AutoComplete.jQueryUISample$0.$0=function($p0){$('<div/>').text($p0).prependTo('#log');$('#log').scrollTop(0);}
 Sample.AutoComplete._Default=function(){}
+Type.registerNamespace('Sample.Position');Sample.Position._Cycling=function(){}
+Sample.Position._Default=function(){}
+Sample.Position._Default.$0=function($p0){$('.positionable').position({my:$('#my_horizontal').val()+' '+$('#my_vertical').val(),at:$('#at_horizontal').val()+' '+$('#at_vertical').val(),offset:$('#offset').val(),collision:$('#collision_horizontal').val()+' '+$('#collision_vertical').val()});}
 Type.registerNamespace('Sample.Sortable');Sample.Sortable._ConnectLists=function(){}
-Sample.Sortable.jQueryUISample$5=function(){}
+Sample.Sortable.jQueryUISample$6=function(){}
 Sample.Sortable._Portlets=function(){}
 Sample.Sortable._DispalyAsGrid=function(){}
 Sample.Sortable._DelayStart=function(){}
 Sample.Sortable._IncludeExclude=function(){}
 Sample.Sortable._EmptyLists=function(){}
-Sample.Sortable.jQueryUISample$6=function(){}
+Sample.Sortable.jQueryUISample$7=function(){}
 Sample.Sortable._Default=function(){}
 Type.registerNamespace('Sample.Resizable');Sample.Resizable._Animate=function(){}
 Sample.Resizable._Textarea=function(){}
 Sample.Resizable._ResizeHelper=function(){}
-Sample.Resizable.jQueryUISample$7=function(){}
+Sample.Resizable.jQueryUISample$8=function(){}
 Sample.Resizable._VisualFeedback=function(){}
 Sample.Resizable._SnapToGrid=function(){}
 Sample.Resizable._DelayStart=function(){}
 Sample.Resizable._ResizeArea=function(){}
 Sample.Resizable._MaxMinSize=function(){}
-Sample.Resizable.jQueryUISample$8=function(){}
+Sample.Resizable.jQueryUISample$5=function(){}
 Sample.Resizable._Default=function(){}
 Type.registerNamespace('Sample.Selectable');Sample.Selectable._DisplayAsGrid=function(){}
 Sample.Selectable._Serialize=function(){}
@@ -54,11 +57,16 @@ Sample.Droppable._Default=function(){}
 Type.registerNamespace('Sample.ProgressBar');Sample.ProgressBar._ResizableBar=function(){}
 Sample.ProgressBar._Animated=function(){}
 Sample.ProgressBar._Default=function(){}
-Sample.AutoComplete.jQueryUISample$0.registerClass('Sample.AutoComplete.jQueryUISample$0');Sample.AutoComplete._Default.registerClass('Sample.AutoComplete._Default');Sample.Sortable._ConnectLists.registerClass('Sample.Sortable._ConnectLists');Sample.Sortable.jQueryUISample$5.registerClass('Sample.Sortable.jQueryUISample$5');Sample.Sortable._Portlets.registerClass('Sample.Sortable._Portlets');Sample.Sortable._DispalyAsGrid.registerClass('Sample.Sortable._DispalyAsGrid');Sample.Sortable._DelayStart.registerClass('Sample.Sortable._DelayStart');Sample.Sortable._IncludeExclude.registerClass('Sample.Sortable._IncludeExclude');Sample.Sortable._EmptyLists.registerClass('Sample.Sortable._EmptyLists');Sample.Sortable.jQueryUISample$6.registerClass('Sample.Sortable.jQueryUISample$6');Sample.Sortable._Default.registerClass('Sample.Sortable._Default');Sample.Resizable._Animate.registerClass('Sample.Resizable._Animate');Sample.Resizable._Textarea.registerClass('Sample.Resizable._Textarea');Sample.Resizable._ResizeHelper.registerClass('Sample.Resizable._ResizeHelper');Sample.Resizable.jQueryUISample$7.registerClass('Sample.Resizable.jQueryUISample$7');Sample.Resizable._VisualFeedback.registerClass('Sample.Resizable._VisualFeedback');Sample.Resizable._SnapToGrid.registerClass('Sample.Resizable._SnapToGrid');Sample.Resizable._DelayStart.registerClass('Sample.Resizable._DelayStart');Sample.Resizable._ResizeArea.registerClass('Sample.Resizable._ResizeArea');Sample.Resizable._MaxMinSize.registerClass('Sample.Resizable._MaxMinSize');Sample.Resizable.jQueryUISample$8.registerClass('Sample.Resizable.jQueryUISample$8');Sample.Resizable._Default.registerClass('Sample.Resizable._Default');Sample.Selectable._DisplayAsGrid.registerClass('Sample.Selectable._DisplayAsGrid');Sample.Selectable._Serialize.registerClass('Sample.Selectable._Serialize');Sample.Selectable._Default.registerClass('Sample.Selectable._Default');Sample.Draggable.jQueryUISample$1.registerClass('Sample.Draggable.jQueryUISample$1');Sample.Draggable._AutoScroll.registerClass('Sample.Draggable._AutoScroll');Sample.Draggable.jQueryUISample$2.registerClass('Sample.Draggable.jQueryUISample$2');Sample.Draggable._CursorStyle.registerClass('Sample.Draggable._CursorStyle');Sample.Draggable._DragHandle.registerClass('Sample.Draggable._DragHandle');Sample.Draggable._VisualFeedback.registerClass('Sample.Draggable._VisualFeedback');Sample.Draggable._RevertPosition.registerClass('Sample.Draggable._RevertPosition');Sample.Draggable._Default.registerClass('Sample.Draggable._Default');Sample.Draggable._DelayStart.registerClass('Sample.Draggable._DelayStart');Sample.Draggable._Events.registerClass('Sample.Draggable._Events');Sample.Draggable._Snap.registerClass('Sample.Draggable._Snap');Sample.Droppable.jQueryUISample$3.registerClass('Sample.Droppable.jQueryUISample$3');Sample.Droppable.jQueryUISample$4.registerClass('Sample.Droppable.jQueryUISample$4');Sample.Droppable._VisualFeedback.registerClass('Sample.Droppable._VisualFeedback');Sample.Droppable._Revert.registerClass('Sample.Droppable._Revert');Sample.Droppable._ShoppingCart.registerClass('Sample.Droppable._ShoppingCart');Sample.Droppable._PhotoManager.registerClass('Sample.Droppable._PhotoManager');Sample.Droppable._Default.registerClass('Sample.Droppable._Default');Sample.ProgressBar._ResizableBar.registerClass('Sample.ProgressBar._ResizableBar');Sample.ProgressBar._Animated.registerClass('Sample.ProgressBar._Animated');Sample.ProgressBar._Default.registerClass('Sample.ProgressBar._Default');(function(){$(function(){
+Type.registerNamespace('Sample.Widget');Sample.Widget._Default=function(){}
+Sample.AutoComplete.jQueryUISample$0.registerClass('Sample.AutoComplete.jQueryUISample$0');Sample.AutoComplete._Default.registerClass('Sample.AutoComplete._Default');Sample.Position._Cycling.registerClass('Sample.Position._Cycling');Sample.Position._Default.registerClass('Sample.Position._Default');Sample.Sortable._ConnectLists.registerClass('Sample.Sortable._ConnectLists');Sample.Sortable.jQueryUISample$6.registerClass('Sample.Sortable.jQueryUISample$6');Sample.Sortable._Portlets.registerClass('Sample.Sortable._Portlets');Sample.Sortable._DispalyAsGrid.registerClass('Sample.Sortable._DispalyAsGrid');Sample.Sortable._DelayStart.registerClass('Sample.Sortable._DelayStart');Sample.Sortable._IncludeExclude.registerClass('Sample.Sortable._IncludeExclude');Sample.Sortable._EmptyLists.registerClass('Sample.Sortable._EmptyLists');Sample.Sortable.jQueryUISample$7.registerClass('Sample.Sortable.jQueryUISample$7');Sample.Sortable._Default.registerClass('Sample.Sortable._Default');Sample.Resizable._Animate.registerClass('Sample.Resizable._Animate');Sample.Resizable._Textarea.registerClass('Sample.Resizable._Textarea');Sample.Resizable._ResizeHelper.registerClass('Sample.Resizable._ResizeHelper');Sample.Resizable.jQueryUISample$8.registerClass('Sample.Resizable.jQueryUISample$8');Sample.Resizable._VisualFeedback.registerClass('Sample.Resizable._VisualFeedback');Sample.Resizable._SnapToGrid.registerClass('Sample.Resizable._SnapToGrid');Sample.Resizable._DelayStart.registerClass('Sample.Resizable._DelayStart');Sample.Resizable._ResizeArea.registerClass('Sample.Resizable._ResizeArea');Sample.Resizable._MaxMinSize.registerClass('Sample.Resizable._MaxMinSize');Sample.Resizable.jQueryUISample$5.registerClass('Sample.Resizable.jQueryUISample$5');Sample.Resizable._Default.registerClass('Sample.Resizable._Default');Sample.Selectable._DisplayAsGrid.registerClass('Sample.Selectable._DisplayAsGrid');Sample.Selectable._Serialize.registerClass('Sample.Selectable._Serialize');Sample.Selectable._Default.registerClass('Sample.Selectable._Default');Sample.Draggable.jQueryUISample$1.registerClass('Sample.Draggable.jQueryUISample$1');Sample.Draggable._AutoScroll.registerClass('Sample.Draggable._AutoScroll');Sample.Draggable.jQueryUISample$2.registerClass('Sample.Draggable.jQueryUISample$2');Sample.Draggable._CursorStyle.registerClass('Sample.Draggable._CursorStyle');Sample.Draggable._DragHandle.registerClass('Sample.Draggable._DragHandle');Sample.Draggable._VisualFeedback.registerClass('Sample.Draggable._VisualFeedback');Sample.Draggable._RevertPosition.registerClass('Sample.Draggable._RevertPosition');Sample.Draggable._Default.registerClass('Sample.Draggable._Default');Sample.Draggable._DelayStart.registerClass('Sample.Draggable._DelayStart');Sample.Draggable._Events.registerClass('Sample.Draggable._Events');Sample.Draggable._Snap.registerClass('Sample.Draggable._Snap');Sample.Droppable.jQueryUISample$3.registerClass('Sample.Droppable.jQueryUISample$3');Sample.Droppable.jQueryUISample$4.registerClass('Sample.Droppable.jQueryUISample$4');Sample.Droppable._VisualFeedback.registerClass('Sample.Droppable._VisualFeedback');Sample.Droppable._Revert.registerClass('Sample.Droppable._Revert');Sample.Droppable._ShoppingCart.registerClass('Sample.Droppable._ShoppingCart');Sample.Droppable._PhotoManager.registerClass('Sample.Droppable._PhotoManager');Sample.Droppable._Default.registerClass('Sample.Droppable._Default');Sample.ProgressBar._ResizableBar.registerClass('Sample.ProgressBar._ResizableBar');Sample.ProgressBar._Animated.registerClass('Sample.ProgressBar._Animated');Sample.ProgressBar._Default.registerClass('Sample.ProgressBar._Default');Sample.Widget._Default.registerClass('Sample.Widget._Default');(function(){$(function(){
 var $1_0={};$1_0.source='Search';$1_0.minLength=2;$1_0.select=function($p2_0,$p2_1){
 Sample.AutoComplete.jQueryUISample$0.$0(($p2_1.item!=null)?'Selected: '+($p2_1.item).value+' aka '+($p2_1.item).id:'Nothing selected, input was '+$(this).val());};$('#birds').autocomplete($1_0);});})();
 (function(){$(function(){
 var $1_0=['ActionScript','AppleScript','Asp','BASIC','C','C++','Clojure','COBOL','ColdFusion','Erlang','Fortran','Groovy','Haskell','Java','JavaScript','Lisp','Perl','PHP','Python','Ruby','Scala','Scheme'];$('#autocompleteTags').autocomplete({source:$1_0});});})();
+(function(){$(function(){
+});})();
+(function(){$(function(){
+$('.positionable').css('opacity','0.5');$(':input').bind('click keyup change',Sample.Position._Default.$0);$('#parent').draggable({drag:Sample.Position._Default.$0});Sample.Position._Default.$0(null);});})();
 (function(){$(function(){
 $('#sortable31, #sortable32').sortable({connectWith:'.connectedSortable'});});})();
 (function(){$(function(){
@@ -115,11 +123,11 @@ $('#draggableConstrain1').draggable({axis:'y'});$('#draggableConstrain2').dragga
 (function(){$(function(){
 var $1_0;$1_0={};$1_0.scroll=true;$('#draggableAutoScroll1').draggable($1_0);$1_0={};$1_0.scroll=true;$1_0.scrollSensitivity=100;$('#draggableAutoScroll2').draggable($1_0);$1_0={};$1_0.snap=true;$1_0.scrollSpeed=100;$('#draggableAutoScroll3').draggable($1_0);});})();
 (function(){$(function(){
-$('#sortable').sortable({revert:true});$('#draggableSortable').draggable({connectToSortable:'#sortable',helper:'clone',revert:'invalid'});($('ul, li')).disableSelection();});})();
+$('#sortable').sortable({revert:true});$('#draggableSortable').draggable({connectToSortable:'#sortable',helper:'clone',revert:'invalid'});$('ul, li').disableSelection();});})();
 (function(){$(function(){
 $('#draggableCursor1').draggable({cursor:'move',top:56,left:56});$('#draggableCursor2').draggable({cursor:'crosshair',top:-5,left:-5});$('#draggableCursor3').draggable({bottom:0});});})();
 (function(){$(function(){
-$('#draggableHandle1').draggable({handle:'p'});$('#draggableHandle2').draggable({cancel:'p.ui-widget-header'});($('div, p')).disableSelection();});})();
+$('#draggableHandle1').draggable({handle:'p'});$('#draggableHandle2').draggable({cancel:'p.ui-widget-header'});$('div, p').disableSelection();});})();
 (function(){$(function(){
 $('#draggableVisual1').draggable({helper:'original'});$('#draggableVisual2').draggable({opacity:0.7,helper:'clone'});var $1_0={};$1_0.cursor='move';$1_0.cursorAt={top:-12,left:-20};$1_0.helper=function($p2_0){
 return $("<div class='ui-widget-header'>I'm a custom helper</div>");};$('#draggableVisual3').draggable($1_0);$('#draggableVisualSet div').draggable({stack:'#draggableVisualSet div'});});})();
@@ -128,7 +136,7 @@ $('#draggableRevert1').draggable({revert:true});$('#draggableRevert2').draggable
 (function(){$(function(){
 $('#draggableDefault').draggable();});})();
 (function(){$(function(){
-$('#draggableDelay').draggable({distance:20});$('#draggableDelay2').draggable({delay:1000});($('.ui-draggable')).disableSelection();});})();
+$('#draggableDelay').draggable({distance:20});$('#draggableDelay2').draggable({delay:1000});$('.ui-draggable').disableSelection();});})();
 (function(){$(function(){
 var $1_0=$('#event-start');var $1_1=$('#event-drag');var $1_2=$('#event-stop');var $1_3=[0,0,0];var $1_4={};$1_4.start=function($p2_0,$p2_1){
 $1_3[0]++;Sample.Draggable._Events.$0($1_0,$1_3[0]);};$1_4.drag=function($p2_0,$p2_1){
@@ -150,12 +158,12 @@ $('#draggableRevert10').draggable({revert:'valid'});$('#draggableRevert20').drag
 $(this).addClass('ui-state-highlight').find('p').html('Dropped!');}});});})();
 (function(){$(function(){
 $('#catalog').accordion();$('#catalog li').draggable({appendTo:'body',helper:'clone'});$('#cart ol').droppable({activeClass:'ui-state-default',hoverClass:'ui-state-hover',accept:':not(.ui-sortable-helper)',drop:function($p2_0,$p2_1){
-$(this).find('.placeholder').remove();$('<li></li>').text((Type.safeCast($p2_1.draggable,jQueryObject)).text()).appendTo($(this));}}).sortable({items:'li:not(.placeholder)',sort:function(){
+$(this).find('.placeholder').remove();$('<li></li>').text($p2_1.draggable.text()).appendTo($(this));}}).sortable({items:'li:not(.placeholder)',sort:function(){
 $(this).removeClass('ui-state-default');}});});})();
 (function(){$(function(){
 $('li',$('#gallery')).draggable({cancel:'a.ui-icon',revert:'invalid',containment:($('#demo-frame').length>0)?'#demo-frame':'document',helper:'clone',cursor:'move'});$('#trash').droppable({accept:'#gallery > li',activeClass:'ui-state-highlight',drop:function($p2_0,$p2_1){
-Sample.Droppable._PhotoManager.$0(Type.safeCast($p2_1.draggable,jQueryObject));}});$('#gallery').droppable({accept:'#trash li',activeClass:'custom-state-active',drop:function($p2_0,$p2_1){
-Sample.Droppable._PhotoManager.$1(Type.safeCast($p2_1.draggable,jQueryObject));}});$('ul.gallery > li').click(function($p2_0){
+Sample.Droppable._PhotoManager.$0($p2_1.draggable);}});$('#gallery').droppable({accept:'#trash li',activeClass:'custom-state-active',drop:function($p2_0,$p2_1){
+Sample.Droppable._PhotoManager.$1($p2_1.draggable);}});$('ul.gallery > li').click(function($p2_0){
 var $2_0=$(this);var $2_1=$($p2_0.target);if($2_1.is('a.ui-icon-trash')){Sample.Droppable._PhotoManager.$0($2_0);}else if($2_1.is('a.ui-icon-zoomin')){Sample.Droppable._PhotoManager.$2($2_1);}else if($2_1.is('a.ui-icon-refresh')){Sample.Droppable._PhotoManager.$1($2_0);}$p2_0.preventDefault();$p2_0.stopPropagation();});});})();
 (function(){$(function(){
 $('#droppableDraggableDefault').draggable();$('#droppableDroppableDefault').droppable({drop:function($p2_0,$p2_1){
@@ -166,4 +174,17 @@ $('#progressbar3').progressbar({value:37});$('#progressbarWrapper').resizable();
 $('#progressbar2').progressbar({value:59});});})();
 (function(){$(function(){
 $('#progressbar1').progressbar({value:37});});})();
+(function(){$(function(){
+$.widget('custom.colorize',{options:{red:255,green:0,blue:0,change:null,random:null},_create:function(){
+this.element.addClass('custom-colorize').disableSelection();this.changer=$('<button>',{text:'change','class':'custom-colorize-changer'}).appendTo(this.element).button();var $2_0=this;this.changer.bind('click.colorize',function($p3_0){
+if(($2_0.options).disabled){return;}$2_0.random.apply($2_0,arguments);});this._refresh();},_refresh:function(){
+this.element.css('background-color','rgb('+(this.options).red+','+(this.options).green+','+(this.options).blue+')');this._trigger('change');},random:function($p2_0){
+var $2_0={red:Math.floor(Math.random()*256),green:Math.floor(Math.random()*256),blue:Math.floor(Math.random()*256)};if(this._trigger('random',$p2_0,$2_0)){this.option($2_0);}},destroy:function(){
+this.changer.remove();this.element.removeClass('custom-colorize').enableSelection().css('background-color','transparent');},_setOptions:function(){
+$.Widget.prototype._setOptions.apply(this,arguments);this._refresh();},_setOption:function($p2_0,$p2_1){
+if(new RegExp('red|green|blue').test($p2_0)&&($p2_1<0||$p2_1>255)){return;}$.Widget.prototype._setOption.call(this,$p2_0,$p2_1);}});$('#my-widget1').colorize();$('#my-widget2').colorize({red:60,blue:60});$('#my-widget3').colorize({green:128,random:function($p2_0,$p2_1){
+return $p2_1.green>128;}});$('#disable').toggle(function($p2_0){
+$(':custom-colorize').colorize('disable');},function($p2_0){
+$(':custom-colorize').colorize('enable');});$('#black').click(function($p2_0){
+$(':custom-colorize').colorize('option',{red:0,green:0,blue:0});});});})();
 })(jQuery);// This script was generated using Script# v0.7.4.0

@@ -1,13 +1,12 @@
 // PreventPropagation.cs
 // Script#/samples/jQuery.UI/jQuery.UI.Sample/Droppable
 // Copyright (c) Ivaylo Gochkov, 2012
-// Copyright (c) Microsoft Corporation.
-// This source code is subject to terms and conditions of the Microsoft 
-// Public License. A copy of the license can be found in License.txt.
+// This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
 using jQueryApi;
 using jQueryApi.UI;
+using jQueryApi.UI.Interactions;
 
 namespace Sample.Droppable
 {
@@ -32,16 +31,16 @@ namespace Sample.Droppable
 
                 jQuery.Select("#droppablePreventPropagation1, #droppablePreventPropagation1-inner")
                     .Plugin<DroppableObject>()
-                    .Droppable(new DroppableOptions( "activeClass", "ui-state-hover"
-                                                   , "hoverClass", "ui-state-active"
-                                                   , "drop", drop));
+                    .Droppable(new DroppableOptions(DroppableOption.ActiveClass, "ui-state-hover"
+                                                   , DroppableOption.HoverClass, "ui-state-active"
+                                                   , DroppableEvents.Drop, drop));
 
                 jQuery.Select("#droppablePreventPropagation2, #droppablePreventPropagation2-inner")
                     .Plugin<DroppableObject>()
-                    .Droppable(new DroppableOptions("activeClass", "ui-state-hover"
-                                                   , "hoverClass", "ui-state-active"
-                                                   , "greedy", true
-                                                   , "drop", drop));
+                    .Droppable(new DroppableOptions(DroppableOption.ActiveClass, "ui-state-hover"
+                                                   , DroppableOption.HoverClass, "ui-state-active"
+                                                   , DroppableOption.Greedy, true
+                                                   , DroppableEvents.Drop, drop));
             });
         }
     }

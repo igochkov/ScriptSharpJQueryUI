@@ -1,13 +1,12 @@
 // DraggableSortable.cs
 // Script#/samples/jQuery.UI/jQuery.UI.Sample/Draggable
 // Copyright (c) Ivaylo Gochkov, 2012
-// Copyright (c) Microsoft Corporation.
-// This source code is subject to terms and conditions of the Microsoft 
-// Public License. A copy of the license can be found in License.txt.
+// This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
 using jQueryApi;
-using jQueryApi.UI;
+using jQueryApi.UI.Interactions;
+using jQueryApi.UI.Utilities;
 
 namespace Sample.Draggable
 {
@@ -19,15 +18,17 @@ namespace Sample.Draggable
             {
                 jQuery.Select("#sortable")
                     .Plugin<SortableObject>()
-                    .Sortable(new SortableOptions("revert", true));
+                    .Sortable(new SortableOptions(SortableOption.Revert, true));
 
                 jQuery.Select("#draggableSortable")
                     .Plugin<DraggableObject>()
-                    .Draggable(new DraggableOptions( "connectToSortable", "#sortable"
-                                                   , "helper", "clone"
-                                                   , "revert", "invalid"));
+                    .Draggable(new DraggableOptions( DraggableOption.ConnectToSortable, "#sortable"
+                                                   , DraggableOption.Helper, "clone"
+                                                   , DraggableOption.Revert, "invalid"));
 
-                ((jQueryUIObject)jQuery.Select("ul, li")).DisableSelection();
+                jQuery.Select("ul, li")
+                      .Plugin<jQueryUIObject>()
+                      .DisableSelection();
             });
         }
     }

@@ -1,15 +1,14 @@
 // PhotoManager.cs
 // Script#/samples/jQuery.UI/jQuery.UI.Sample/Droppable
 // Copyright (c) Ivaylo Gochkov, 2012
-// Copyright (c) Microsoft Corporation.
-// This source code is subject to terms and conditions of the Microsoft 
-// Public License. A copy of the license can be found in License.txt.
+// This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
 using System.Collections;
-using System.Html;
 using jQueryApi;
 using jQueryApi.UI;
+using jQueryApi.UI.Interactions;
+using jQueryApi.UI.Widgets;
 
 namespace Sample.Droppable
 {
@@ -38,7 +37,7 @@ namespace Sample.Droppable
                         DroppableOption.ActiveClass, "ui-state-highlight",
                         DroppableEvents.Drop, new jQueryUIEventHandler<DropEvent>(delegate(jQueryEvent e, DropEvent ui)
                         {
-                            DeleteImage(ui.Draggable as jQueryObject);
+                            DeleteImage(ui.Draggable);
                         })));
 
                 // let the gallery be droppable as well, accepting items from the trash
@@ -49,7 +48,7 @@ namespace Sample.Droppable
                         DroppableOption.ActiveClass, "custom-state-active",
                         DroppableEvents.Drop, new jQueryUIEventHandler<DropEvent>(delegate(jQueryEvent e, DropEvent ui)
                         {
-                            RecycleImage(ui.Draggable as jQueryObject);
+                            RecycleImage(ui.Draggable);
                         })));
 
 
@@ -139,9 +138,9 @@ namespace Sample.Droppable
                             .Attribute("src", src).AppendTo("body");
 
                 img.Plugin<DialogObject>()
-                   .Dialog(new DialogOptions("title", title,
-                                            "width", 400,
-                                            "modal", true
+                   .Dialog(new DialogOptions(DialogOption.Title, title,
+                                            DialogOption.Width, 400,
+                                            DialogOption.Modal, true
                 ));
             }
         }

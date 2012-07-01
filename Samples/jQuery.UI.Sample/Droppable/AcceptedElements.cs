@@ -1,13 +1,12 @@
 // AcceptedElements.cs
 // Script#/samples/jQuery.UI/jQuery.UI.Sample/Droppable
 // Copyright (c) Ivaylo Gochkov, 2012
-// Copyright (c) Microsoft Corporation.
-// This source code is subject to terms and conditions of the Microsoft 
-// Public License. A copy of the license can be found in License.txt.
+// This source code is subject to terms and conditions of the Apache License, Version 2.0.
 //
 
 using jQueryApi;
 using jQueryApi.UI;
+using jQueryApi.UI.Interactions;
 
 namespace Sample.Droppable
 {
@@ -23,10 +22,10 @@ namespace Sample.Droppable
 
                 jQuery.Select("#droppableAcceptedElements")
                     .Plugin<DroppableObject>()
-                    .Droppable(new DroppableOptions("accept", "#draggableAcceptedElements"
-                                                   , "activeClass", "ui-state-hover"
-                                                   , "hoverClass", "ui-state-active"
-                                                   , "drop", new jQueryUIEventHandler<DropEvent>(delegate(jQueryEvent e, DropEvent ui)
+                    .Droppable(new DroppableOptions(DroppableOption.Accept, "#draggableAcceptedElements"
+                                                   , DroppableOption.ActiveClass, "ui-state-hover"
+                                                   , DroppableOption.HoverClass, "ui-state-active"
+                                                   , DroppableEvents.Drop, new jQueryUIEventHandler<DropEvent>(delegate(jQueryEvent e, DropEvent ui)
                                                    {
                                                         jQuery.This
                                                               .AddClass("ui-state-highlight")

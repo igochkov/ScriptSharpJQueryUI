@@ -1,0 +1,22 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="demo-header">
+    <h2>Position</h2>
+</div>
+<div id="demo-config">
+    <div id="demo-frame-wrapper">
+        <div id="theme-switcher"></div>
+        @RenderBody()
+    </div>
+    <div id="demo-config-menu">
+        <div class="demos-nav">
+            <h4>
+                Examples</h4>
+            <ul>
+                <li>@Html.ActionLink("Default functionality", "Default", "Position")</li>
+                <li>@Html.ActionLink("Cycling images", "Cycling", "Position")</li>
+            </ul>
+        </div>
+    </div>
+</div>
