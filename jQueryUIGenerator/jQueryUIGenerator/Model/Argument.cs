@@ -1,5 +1,5 @@
 ﻿// Argument.cs
-// ScriptSharpJQueryUI/Model
+// jQueryUIGenerator/Model
 //
 // Copyright 2012 Ivaylo Gochkov
 //
@@ -17,12 +17,31 @@
 
 using System.Collections.Generic;
 
-namespace ScriptSharpJQueryUI.Model {
+namespace ScriptSharp.Tools.jQueryUIGenerator.Model {
     public class Argument {
-        public string Name { get; set; }
-        public string Type { get; set; }
-        public string Description { get; set; }
-        public bool Optional { get; set; }
-        public IList<Property> Properties { get; set; }
+        public string Description { 
+            get; 
+            set; 
+        }
+
+        public string Name {
+            get;
+            set;
+        }
+
+        public bool Optional { 
+            get; 
+            set; 
+        }
+
+        public IList<Property> Properties { 
+            get; 
+            set; 
+        }
+
+        public string Type { 
+            get; 
+            set; 
+        }
     }
 }

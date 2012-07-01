@@ -1,5 +1,5 @@
 ﻿// Utils.cs
-// ScriptSharpJQueryUI
+// jQueryUIGenerator
 //
 // Copyright 2012 Ivaylo Gochkov
 //
@@ -15,25 +15,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using ScriptSharpJQueryUI.Model;
 
-namespace ScriptSharpJQueryUI {
-    /// <summary>
-    /// ScriptSharpJQueryUI Generator utilities
-    /// </summary>
+namespace ScriptSharp.Tools.jQueryUIGenerator {
     public static class Utils {
         /// <summary>
         /// Creates file with the specified content
         /// </summary>
         /// <param name="outputPath">Output location.</param>
-        /// <param name="folderName">jQueryUI entry name.</param>
-        /// <param name="fileName">Name of the file to be generated.</param>
+        /// <param name="fileName">Name of the file to be generated (without extension ). Extension .cs will be added.</param>
         /// <param name="content">File content.</param>
-        public static void CreateFile(string outputPath, string folderName, string fileName, string content) {
-            DirectoryInfo dir = new DirectoryInfo(Path.Combine(outputPath, folderName));
+        public static void CreateFile(string outputPath, string fileName, string content) {
+            DirectoryInfo dir = new DirectoryInfo(outputPath);
 
             if (!dir.Exists) {
                 dir.Create();
@@ -41,49 +35,9 @@ namespace ScriptSharpJQueryUI {
 
             using (StreamWriter file = new StreamWriter(Path.Combine(dir.FullName, fileName + ".cs")))
             {
-                file.WriteLine(FileHeader(fileName + ".cs"));
+                file.WriteLine(GetFileHeader(fileName + ".cs"));
                 file.WriteLine(content);
             }
-        }
-
-        /// <summary>
-        /// Gets file header.
-        /// </summary>
-        /// <param name="fileName">File name.</param>
-        /// <param name="entryName">jQueryUI entry name.</param>
-        /// <returns>File header.</returns>
-        private static string FileHeader(string fileName) {
-            string header =
-@"// {0}
-// Script#/Libraries/jQuery/UI
-// This source code is subject to terms and conditions of the Apache License, Version 2.0.
-//
-";
-
-            return string.Format(header, fileName);
-        }
-
-        /// <summary>
-        /// Convert the name into a pascal-cased name.
-        /// </summary>
-        /// <param name="word">Word to be pascal-cased.</param>
-        /// <returns>Pascal-cased word.</returns>
-        public static string PascalCase(string word) {
-            if (string.IsNullOrEmpty(word)) {
-                return string.Empty;
-            }
-
-            // Quick and dirty way to cover specific multi-word names
-            // using simple rules
-            word = word.Replace("ui", "UI")
-                       .Replace("autocomplete", "AutoComplete")
-                       .Replace("datepicker", "DatePicker")
-                       .Replace("progressbar", "ProgressBar")
-                       .Replace("tabsselect", "TabsSelect")
-                       .Replace("tabsload", "TabsLoad")
-                       .TrimStart('_');
-
-            return char.ToUpper(word[0]) + word.Substring(1);
         }
 
         /// <summary>
@@ -112,25 +66,33 @@ namespace ScriptSharpJQueryUI {
         }
 
         /// <summary>
-        /// Splits jQueryUI entry types
+        /// Gets the file header.
         /// </summary>
-        /// <param name="type">jQueryUI entry type</param>
-        /// <returns>List with jQueryUI entry types</returns>
-        public static string[] SplitType(string type) {
-            if (string.IsNullOrEmpty(type)) {
-                return new string[] { };
-            }
+        /// <param name="fileName">File name.</param>
+        /// <returns>File header.</returns>
+        private static string GetFileHeader(string fileName) {
+            string header =
+@"// {0}
+// Script#/Libraries/jQuery/UI
+// This source code is subject to terms and conditions of the Apache License, Version 2.0.
+//
+";
 
-            return type.Split(new char[] { ',', '/', ' ', '|' }).Where(s => s != "or").ToArray();
+            return string.Format(header, fileName);
         }
 
         /// <summary>
-        /// Translates javscript type to C# type
+        /// Translates data type found in jQueryUI documentation to appropriate C# data type.
         /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        public static string GetCSType(string type) {
+        /// <param name="type">jQueryUI data type.</param>
+        /// <returns>CS data type.</returns>
+        public static string MapDataType(string type) {
             if (SplitType(type).Length > 1) {
+                // jQueryUI documentation uses atribute "type" which is a collection of data types.
+                // example: <argument name="index" type="Number, String">
+                // According to api.jqueryui.com, in the future the "type" attribute 
+                // will be replaced with list of child elements 
+                // example: <type name="Number" /><type name="String" />
                 return "object";
             } else {
                 switch (type.ToLower()) {
@@ -154,6 +116,8 @@ namespace ScriptSharpJQueryUI {
                         return "Action";
                     case "jquery":
                         return "jQueryObject";
+                    case "widget":
+                        return "WidgetObject";
                     case "event":
                         return "jQueryEvent";
                     case "rest":
@@ -170,18 +134,57 @@ namespace ScriptSharpJQueryUI {
         /// <param name="type">C# data type.</param>
         /// <returns>Default value.</returns>
         public static string GetDefaultValue(string type) {
-            string csType = GetCSType(type);
+            string csType = MapDataType(type);
 
             switch (csType.ToLower()) {
                 case "int":
                 case "float":
                     return "0";
-                case "boolean":
                 case "bool":
                     return "false";
                 default:
                     return "null";
             }
+        }
+
+        /// <summary>
+        /// Converts the name into a pascal-cased name.
+        /// </summary>
+        /// <param name="word">Word to be pascal-cased.</param>
+        /// <returns>Pascal-cased word.</returns>
+        public static string PascalCase(string word) {
+            if (string.IsNullOrEmpty(word)) {
+                return string.Empty;
+            }
+
+            // Quick and dirty way to cover specific multi-word names
+            // using simple rules
+            word = word.Replace("ui", "jQueryUI")
+                       .Replace("autocomplete", "AutoComplete")
+                       .Replace("datepicker", "DatePicker")
+                       .Replace("progressbar", "ProgressBar")
+                       .Replace("tabsselect", "TabsSelect")
+                       .Replace("tabsload", "TabsLoad")
+                       .TrimStart('_');
+
+            if (word.StartsWith("jQuery")) {
+                return word;
+            } else {
+                return char.ToUpper(word[0]) + word.Substring(1);
+            }
+        }
+
+        /// <summary>
+        /// Splits jQueryUI entry types
+        /// </summary>
+        /// <param name="type">jQueryUI entry type</param>
+        /// <returns>List with jQueryUI entry types</returns>
+        public static string[] SplitType(string type) {
+            if (string.IsNullOrEmpty(type)) {
+                return new string[] { };
+            }
+
+            return type.Split(new char[] { ',', '/', ' ', '|' }).Where(s => s != "or").ToArray();
         }
     }
 }

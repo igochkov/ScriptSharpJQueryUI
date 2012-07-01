@@ -1,5 +1,5 @@
 ﻿// Program.cs
-// ScriptSharpJQueryUI
+// jQueryUIGenerator
 //
 // Copyright 2012 Ivaylo Gochkov
 //
@@ -17,9 +17,9 @@
 
 using System;
 using System.Collections.Generic;
-using ScriptSharpJQueryUI.Model;
+using ScriptSharp.Tools.jQueryUIGenerator.Model;
 
-namespace ScriptSharpJQueryUI
+namespace ScriptSharp.Tools.jQueryUIGenerator
 {
     class Program
     {

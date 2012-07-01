@@ -1,5 +1,5 @@
 ﻿// Option.cs
-// ScriptSharpJQueryUI/Model
+// jQueryUIGenerator/Model
 //
 // Copyright 2012 Ivaylo Gochkov
 //
@@ -15,11 +15,26 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace ScriptSharpJQueryUI.Model {
+namespace ScriptSharp.Tools.jQueryUIGenerator.Model {
     public class Option {
-        public string Name { get; set; }
-        public string Type { get; set; }
-        public string Default { get; set; }
-        public string Description { get; set; }
+        public string Default {
+            get;
+            set;
+        }
+
+        public string Description {
+            get;
+            set;
+        }
+
+        public string Name {
+            get;
+            set;
+        }
+
+        public string Type {
+            get;
+            set;
+        }
     }
 }

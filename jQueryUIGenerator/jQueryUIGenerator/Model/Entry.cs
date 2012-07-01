@@ -1,5 +1,5 @@
 ﻿// Entry.cs
-// ScriptSharpJQueryUI/Model
+// jQueryUIGenerator/Model
 //
 // Copyright 2012 Ivaylo Gochkov
 //
@@ -17,20 +17,71 @@
 
 using System.Collections.Generic;
 
-namespace ScriptSharpJQueryUI.Model {
+namespace ScriptSharp.Tools.jQueryUIGenerator.Model {
     public class Entry {
-        public string Name { get; set; }
-        public string Namespace { get; set; }
-        public string Type { get; set; }
-        public string Description { get; set; }
-        public string LongDescription { get; set; }
-        public string WidgetNamespace { get; set; }
-        public string Created { get; set; }
-        public string Category { get; set; }
-        public IList<Option> Options { get; set; }
-        public IList<Event> Events { get; set; }
-        public IList<Method> Methods { get; set; }
-        public IList<Signature> Signatures { get; set; }
-        public Example Example { get; set; }
+        public string Category {
+            get;
+            set;
+        }
+
+        public string Created {
+            get;
+            set;
+        }
+
+        public string Description {
+            get;
+            set;
+        }
+
+        public IList<Event> Events {
+            get;
+            set;
+        }
+
+        public Example Example {
+            get;
+            set;
+        }
+
+        public string LongDescription {
+            get;
+            set;
+        }
+
+        public IList<Method> Methods {
+            get;
+            set;
+        }
+
+        public string Name { 
+            get; 
+            set; 
+        }
+
+        public string Namespace {
+            get;
+            set;
+        }
+
+        public IList<Option> Options {
+            get;
+            set;
+        }
+
+        public IList<Signature> Signatures {
+            get;
+            set;
+        }
+
+        public string Type {
+            get;
+            set;
+        }
+
+        public string WidgetNamespace {
+            get;
+            set;
+        }
     }
 }

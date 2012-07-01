@@ -8,8 +8,8 @@
     <ProjectGuid>{84D131B7-7870-49AA-BCB8-D214CF65C166}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ScriptSharpJQueryUI</RootNamespace>
-    <AssemblyName>jQueryUIGenerator</AssemblyName>
+    <RootNamespace>ScriptSharp.Tools.jQueryUIGenerator</RootNamespace>
+    <AssemblyName>ScriptSharp.Tools.jQueryUIGenerator</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -23,7 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\jQueryUIGenerator.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\ScriptSharp.Tools.jQueryUIGenerator.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>

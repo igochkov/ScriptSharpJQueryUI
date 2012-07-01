@@ -1,5 +1,5 @@
 ﻿// Generator.cs
-// ScriptSharpJQueryUI
+// jQueryUIGenerator
 //
 // Copyright 2012 Ivaylo Gochkov
 //
@@ -20,15 +20,18 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
-using ScriptSharpJQueryUI.Model;
+using ScriptSharp.Tools.jQueryUIGenerator.Model;
 
-namespace ScriptSharpJQueryUI {
+namespace ScriptSharp.Tools.jQueryUIGenerator {
     /// <summary>
     /// Script# jQueryUI API generator
     /// </summary>
     public partial class Generator {
         private string DestinationPath;
         private TextWriter Messages;
+
+        private string[] excludeWidgetMethods = new string[] {}; // "destroy", "disable", "enable", "option", "widget" };
+        private string[] excludeJQueryMethods = new string[] { "show", "hide", "toarray" };
 
         /// <summary>
         /// Creates a generator of ScriptSharp jQueryUI library.
@@ -64,7 +67,7 @@ namespace ScriptSharpJQueryUI {
 
             Messages.WriteLine("Generating jQueryUI base files.");
             RenderEventHandler();
-            RenderJqueryUI();
+            RenderJQueryUIWidget();
         }
 
         private void RenderEntry(Entry entry) {
@@ -87,8 +90,9 @@ namespace ScriptSharpJQueryUI {
             string content =
 @"using System;
 using System.Runtime.CompilerServices;
+using jQueryApi.UI.Utilities;
 
-namespace jQueryApi.UI {{
+namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
 
     /// <summary>
     /// {1}
@@ -102,9 +106,9 @@ namespace jQueryApi.UI {{
     [Imported]
     [IgnoreNamespace]
     {8}
-    public sealed class {0} : jQueryObject {{
+    public class {0} : " + (string.IsNullOrEmpty(entry.Type) ? "jQuery" : Utils.PascalCase(entry.Type)) + @"Object {{
 
-        private {0}() {{
+        public {0}() {{
         }}{4}{5}{6}{7}
     }}
 }}";
@@ -136,38 +140,43 @@ namespace jQueryApi.UI {{
             string overload4 =
             @"
 
-        [ScriptName(""{0}"")]
-        public static WidgetObject Widget(string name, params object[] options) {{
-            return null;
+        [IntrinsicProperty]
+        public static WidgetObject Prototype {{
+            get {{
+                return null;
+            }}
         }}
 
         [IntrinsicProperty]
         public jQueryObject Element {{
             get {{
-                return null; 
+                return null;
             }}
         }}
 
         [IntrinsicProperty]
         public object Options {{
             get {{
-                return null; 
+                return null;
             }}
         }}
 
-        [ScriptName(""destroy"")]
-        public void Destroy() {{            
+        [IntrinsicProperty]
+        [ScriptName(""_setOption"")]
+        public Function SetOption {{
+            get {{
+                return null;
+            }}
         }}
 
-        [ScriptName(""option"")]
-        public WidgetObject Option(object key, object value) {{
-            return null;
+        [IntrinsicProperty]
+        [ScriptName(""_setOptions"")]
+        public Function SetOptions {{
+            get {{
+                return null;
+            }}
         }}
 
-        [ScriptName(""option"")]
-        public WidgetObject Option(object options) {{
-            return null;
-        }}
 ";
 
             string example = @"{0}
@@ -177,6 +186,39 @@ namespace jQueryApi.UI {{
     /// <code>
     /// {2}
     /// </code>";
+
+            StringBuilder methodsContent = new StringBuilder();
+
+            foreach (var method in entry.Methods
+                                        // exclude the widget && jQuery methods as they will be inherit
+                                        .Where(m => entry.Name.ToLower() == "widget" || (!excludeWidgetMethods.Contains(m.Name.ToLower()) && !excludeJQueryMethods.Contains(m.Name.ToLower())))
+                                        .OrderBy(m => m.Name)) {
+
+                // TODO: temporal solution for SetOption & SetOptions. Cannot have property and Method with the same name.
+                if (method.Name.ToLower() == "_setoption" || method.Name.ToLower() == "_setoptions") {
+                    continue;
+                }
+
+                methodsContent.AppendLine();
+                methodsContent.AppendLine();
+                methodsContent.AppendLine("        /// <summary>");
+                methodsContent.AppendLine("        /// " + Utils.FormatXmlComment(method.Description.Replace("<entryname />", entry.Name)));
+                methodsContent.AppendLine("        /// </summary>");
+                if (Utils.PascalCase(method.Name).ToLower() != method.Name.ToLower()) {
+                    methodsContent.AppendLine("        [ScriptName(\"" + method.Name + "\")]");
+                }
+
+                methodsContent.Append("        public " + (string.IsNullOrEmpty(method.ReturnType) ? "void" : Utils.MapDataType(method.ReturnType)) + " " + Utils.PascalCase(method.Name) + "(");
+                List<string> args = new List<string>();
+                foreach (Argument arg in method.Arguments) {
+                    args.Add(Utils.MapDataType(arg.Type) + " " + (arg.Name == "event" ? "@event" : arg.Name));
+                }
+                methodsContent.AppendLine(string.Join(", ", args) + ") {");
+                if (!string.IsNullOrEmpty(method.ReturnType)) {
+                    methodsContent.AppendLine("                return " + Utils.GetDefaultValue(method.ReturnType) + ";");
+                }
+                methodsContent.AppendLine("        }");
+            }
 
             string formatedContent = string.Empty;
 
@@ -190,8 +232,8 @@ namespace jQueryApi.UI {{
                                         , string.Empty
                                         , string.Empty
                                         , string.Empty
-                                        , string.Format(overload4, entry.Name, Utils.PascalCase(entry.Name))
-                                        , "[ScriptName(\"$\")]");
+                                        , string.Format(overload4, entry.Name, Utils.PascalCase(entry.Name)) + methodsContent.ToString()
+                                        , "[ScriptName(\"$.Widget\")]");
             } else {
                 formatedContent
                     = string.Format(content
@@ -201,27 +243,31 @@ namespace jQueryApi.UI {{
                                     , (entry.Example != null) ? string.Format(example, Utils.FormatXmlComment(entry.Example.Description), Utils.FormatXmlComment(entry.Example.Code), Utils.FormatXmlComment(entry.Example.Html)) : string.Empty
                                     , string.Format(overload1, entry.Name, Utils.PascalCase(entry.Name), (entry.Name.ToLower() == "position" || entry.Name.ToLower() == "size") ? "new " : string.Empty)
                                     , (entry.Options.Count > 0) ? string.Format(overload2, entry.Name, Utils.PascalCase(entry.Name)) : string.Empty
-                                    , (entry.Methods.Count > 0) ? string.Format(overload3, entry.Name, Utils.PascalCase(entry.Name)) : string.Empty
-                                    , string.Empty
+                                    , (entry.Methods.Where(m => !excludeWidgetMethods.Contains(m.Name.ToLower()) && !excludeJQueryMethods.Contains(m.Name.ToLower())).Count() > 0) ? string.Format(overload3, entry.Name, Utils.PascalCase(entry.Name)) : string.Empty
+                                    , methodsContent.ToString()
                                     , string.Empty);
             }
 
-            Utils.CreateFile(DestinationPath, Utils.PascalCase(entry.Name), className, formatedContent);
+            Utils.CreateFile(Path.Combine(DestinationPath, Utils.PascalCase(entry.Category), Utils.PascalCase(entry.Name)), className, formatedContent);
         }
 
         private void RenderOptions(Entry entry) {
+            if (entry.Events.Count == 0 && entry.Options.Count == 0) {
+                return;
+            }
+
             string className = Utils.PascalCase(entry.Name) + @"Options";
 
             string content =
 @"using System;
 using System.Runtime.CompilerServices;
 
-namespace jQueryApi.UI {{
+namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
 
     [Imported]
     [IgnoreNamespace]
     [ScriptName(""Object"")]
-    public sealed class {0} {{
+    public {3} class {0} {{
 
         public {0}() {{
         }}
@@ -284,7 +330,7 @@ namespace jQueryApi.UI {{
 
                 optionsContent.AppendLine(@"
         [IntrinsicProperty]
-        public " + Utils.GetCSType(option.Min(o => o.Type)) + @" " + Utils.PascalCase(option.Key) + @" {" +
+        public " + Utils.MapDataType(option.Min(o => o.Type)) + @" " + Utils.PascalCase(option.Key) + @" {" +
 @"
             get {
                 return " + Utils.GetDefaultValue(option.Min(o => o.Type)) + @";
@@ -294,27 +340,8 @@ namespace jQueryApi.UI {{
         }");
             }
 
-
-
-            Utils.CreateFile(DestinationPath, Utils.PascalCase(entry.Name), className
-                , string.Format(content, className, eventsContent.ToString(), optionsContent.ToString()));
-        }
-
-        private void RenderEventHandler() {
-            string className = "jQueryUIEventHandler";
-
-            string content =
-@"using System;
-using System.Runtime.CompilerServices;
-
-namespace jQueryApi.UI {
-
-    [Imported]
-    [IgnoreNamespace]
-    public delegate void " + className + @"<T>(jQueryEvent e, T uiEvent);
-}";
-
-            Utils.CreateFile(DestinationPath, string.Empty, className, content);
+            Utils.CreateFile(Path.Combine(DestinationPath, Utils.PascalCase(entry.Category), Utils.PascalCase(entry.Name)), className
+                , string.Format(content, className, eventsContent.ToString(), optionsContent.ToString(), (entry.Name.ToLower() != "widget") ? "sealed" : string.Empty));
         }
 
         private void RenderEvents(Entry entry) {
@@ -326,7 +353,7 @@ namespace jQueryApi.UI {
 @"using System;
 using System.Runtime.CompilerServices;
 
-namespace jQueryApi.UI {{
+namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
 
     [Imported]
     [IgnoreNamespace]
@@ -363,10 +390,10 @@ namespace jQueryApi.UI {{
                     StringBuilder properties = new StringBuilder();
 
                     foreach (Property prop in arg.Properties.OrderBy(p => p.Name)) {
-                        properties.Append(string.Format(property, Utils.PascalCase(prop.Name), Utils.GetCSType(prop.Type), Utils.GetDefaultValue(prop.Type)));
+                        properties.Append(string.Format(property, Utils.PascalCase(prop.Name), Utils.MapDataType(prop.Type), Utils.GetDefaultValue(prop.Type)));
                     }
 
-                    Utils.CreateFile(DestinationPath, Utils.PascalCase(entry.Name)
+                    Utils.CreateFile(Path.Combine(DestinationPath, Utils.PascalCase(entry.Category), Utils.PascalCase(entry.Name))
                                     , className
                                     , string.Format(content, className, properties.ToString()));
                 }
@@ -384,7 +411,7 @@ namespace jQueryApi.UI {{
 @"using System;
 using System.Runtime.CompilerServices;
 
-namespace jQueryApi.UI {{
+namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
 
     [Imported]
     [IgnoreNamespace]
@@ -405,7 +432,7 @@ namespace jQueryApi.UI {{
                 enumValues.Append("        " + Utils.PascalCase(option.Key) + ",");
             }
 
-            Utils.CreateFile(DestinationPath, Utils.PascalCase(entry.Name), className
+            Utils.CreateFile(Path.Combine(DestinationPath, Utils.PascalCase(entry.Category), Utils.PascalCase(entry.Name)), className
                 , string.Format(content, className, enumValues.ToString().Trim(',')));
         }
 
@@ -420,7 +447,7 @@ namespace jQueryApi.UI {{
 @"using System;
 using System.Runtime.CompilerServices;
 
-namespace jQueryApi.UI {{
+namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
 
     [Imported]
     [IgnoreNamespace]
@@ -440,12 +467,16 @@ namespace jQueryApi.UI {{
                 enumValues.Append("        " + Utils.PascalCase(@event.Name) + ",");
             }
 
-            Utils.CreateFile(DestinationPath, Utils.PascalCase(entry.Name), className
+            Utils.CreateFile(Path.Combine(DestinationPath, Utils.PascalCase(entry.Category), Utils.PascalCase(entry.Name)), className
                 , string.Format(content, className, enumValues.ToString().Trim(',')));
         }
 
         private void RenderMethodEnum(Entry entry) {
             if (entry.Methods.Count == 0) {
+                return;
+            }
+
+            if (entry.Methods.Where(m => !excludeWidgetMethods.Contains(m.Name.ToLower()) && !excludeJQueryMethods.Contains(m.Name.ToLower())).Count() == 0) {
                 return;
             }
 
@@ -455,7 +486,7 @@ namespace jQueryApi.UI {{
 @"using System;
 using System.Runtime.CompilerServices;
 
-namespace jQueryApi.UI {{
+namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
 
     [Imported]
     [IgnoreNamespace]
@@ -466,7 +497,7 @@ namespace jQueryApi.UI {{
             StringBuilder enumValues = new StringBuilder();
 
             foreach (var method in entry.Methods
-                                        .AsQueryable()
+                                        .Where(m => !excludeWidgetMethods.Contains(m.Name.ToLower()) && !excludeJQueryMethods.Contains(m.Name.ToLower()))
                                         .OrderBy(m => m.Name)
                                         .GroupBy(m => m.Name)) {
                 enumValues.AppendLine();
@@ -480,63 +511,50 @@ namespace jQueryApi.UI {{
                 enumValues.Append("        " + Utils.PascalCase(method.Key) + ",");
             }
 
-            Utils.CreateFile(DestinationPath, Utils.PascalCase(entry.Name), className
+            Utils.CreateFile(Path.Combine(DestinationPath, Utils.PascalCase(entry.Category), Utils.PascalCase(entry.Name)), className
                 , string.Format(content, className, enumValues.ToString().Trim(',')));
         }
 
-        private void RenderJqueryUI() {
-            string className = "jQueryUIObject";
+        private void RenderEventHandler() {
+            string className = "jQueryUIEventHandler";
 
             string content =
-@"using System;
-using System.Runtime.CompilerServices;
+@"using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI {
 
     [Imported]
     [IgnoreNamespace]
-    public class " + className + @" : jQueryObject {
+    public delegate void " + className + @"<T>(jQueryEvent e, T uiEvent);
+}";
 
-        public new jQueryUIObject Focus() {
-            return null;
+            Utils.CreateFile(Path.Combine(DestinationPath, "Utilities", "jQueryUI"), className, content);
         }
 
-        public jQueryUIObject ScrollParent() {
-            return null;
-        }
+        private void RenderJQueryUIWidget() {
+            string className = "jQueryUIWidget";
 
-        public jQueryUIObject ZIndex() {
-            return null;
-        }
+            string content =
+@"using System.Runtime.CompilerServices;
 
-        public jQueryUIObject UniqueId() {
-            return null;
-        }
-
-        public jQueryUIObject RemoveUniqueId() {
-            return null;
-        }
-
+namespace jQueryApi.UI.Utilities {
+    [Imported]
+    [IgnoreNamespace]
+    [ScriptName(""$"")]
+    public static class jQueryUIWidget {
         /// <summary>
-        /// Disables text selection in the matched elements.
-        /// Not documented yet jQuery extension!
+        /// Create stateful jQuery plugins using the same abstraction that all jQuery UI widgets.
         /// </summary>
-        /// <returns>The current jQueryObject.</returns>
-        public jQueryUIObject DisableSelection() {
-            return null;
-        }
-
-        /// <summary>
-        /// Enables text selection in the matched elements.
-        /// Not documented yet jQuery extension!
-        /// </summary>
-        /// <returns>The current jQueryObject.</returns>
-        public jQueryUIObject EnableSelection() {
+        /// <remarks>
+        /// <para>You can create new widgets from scratch, using just the <code>$.Widget</code> object as base to inherit from, or you can explicitly inherit from existing jQuery UI or third-party widgets. Defining a widget with the same name as you inherit from even allows you to extend widgets in place.</para><para>For now, more details can be found at <a href=""https://github.com/scottgonzalez/widget-factory-docs/"">github.com/scottgonzalez/widget-factory-docs/</a></para>
+        /// </remarks>
+        [ScriptName(""widget"")]
+        public static WidgetObject Create(string name, params object[] options) {
             return null;
         }
     }
 }";
-            Utils.CreateFile(DestinationPath, string.Empty, className, content);
+            Utils.CreateFile(Path.Combine(DestinationPath, "Utilities", "Widget"), className, content);
         }
 
         /// <summary>
@@ -589,13 +607,11 @@ namespace jQueryApi.UI {
   <ItemGroup>
 ";
             foreach (Entry entry in entries) {
-                content += @"    <Compile Include=""" + Utils.PascalCase(entry.Name) + @"\*.cs"" />
+                content += @"    <Compile Include=""" + Path.Combine(Utils.PascalCase(entry.Category), Utils.PascalCase(entry.Name)) + @"\*.cs"" />
 ";
             }
 
-            content += @"    <Compile Include=""jQueryUIObject.cs"" />
-    <Compile Include=""jQueryUIEventHandler.cs"" />
-    <Compile Include=""Properties\AssemblyInfo.cs"" />
+            content += @"    <Compile Include=""Properties\AssemblyInfo.cs"" />
     <Compile Include=""..\..\..\ScriptSharp.cs"">
       <Link>Properties\ScriptSharp.cs</Link>
     </Compile>
@@ -637,7 +653,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyDescription(""Script# jQuery UI Plugin"")]
 [assembly: ScriptAssembly(""jQueryUI"")]";
 
-            Utils.CreateFile(DestinationPath, "Properties", "AssemblyInfo", assemblyContent);
+            Utils.CreateFile(Path.Combine(DestinationPath, "Properties"), "AssemblyInfo", assemblyContent);
 
             // render script information
             string infoContent = @"jQuery UI

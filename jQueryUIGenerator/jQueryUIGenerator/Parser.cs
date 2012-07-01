@@ -1,5 +1,5 @@
 ﻿// Parser.cs
-// ScriptSharpJQueryUI
+// jQueryUIGenerator
 //
 // Copyright 2012 Ivaylo Gochkov
 //
@@ -20,9 +20,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Xml;
 
-using ScriptSharpJQueryUI.Model;
+using ScriptSharp.Tools.jQueryUIGenerator.Model;
 
-namespace ScriptSharpJQueryUI {
+namespace ScriptSharp.Tools.jQueryUIGenerator {
     /// <summary>
     /// jQueryUI API documentation parser.
     /// </summary>
@@ -116,7 +116,7 @@ namespace ScriptSharpJQueryUI {
         private IList<Signature> ParseSignatures(XmlNodeList xmlSignatures) {
             IList<Signature> signatures = new List<Signature>();
 
-            if (xmlSignatures == null) { 
+            if (xmlSignatures == null) {
                 return signatures;
             }
 
@@ -291,7 +291,6 @@ namespace ScriptSharpJQueryUI {
 
             return string.Join(",", types);
         }
-
 
         private string GetAttributeStringValue(XmlNode xmlNode, string attributeName) {
             Debug.Assert(xmlNode != null, "XmlNode is null.");
