@@ -700,8 +700,8 @@ a.btn-demo-secondary span strong { font-weight:normal; color:#4d4d4d; }
 .normal #demo-frame-wrapper p { margin:5px 0 0; }
 #demo-frame-wrapper p span { float:left; margin-right:5px; }
 
-#demo-frame { clear:right; width:520px; height:300px; border:1px solid #ddd; overflow:auto; position:relative; }
-#demo-frame .demo { padding: 5px;}
+#demo-frame { clear:right; width:550px; height:350px; border:1px solid #ddd; overflow:auto; position:relative; }
+#demo-frame .demo { padding: 5px; font-size: 12px;}
 #demo-frame .demo h3.docs { clear:left; font-weight:normal; margin:0; padding:.5em 0 1em; }
 
 #demo-config-menu { float:right; }

@@ -69,9 +69,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\AutocompleteController.cs" />
+    <Compile Include="Controllers\AutoCompleteController.cs" />
+    <Compile Include="Controllers\AccordionController.cs" />
     <Compile Include="Controllers\PositionController.cs" />
-    <Compile Include="Controllers\ProgressbarController.cs" />
+    <Compile Include="Controllers\ProgressBarController.cs" />
     <Compile Include="Controllers\DraggableController.cs" />
     <Compile Include="Controllers\DroppableController.cs" />
     <Compile Include="Controllers\ResizableController.cs" />
@@ -114,7 +115,9 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Views\Accordion\NoAuto.cshtml" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_DraggableLayout.cshtml" />
   </ItemGroup>
@@ -254,7 +257,7 @@
     <Content Include="Views\Sortable\ConnectLists.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Autocomplete\Default.cshtml" />
+    <Content Include="Views\AutoComplete\Default.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_AutocompleteLayout.cshtml" />
@@ -272,40 +275,40 @@
     <Content Include="Views\Progressbar\ResizableBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Autocomplete\RemoteDatasource.cshtml" />
+    <Content Include="Views\AutoComplete\RemoteDatasource.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Autocomplete\Copy of RemoteDatasource.cshtml" />
+    <Content Include="Views\AutoComplete\Copy of RemoteDatasource.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Autocomplete\RemoteWithCaching.cshtml" />
+    <Content Include="Views\AutoComplete\RemoteWithCaching.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Autocomplete\RemoteJSONPDatasource.cshtml" />
+    <Content Include="Views\AutoComplete\RemoteJSONPDatasource.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Autocomplete\ScrollableResults.cshtml" />
+    <Content Include="Views\AutoComplete\ScrollableResults.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Autocomplete\Combobox.cshtml" />
+    <Content Include="Views\AutoComplete\Combobox.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Autocomplete\CustomDataAndDisplay.cshtml" />
+    <Content Include="Views\AutoComplete\CustomDataAndDisplay.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Autocomplete\XMLDataParsedOnce.cshtml" />
+    <Content Include="Views\AutoComplete\XMLDataParsedOnce.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Autocomplete\Categories.cshtml" />
+    <Content Include="Views\AutoComplete\Categories.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Autocomplete\AccentFolding.cshtml" />
+    <Content Include="Views\AutoComplete\AccentFolding.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Autocomplete\MultipleValues.cshtml" />
+    <Content Include="Views\AutoComplete\MultipleValues.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Autocomplete\MultipleRemote.cshtml" />
+    <Content Include="Views\AutoComplete\MultipleRemote.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_PositionLayout.cshtml" />
@@ -321,6 +324,30 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Position\Default.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Accordion\Default.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_AccordionLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Accordion\FillSpace.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Accordion\Collapse.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Accordion\MouseOver.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Accordion\HoverIntent.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Accordion\Icons.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Accordion\Sortable.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

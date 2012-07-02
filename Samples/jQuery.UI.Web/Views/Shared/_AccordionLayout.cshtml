@@ -1,0 +1,28 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="demo-header">
+    <h2>Accordion</h2>
+</div>
+<div id="demo-config">
+    <div id="demo-frame-wrapper">
+        <div id="theme-switcher"></div>
+        @RenderBody()
+    </div>
+    <div id="demo-config-menu">
+        <div class="demos-nav">
+            <h4>
+                Examples</h4>
+            <ul>
+                <li>@Html.ActionLink("Default functionality", "Default", "Accordion")</li>
+                <li>@Html.ActionLink("Fill space", "FillSpace", "Accordion")</li>
+                <li>@Html.ActionLink("No auto height", "NoAuto", "Accordion")</li>
+                <li>@Html.ActionLink("Collapse content", "Collapse", "Accordion")</li>
+                <li>@Html.ActionLink("Open on mouseover", "MouseOver", "Accordion")</li>
+                <li>@Html.ActionLink("Open on hoverintent", "HoverIntent", "Accordion")</li>
+                <li>@Html.ActionLink("Customaze icons", "Icons", "Accordion")</li>
+                <li>@Html.ActionLink("Sortable", "Sortable", "Accordion")</li>
+            </ul>
+        </div>
+    </div>
+</div>

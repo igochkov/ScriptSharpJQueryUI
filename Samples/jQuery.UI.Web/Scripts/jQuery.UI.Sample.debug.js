@@ -3,6 +3,64 @@
 
 (function($) {
 
+Type.registerNamespace('Sample.Accordion');
+
+////////////////////////////////////////////////////////////////////////////////
+// Sample.Accordion._noAuto
+
+Sample.Accordion._noAuto = function Sample_Accordion__noAuto() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Sample.Accordion._collapse
+
+Sample.Accordion._collapse = function Sample_Accordion__collapse() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Sample.Accordion._mouseOver
+
+Sample.Accordion._mouseOver = function Sample_Accordion__mouseOver() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Sample.Accordion._hoverIntent
+
+Sample.Accordion._hoverIntent = function Sample_Accordion__hoverIntent() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Sample.Accordion._icons
+
+Sample.Accordion._icons = function Sample_Accordion__icons() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Sample.Accordion._sortable
+
+Sample.Accordion._sortable = function Sample_Accordion__sortable() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Sample.Accordion._fillSpace
+
+Sample.Accordion._fillSpace = function Sample_Accordion__fillSpace() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Sample.Accordion._default
+
+Sample.Accordion._default = function Sample_Accordion__default() {
+}
+
+
 Type.registerNamespace('Sample.AutoComplete');
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -419,6 +477,14 @@ Sample.Widget._default = function Sample_Widget__default() {
 }
 
 
+Sample.Accordion._noAuto.registerClass('Sample.Accordion._noAuto');
+Sample.Accordion._collapse.registerClass('Sample.Accordion._collapse');
+Sample.Accordion._mouseOver.registerClass('Sample.Accordion._mouseOver');
+Sample.Accordion._hoverIntent.registerClass('Sample.Accordion._hoverIntent');
+Sample.Accordion._icons.registerClass('Sample.Accordion._icons');
+Sample.Accordion._sortable.registerClass('Sample.Accordion._sortable');
+Sample.Accordion._fillSpace.registerClass('Sample.Accordion._fillSpace');
+Sample.Accordion._default.registerClass('Sample.Accordion._default');
 Sample.AutoComplete._remoteDatasource.registerClass('Sample.AutoComplete._remoteDatasource');
 Sample.AutoComplete._default.registerClass('Sample.AutoComplete._default');
 Sample.Position._cycling.registerClass('Sample.Position._cycling');
@@ -468,6 +534,53 @@ Sample.ProgressBar._resizableBar.registerClass('Sample.ProgressBar._resizableBar
 Sample.ProgressBar._animated.registerClass('Sample.ProgressBar._animated');
 Sample.ProgressBar._default.registerClass('Sample.ProgressBar._default');
 Sample.Widget._default.registerClass('Sample.Widget._default');
+(function () {
+    $(function() {
+        $('#accordion3').accordion({ autoHeight: false, navigation: true });
+    });
+})();
+(function () {
+    $(function() {
+        $('#accordion4').accordion({ collapsible: true });
+    });
+})();
+(function () {
+    $(function() {
+        $('#accordion5').accordion({ event: 'mouseover' });
+    });
+})();
+(function () {
+    $(function() {
+        $('#accordion4').accordion({ event: 'click hoverintent' });
+    });
+})();
+(function () {
+    $(function() {
+        var icons = { header: 'ui-icon-circle-arrow-e', headerSelected: 'ui-icon-circle-arrow-s' };
+        $('#accordion7').accordion({ icons: icons });
+        $('#toggle').button();
+    });
+})();
+(function () {
+    $(function() {
+        $('#accordion8').accordion({ header: '> div > h3' }).sortable({ axis: 'y', handle: 'h3', stop: function(eevent, ui) {
+            ui.item.children('h3').triggerHandler('focusout');
+        } });
+    });
+})();
+(function () {
+    $(function() {
+        $('#accordion2').accordion({ fillSpace: true });
+        $('#accordionResizer').resizable({ minHeight: 140, resize: function() {
+            $('#accordion2');
+        } });
+    });
+})();
+(function () {
+    $(function() {
+        $('#accordion1').accordion();
+    });
+})();
 (function () {
     $(function() {
         var options = {};
