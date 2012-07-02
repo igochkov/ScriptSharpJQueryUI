@@ -558,7 +558,11 @@ Sample.Widget._default.registerClass('Sample.Widget._default');
     $(function() {
         var icons = { header: 'ui-icon-circle-arrow-e', headerSelected: 'ui-icon-circle-arrow-s' };
         $('#accordion7').accordion({ icons: icons });
-        $('#toggle').button();
+        $('#toggle').button().toggle(function(e) {
+            $('#accordion7').accordion('option', 'icons', false);
+        }, function(e) {
+            $('#accordion7').accordion('option', 'icons', icons);
+        });
     });
 })();
 (function () {
@@ -572,7 +576,7 @@ Sample.Widget._default.registerClass('Sample.Widget._default');
     $(function() {
         $('#accordion2').accordion({ fillSpace: true });
         $('#accordionResizer').resizable({ minHeight: 140, resize: function() {
-            $('#accordion2');
+            $('#accordion2').accordion('refresh');
         } });
     });
 })();

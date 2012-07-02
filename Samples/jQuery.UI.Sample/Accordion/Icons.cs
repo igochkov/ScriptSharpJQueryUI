@@ -22,17 +22,17 @@ namespace Sample.Accordion
 
                 jQuery.Select("#toggle")
                       .Plugin<ButtonObject>()
-                      .Button();
-                //      .Toggle(new jQueryEventHandler(delegate(jQueryEvent @event) {
-                //          jQuery.Select("#accordion7")
-                //                .Plugin<AccordionObject>()
-                //                .Accordion(new AccordionOptions(AccordionMethod.Option, AccordionOption.Icons, false));
-                //      }),
-                //      new jQueryEventHandler(delegate(jQueryEvent @event) {
-                //          jQuery.Select("#accordion7")
-                //              .Plugin<AccordionObject>()
-                //              .Accordion(new AccordionOptions(AccordionMethod.Option, AccordionOption.Icons, icons));
-                //}));
+                      .Button()
+                      .Toggle(new jQueryEventHandler(delegate(jQueryEvent e) {
+                          jQuery.Select("#accordion7")
+                                .Plugin<AccordionObject>()
+                                .Accordion(AccordionMethod.Option, AccordionOption.Icons, false);
+                      }),
+                      new jQueryEventHandler(delegate(jQueryEvent e) {
+                          jQuery.Select("#accordion7")
+                              .Plugin<AccordionObject>()
+                              .Accordion(AccordionMethod.Option, AccordionOption.Icons, icons);
+                }));
             });
         }
     }

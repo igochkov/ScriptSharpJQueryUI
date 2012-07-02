@@ -75,13 +75,15 @@ $('#accordion5').accordion({event:'mouseover'});});})();
 (function(){$(function(){
 $('#accordion4').accordion({event:'click hoverintent'});});})();
 (function(){$(function(){
-var $1_0={header:'ui-icon-circle-arrow-e',headerSelected:'ui-icon-circle-arrow-s'};$('#accordion7').accordion({icons:$1_0});$('#toggle').button();});})();
+var $1_0={header:'ui-icon-circle-arrow-e',headerSelected:'ui-icon-circle-arrow-s'};$('#accordion7').accordion({icons:$1_0});$('#toggle').button().toggle(function($p2_0){
+$('#accordion7').accordion('option','icons',false);},function($p2_0){
+$('#accordion7').accordion('option','icons',$1_0);});});})();
 (function(){$(function(){
 $('#accordion8').accordion({header:'> div > h3'}).sortable({axis:'y',handle:'h3',stop:function($p2_0,$p2_1){
 $p2_1.item.children('h3').triggerHandler('focusout');}});});})();
 (function(){$(function(){
 $('#accordion2').accordion({fillSpace:true});$('#accordionResizer').resizable({minHeight:140,resize:function(){
-$('#accordion2');}});});})();
+$('#accordion2').accordion('refresh');}});});})();
 (function(){$(function(){
 $('#accordion1').accordion();});})();
 (function(){$(function(){

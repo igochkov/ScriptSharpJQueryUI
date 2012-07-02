@@ -23,8 +23,8 @@ namespace Sample.Accordion {
                         ResizableOption.MinHeight, 140,
                         ResizableEvents.Resize, new Action(delegate() {
                             jQuery.Select("#accordion2")
-                                .Plugin<AccordionObject>();
-                                //.Accordion(new AccordionOptions(AccordionMethod.Resize));
+                                .Plugin<AccordionObject>()
+                                .Accordion(AccordionMethod.Refresh);
                         })
                    ));
             });
