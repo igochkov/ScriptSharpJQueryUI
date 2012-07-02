@@ -34,7 +34,7 @@ namespace jQueryApi.UI.Widgets {
         BeforeLoad,
 
         /// <summary>
-        /// This event is triggered when the tabs widget is created.
+        /// This event is triggered when the tabs is created.
         /// </summary>
         Create,
 

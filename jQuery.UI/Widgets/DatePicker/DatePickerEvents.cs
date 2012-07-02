@@ -24,6 +24,11 @@ namespace jQueryApi.UI.Widgets {
         BeforeShowDay,
 
         /// <summary>
+        /// This event is triggered when the datepicker is created.
+        /// </summary>
+        Create,
+
+        /// <summary>
         /// Allows you to define your own event when the datepicker moves to a new month and/or year. The function receives the selected year, month (1-12), and the datepicker instance as parameters. <code>this</code> refers to the associated input field.
         /// </summary>
         OnChangeMonthYear,

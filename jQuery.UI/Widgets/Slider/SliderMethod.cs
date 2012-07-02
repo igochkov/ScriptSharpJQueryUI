@@ -14,6 +14,17 @@ namespace jQueryApi.UI.Widgets {
     public enum SliderMethod {
 
         /// <summary>
+        /// The <code>destroy()</code> method cleans up all common data, events, etc. and then delegates out to <code>_destroy()</code> for custom cleanup.
+        /// </summary>
+        Destroy,
+
+        Disable,
+
+        Enable,
+
+        Option,
+
+        /// <summary>
         /// Gets or sets the value of the slider. For single handle sliders.
         /// </summary>
         Value,
@@ -21,6 +32,8 @@ namespace jQueryApi.UI.Widgets {
         /// <summary>
         /// Number
         /// </summary>
-        Values
+        Values,
+
+        Widget
     }
 }

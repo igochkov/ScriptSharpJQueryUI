@@ -104,6 +104,11 @@ namespace jQueryApi.UI.Widgets {
         DefaultDate,
 
         /// <summary>
+        /// Disables the widget if set to true.
+        /// </summary>
+        Disabled,
+
+        /// <summary>
         /// Control the speed at which the datepicker appears, it may be a time in milliseconds or a string representing one of the three predefined speeds ("slow", "normal", "fast").
         /// </summary>
         Duration,

@@ -14,8 +14,21 @@ namespace jQueryApi.UI.Interactions {
     public enum SelectableMethod {
 
         /// <summary>
+        /// The <code>destroy()</code> method cleans up all common data, events, etc. and then delegates out to <code>_destroy()</code> for custom cleanup.
+        /// </summary>
+        Destroy,
+
+        Disable,
+
+        Enable,
+
+        Option,
+
+        /// <summary>
         /// Refresh the position and size of each selectee element. This method can be used to manually recalculate the position and size of each selectee element. Very useful if autoRefresh is set to false.
         /// </summary>
-        Refresh
+        Refresh,
+
+        Widget
     }
 }

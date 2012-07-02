@@ -19,6 +19,17 @@ namespace jQueryApi.UI.Interactions {
         Cancel,
 
         /// <summary>
+        /// The <code>destroy()</code> method cleans up all common data, events, etc. and then delegates out to <code>_destroy()</code> for custom cleanup.
+        /// </summary>
+        Destroy,
+
+        Disable,
+
+        Enable,
+
+        Option,
+
+        /// <summary>
         /// Refresh the sortable items. Custom trigger the reloading of all sortable items, causing new items to be recognized.
         /// </summary>
         Refresh,
@@ -31,6 +42,8 @@ namespace jQueryApi.UI.Interactions {
         /// <summary>
         /// Serializes the sortable's item id's into a form/ajax submittable string. Calling this method produces a hash that can be appended to any url to easily submit a new item order back to the server.<para>It works by default by looking at the id of each item in the format 'setname_number', and it spits out a hash like "setname[]=number&amp;setname[]=number".</para><para>You can also give in a option hash as second argument to custom define how the function works. The possible options are: 'key' (replaces part1[] with whatever you want), 'attribute' (test another attribute than 'id') and 'expression' (use your own regexp).</para><para>If serialize returns an empty string, make sure the id attributes include an underscore.  They must be in the form: "set_number" For example, a 3 element list with id attributes foo_1, foo_5, foo_2 will serialize to foo[]=1&amp;foo[]=5&amp;foo[]=2. You can use an underscore, equal sign or hyphen to separate the set and number.  For example foo=1 or foo-1 or foo_1 all serialize to foo[]=1.</para>
         /// </summary>
-        Serialize
+        Serialize,
+
+        Widget
     }
 }

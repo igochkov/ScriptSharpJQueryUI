@@ -14,8 +14,21 @@ namespace jQueryApi.UI.Widgets {
     public enum ProgressBarMethod {
 
         /// <summary>
+        /// The <code>destroy()</code> method cleans up all common data, events, etc. and then delegates out to <code>_destroy()</code> for custom cleanup.
+        /// </summary>
+        Destroy,
+
+        Disable,
+
+        Enable,
+
+        Option,
+
+        /// <summary>
         /// This method gets or sets the current value of the progressbar.
         /// </summary>
-        Value
+        Value,
+
+        Widget
     }
 }

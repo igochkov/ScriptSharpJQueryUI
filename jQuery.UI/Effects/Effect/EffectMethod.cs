@@ -13,74 +13,46 @@ namespace jQueryApi.UI.Effects {
     [NamedValues]
     public enum EffectMethod {
 
-        /// <summary>
-        /// 
-        /// </summary>
         AddClass,
 
-        /// <summary>
-        /// 
-        /// </summary>
         CreateWrapper,
 
-        /// <summary>
-        /// 
-        /// </summary>
         CssUnit,
 
-        /// <summary>
-        /// 
-        /// </summary>
+        DisableSelection,
+
         Effect,
 
-        /// <summary>
-        /// 
-        /// </summary>
+        EnableSelection,
+
+        Focus,
+
         GetBaseline,
 
-        /// <summary>
-        /// 
-        /// </summary>
         RemoveClass,
 
-        /// <summary>
-        /// 
-        /// </summary>
+        RemoveUniqueId,
+
         RemoveWrapper,
 
-        /// <summary>
-        /// 
-        /// </summary>
         Restore,
 
-        /// <summary>
-        /// 
-        /// </summary>
         Save,
 
-        /// <summary>
-        /// 
-        /// </summary>
+        ScrollParent,
+
         SetMode,
 
-        /// <summary>
-        /// 
-        /// </summary>
         SetTransition,
 
-        /// <summary>
-        /// 
-        /// </summary>
         SwitchClass,
 
-        /// <summary>
-        /// 
-        /// </summary>
         Toggle,
 
-        /// <summary>
-        /// 
-        /// </summary>
-        ToggleClass
+        ToggleClass,
+
+        UniqueId,
+
+        ZIndex
     }
 }

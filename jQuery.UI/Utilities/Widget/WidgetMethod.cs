@@ -19,15 +19,9 @@ namespace jQueryApi.UI.Utilities {
         [ScriptName("_create")]
         Create,
 
-        /// <summary>
-        /// 
-        /// </summary>
         [ScriptName("_createWidget")]
         CreateWidget,
 
-        /// <summary>
-        /// 
-        /// </summary>
         [ScriptName("_getCreateOptions")]
         GetCreateOptions,
 
@@ -60,24 +54,26 @@ namespace jQueryApi.UI.Utilities {
         /// </summary>
         Destroy,
 
-        /// <summary>
-        /// 
-        /// </summary>
         Disable,
 
-        /// <summary>
-        /// 
-        /// </summary>
+        DisableSelection,
+
         Enable,
 
-        /// <summary>
-        /// 
-        /// </summary>
+        EnableSelection,
+
+        Focus,
+
         Option,
 
-        /// <summary>
-        /// 
-        /// </summary>
-        Widget
+        RemoveUniqueId,
+
+        ScrollParent,
+
+        UniqueId,
+
+        Widget,
+
+        ZIndex
     }
 }

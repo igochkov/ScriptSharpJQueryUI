@@ -13,39 +13,18 @@ namespace jQueryApi.UI.Utilities {
     [NamedValues]
     public enum jQueryUIMethod {
 
-        /// <summary>
-        /// 
-        /// </summary>
         DisableSelection,
 
-        /// <summary>
-        /// 
-        /// </summary>
         EnableSelection,
 
-        /// <summary>
-        /// 
-        /// </summary>
         Focus,
 
-        /// <summary>
-        /// 
-        /// </summary>
         RemoveUniqueId,
 
-        /// <summary>
-        /// 
-        /// </summary>
         ScrollParent,
 
-        /// <summary>
-        /// 
-        /// </summary>
         UniqueId,
 
-        /// <summary>
-        /// 
-        /// </summary>
         ZIndex
     }
 }

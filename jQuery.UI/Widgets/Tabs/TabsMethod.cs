@@ -14,18 +14,21 @@ namespace jQueryApi.UI.Widgets {
     public enum TabsMethod {
 
         /// <summary>
-        /// Disable a tab. The selected tab cannot be disabled. To disable more than one tab at once use: <code>$('#example').tabs("option","disabled", [1, 2, 3]);</code><para>The argument is the zero-based index of the tab to be disabled. Instead of an index, the href of the tab may be passed.</para>
+        /// The <code>destroy()</code> method cleans up all common data, events, etc. and then delegates out to <code>_destroy()</code> for custom cleanup.
         /// </summary>
+        Destroy,
+
         Disable,
 
-        /// <summary>
-        /// Enable a disabled tab. To enable more than one tab at once reset the disabled property like: <code>$('#example').tabs("option","disabled",[]);</code>.<para>The argument is the zero-based index of the tab to be enabled. Instead of an index, the href of the tab may be passed.</para>
-        /// </summary>
         Enable,
 
         /// <summary>
         /// Load the panel content of a remote tab (specified by index)
         /// </summary>
-        Load
+        Load,
+
+        Option,
+
+        Widget
     }
 }

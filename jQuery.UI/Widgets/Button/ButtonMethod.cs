@@ -14,8 +14,21 @@ namespace jQueryApi.UI.Widgets {
     public enum ButtonMethod {
 
         /// <summary>
+        /// The <code>destroy()</code> method cleans up all common data, events, etc. and then delegates out to <code>_destroy()</code> for custom cleanup.
+        /// </summary>
+        Destroy,
+
+        Disable,
+
+        Enable,
+
+        Option,
+
+        /// <summary>
         /// Refreshes the visual state of the button. Useful for updating button state after the native element's checked or disabled state is changed programatically.
         /// </summary>
-        Refresh
+        Refresh,
+
+        Widget
     }
 }

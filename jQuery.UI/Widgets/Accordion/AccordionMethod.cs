@@ -14,8 +14,21 @@ namespace jQueryApi.UI.Widgets {
     public enum AccordionMethod {
 
         /// <summary>
+        /// The <code>destroy()</code> method cleans up all common data, events, etc. and then delegates out to <code>_destroy()</code> for custom cleanup.
+        /// </summary>
+        Destroy,
+
+        Disable,
+
+        Enable,
+
+        Option,
+
+        /// <summary>
         /// Recompute heights of the accordion panels. Results depend on the content and the <code>heightStyle</code> option.
         /// </summary>
-        Refresh
+        Refresh,
+
+        Widget
     }
 }

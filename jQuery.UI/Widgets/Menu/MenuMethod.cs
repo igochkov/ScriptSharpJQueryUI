@@ -29,6 +29,15 @@ namespace jQueryApi.UI.Widgets {
         CollapseAll,
 
         /// <summary>
+        /// The <code>destroy()</code> method cleans up all common data, events, etc. and then delegates out to <code>_destroy()</code> for custom cleanup.
+        /// </summary>
+        Destroy,
+
+        Disable,
+
+        Enable,
+
+        /// <summary>
         /// Open the sub-menu below the currently active item, if it exists.
         /// </summary>
         Expand,
@@ -58,6 +67,8 @@ namespace jQueryApi.UI.Widgets {
         /// </summary>
         NextPage,
 
+        Option,
+
         /// <summary>
         /// Move active state to previous menu item.
         /// </summary>
@@ -76,6 +87,8 @@ namespace jQueryApi.UI.Widgets {
         /// <summary>
         /// Select the currently active menu item, collapse all sub-menus and trigger the menu select event.
         /// </summary>
-        Select
+        Select,
+
+        Widget
     }
 }

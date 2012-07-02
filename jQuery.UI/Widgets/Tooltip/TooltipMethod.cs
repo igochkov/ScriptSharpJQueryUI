@@ -19,8 +19,21 @@ namespace jQueryApi.UI.Widgets {
         Close,
 
         /// <summary>
+        /// The <code>destroy()</code> method cleans up all common data, events, etc. and then delegates out to <code>_destroy()</code> for custom cleanup.
+        /// </summary>
+        Destroy,
+
+        Disable,
+
+        Enable,
+
+        /// <summary>
         /// Programmatically open a tooltip. If the widget's element is the target, the event argument is optional. Otherwise you have to pass an event object with the <code>currentTarget</code> property pointing at the target.
         /// </summary>
-        Open
+        Open,
+
+        Option,
+
+        Widget
     }
 }

@@ -19,6 +19,15 @@ namespace jQueryApi.UI.Widgets {
         Close,
 
         /// <summary>
+        /// The <code>destroy()</code> method cleans up all common data, events, etc. and then delegates out to <code>_destroy()</code> for custom cleanup.
+        /// </summary>
+        Destroy,
+
+        Disable,
+
+        Enable,
+
+        /// <summary>
         /// Returns true if the dialog is currently open.
         /// </summary>
         IsOpen,
@@ -31,6 +40,10 @@ namespace jQueryApi.UI.Widgets {
         /// <summary>
         /// Open the dialog.
         /// </summary>
-        Open
+        Open,
+
+        Option,
+
+        Widget
     }
 }
