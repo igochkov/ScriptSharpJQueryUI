@@ -61,7 +61,13 @@ namespace ScriptSharp.Tools.jQueryUIGenerator {
             foreach (Entry entry in entries) {
                 Messages.WriteLine("Generating " + Path.Combine(DestinationPath, Utils.PascalCase(entry.Name)));
 
-                RenderEntry(entry);
+                Entry baseEntry = null;
+                if (!string.IsNullOrEmpty(entry.Type)) {
+                    // find the base entry
+                    baseEntry = entries.SingleOrDefault(e => e.Name.ToLower() == entry.Type.ToLower());
+                }
+
+                RenderEntry(entry, baseEntry);
             }
 
             Messages.WriteLine("Generating jQueryUI base files.");
@@ -69,7 +75,7 @@ namespace ScriptSharp.Tools.jQueryUIGenerator {
             RenderJQueryUIWidget();
         }
 
-        private void RenderEntry(Entry entry) {
+        private void RenderEntry(Entry entry, Entry baseEntry = null) {
             if (entry == null) {
                 return;
             }
@@ -78,9 +84,9 @@ namespace ScriptSharp.Tools.jQueryUIGenerator {
             RenderOptions(entry);
             RenderEvents(entry);
 
-            RenderOptionEnum(entry);
-            RenderEventsEnum(entry);
-            RenderMethodEnum(entry);
+            RenderOptionEnum(entry, baseEntry);
+            RenderEventsEnum(entry, baseEntry);
+            RenderMethodEnum(entry, baseEntry);
         }
 
         private void RenderObject(Entry entry) {
@@ -189,7 +195,7 @@ namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
             StringBuilder methodsContent = new StringBuilder();
 
             foreach (var method in entry.Methods
-                                        // exclude the widget && jQuery methods as they will be inherit
+                // exclude the widget && jQuery methods as they will be inherit
                                         .Where(m => entry.Name.ToLower() == "widget" || !excludeJQueryMethods.Contains(m.Name.ToLower()))
                                         .OrderBy(m => m.Name)) {
 
@@ -399,7 +405,7 @@ namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
             }
         }
 
-        private void RenderOptionEnum(Entry entry) {
+        private void RenderOptionEnum(Entry entry, Entry baseEntry = null) {
             if (entry.Options.Count == 0) {
                 return;
             }
@@ -420,14 +426,21 @@ namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
 }}";
             StringBuilder enumValues = new StringBuilder();
 
-            foreach (var option in entry.Options.AsQueryable()
-                                           .OrderBy(o => o.Name)
-                                           .GroupBy(o => o.Name)) {
+            IEnumerable<Option> options = entry.Options.AsQueryable();
+
+            if (baseEntry != null) {
+                options = options.Union(baseEntry.Options);
+            }
+
+            foreach (var option in options.OrderBy(o => o.Name)
+                                          .GroupBy(o => o.Name)) {
                 enumValues.AppendLine();
                 enumValues.AppendLine();
-                enumValues.AppendLine("        /// <summary>");
-                enumValues.AppendLine("        /// " + Utils.FormatXmlComment(option.Min(o => o.Description).Replace("<entryname />", entry.Name)));
-                enumValues.AppendLine("        /// </summary>");
+                if (!string.IsNullOrEmpty(option.Min(o => o.Description))) {
+                    enumValues.AppendLine("        /// <summary>");
+                    enumValues.AppendLine("        /// " + Utils.FormatXmlComment(option.Min(o => o.Description).Replace("<entryname />", entry.Name)));
+                    enumValues.AppendLine("        /// </summary>");
+                }
                 enumValues.Append("        " + Utils.PascalCase(option.Key) + ",");
             }
 
@@ -435,7 +448,7 @@ namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
                 , string.Format(content, className, enumValues.ToString().Trim(',')));
         }
 
-        private void RenderEventsEnum(Entry entry) {
+        private void RenderEventsEnum(Entry entry, Entry baseEntry = null) {
             if (entry.Events.Count == 0) {
                 return;
             }
@@ -456,21 +469,29 @@ namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
 }}";
             StringBuilder enumValues = new StringBuilder();
 
-            foreach (var @event in entry.Events.AsQueryable()
-                                          .OrderBy(e => e.Name)) {
+            IEnumerable<Event> events = entry.Events.AsQueryable();
+
+            if (baseEntry != null) {
+                events = events.Union(baseEntry.Events);
+            }
+
+            foreach (var @event in events.OrderBy(e => e.Name)
+                                         .GroupBy(e => e.Name)){
                 enumValues.AppendLine();
                 enumValues.AppendLine();
-                enumValues.AppendLine("        /// <summary>");
-                enumValues.AppendLine("        /// " + Utils.FormatXmlComment(@event.Description.Replace("<entryname />", entry.Name)));
-                enumValues.AppendLine("        /// </summary>");
-                enumValues.Append("        " + Utils.PascalCase(@event.Name) + ",");
+                if (!string.IsNullOrEmpty(@event.Min(e => e.Description))) {
+                    enumValues.AppendLine("        /// <summary>");
+                    enumValues.AppendLine("        /// " + Utils.FormatXmlComment(@event.Min(e => e.Description).Replace("<entryname />", entry.Name)));
+                    enumValues.AppendLine("        /// </summary>");
+                }
+                enumValues.Append("        " + Utils.PascalCase(@event.Key) + ",");
             }
 
             Utils.CreateFile(Path.Combine(DestinationPath, Utils.PascalCase(entry.Category), Utils.PascalCase(entry.Name)), className
                 , string.Format(content, className, enumValues.ToString().Trim(',')));
         }
 
-        private void RenderMethodEnum(Entry entry) {
+        private void RenderMethodEnum(Entry entry, Entry baseEntry = null) {
             if (entry.Methods.Count == 0) {
                 return;
             }
@@ -495,15 +516,24 @@ namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
 }}";
             StringBuilder enumValues = new StringBuilder();
 
-            foreach (var method in entry.Methods
-                                        .Where(m => !excludeJQueryMethods.Contains(m.Name.ToLower()))
-                                        .OrderBy(m => m.Name)
-                                        .GroupBy(m => m.Name)) {
+            IEnumerable<Method> methods = entry.Methods.AsQueryable();
+
+            if (baseEntry != null) {
+                methods = methods.Union(baseEntry.Methods
+                                                 // filter private methods from the base entry
+                                                 .Where(m => !m.Name.StartsWith("_")))
+                                 .Where(m => !excludeJQueryMethods.Contains(m.Name.ToLower()));
+            }
+
+            foreach (var method in methods.OrderBy(m => m.Name)
+                                          .GroupBy(m => m.Name)) {
                 enumValues.AppendLine();
                 enumValues.AppendLine();
-                enumValues.AppendLine("        /// <summary>");
-                enumValues.AppendLine("        /// " + Utils.FormatXmlComment(method.Min(m => m.Description).Replace("<entryname />", entry.Name)));
-                enumValues.AppendLine("        /// </summary>");
+                if (!string.IsNullOrEmpty(method.Min(m => m.Description))) {
+                    enumValues.AppendLine("        /// <summary>");
+                    enumValues.AppendLine("        /// " + Utils.FormatXmlComment(method.Min(m => m.Description).Replace("<entryname />", entry.Name)));
+                    enumValues.AppendLine("        /// </summary>");
+                }
                 if (Utils.PascalCase(method.Key).ToLower() != method.Key.ToLower()) {
                     enumValues.AppendLine("        [ScriptName(\"" + method.Key + "\")]");
                 }
