@@ -30,7 +30,6 @@ namespace ScriptSharp.Tools.jQueryUIGenerator {
         private string DestinationPath;
         private TextWriter Messages;
 
-        private string[] excludeWidgetMethods = new string[] {}; // "destroy", "disable", "enable", "option", "widget" };
         private string[] excludeJQueryMethods = new string[] { "show", "hide", "toarray" };
 
         /// <summary>
@@ -191,7 +190,7 @@ namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
 
             foreach (var method in entry.Methods
                                         // exclude the widget && jQuery methods as they will be inherit
-                                        .Where(m => entry.Name.ToLower() == "widget" || (!excludeWidgetMethods.Contains(m.Name.ToLower()) && !excludeJQueryMethods.Contains(m.Name.ToLower())))
+                                        .Where(m => entry.Name.ToLower() == "widget" || !excludeJQueryMethods.Contains(m.Name.ToLower()))
                                         .OrderBy(m => m.Name)) {
 
                 // TODO: temporal solution for SetOption & SetOptions. Cannot have property and Method with the same name.
@@ -243,7 +242,7 @@ namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
                                     , (entry.Example != null) ? string.Format(example, Utils.FormatXmlComment(entry.Example.Description), Utils.FormatXmlComment(entry.Example.Code), Utils.FormatXmlComment(entry.Example.Html)) : string.Empty
                                     , string.Format(overload1, entry.Name, Utils.PascalCase(entry.Name), (entry.Name.ToLower() == "position" || entry.Name.ToLower() == "size") ? "new " : string.Empty)
                                     , (entry.Options.Count > 0) ? string.Format(overload2, entry.Name, Utils.PascalCase(entry.Name)) : string.Empty
-                                    , (entry.Methods.Where(m => !excludeWidgetMethods.Contains(m.Name.ToLower()) && !excludeJQueryMethods.Contains(m.Name.ToLower())).Count() > 0) ? string.Format(overload3, entry.Name, Utils.PascalCase(entry.Name)) : string.Empty
+                                    , (entry.Methods.Where(m => !excludeJQueryMethods.Contains(m.Name.ToLower())).Count() > 0) ? string.Format(overload3, entry.Name, Utils.PascalCase(entry.Name)) : string.Empty
                                     , methodsContent.ToString()
                                     , string.Empty);
             }
@@ -476,7 +475,7 @@ namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
                 return;
             }
 
-            if (entry.Methods.Where(m => !excludeWidgetMethods.Contains(m.Name.ToLower()) && !excludeJQueryMethods.Contains(m.Name.ToLower())).Count() == 0) {
+            if (entry.Methods.Where(m => !excludeJQueryMethods.Contains(m.Name.ToLower())).Count() == 0) {
                 return;
             }
 
@@ -497,7 +496,7 @@ namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
             StringBuilder enumValues = new StringBuilder();
 
             foreach (var method in entry.Methods
-                                        .Where(m => !excludeWidgetMethods.Contains(m.Name.ToLower()) && !excludeJQueryMethods.Contains(m.Name.ToLower()))
+                                        .Where(m => !excludeJQueryMethods.Contains(m.Name.ToLower()))
                                         .OrderBy(m => m.Name)
                                         .GroupBy(m => m.Name)) {
                 enumValues.AppendLine();
