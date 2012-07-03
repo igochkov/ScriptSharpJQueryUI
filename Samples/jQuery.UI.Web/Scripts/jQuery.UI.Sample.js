@@ -209,8 +209,8 @@ if(($2_0.options).disabled){return;}$2_0.random.apply($2_0,arguments);});this._r
 this.element.css('background-color','rgb('+(this.options).red+','+(this.options).green+','+(this.options).blue+')');this._trigger('change');},random:function($p2_0){
 var $2_0={red:Math.floor(Math.random()*256),green:Math.floor(Math.random()*256),blue:Math.floor(Math.random()*256)};if(this._trigger('random',$p2_0,$2_0)){this.option($2_0);}},destroy:function(){
 this.changer.remove();this.element.removeClass('custom-colorize').enableSelection().css('background-color','transparent');},_setOptions:function(){
-$.Widget.prototype._setOptions.apply(this,arguments);this._refresh();},_setOption:function($p2_0,$p2_1){
-if(new RegExp('red|green|blue').test($p2_0)&&($p2_1<0||$p2_1>255)){return;}$.Widget.prototype._setOption.call(this,$p2_0,$p2_1);}});$('#my-widget1').colorize();$('#my-widget2').colorize({red:60,blue:60});$('#my-widget3').colorize({green:128,random:function($p2_0,$p2_1){
+($.Widget.prototype)._setOptions.apply(this,arguments);this._refresh();},_setOption:function($p2_0,$p2_1){
+if(new RegExp('red|green|blue').test($p2_0)&&($p2_1<0||$p2_1>255)){return;}($.Widget.prototype)._setOption.call(this,$p2_0,$p2_1);}});$('#my-widget1').colorize();$('#my-widget2').colorize({red:60,blue:60});$('#my-widget3').colorize({green:128,random:function($p2_0,$p2_1){
 return $p2_1.green>128;}});$('#disable').toggle(function($p2_0){
 $(':custom-colorize').colorize('disable');},function($p2_0){
 $(':custom-colorize').colorize('enable');});$('#black').click(function($p2_0){

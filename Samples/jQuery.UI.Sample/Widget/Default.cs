@@ -6,7 +6,7 @@
 
 using System;
 using jQueryApi;
-using jQueryApi.UI.Utilities;
+using jQueryApi.UI;
 using jQueryApi.UI.Widgets;
 
 namespace Sample.Widget {
@@ -15,7 +15,7 @@ namespace Sample.Widget {
             jQuery.OnDocumentReady(delegate() {
                 // the widget definition, where "custom" is the namespace,
                 // "colorize" the widget name
-                jQueryUIWidget.Create("custom.colorize",
+                jQueryUI.Create("custom.colorize",
                     new WidgetOptions(
                     // default options
                     "options", new ColorizeOptions(
@@ -115,7 +115,7 @@ namespace Sample.Widget {
                     // always refresh when changing options
                 WidgetMethod.SetOptions, new Action(delegate() {
                     // in 1.9 would use _superApply( arguments)
-                    WidgetObject.Prototype.SetOptions.Apply(jQuery.Current, Arguments.Current);
+                    ((WidgetObject)WidgetObject.Prototype).SetOptions.Apply(jQuery.Current, Arguments.Current);
 
                     jQuery.Current
                           .Plugin<ColorizeObject>()
@@ -129,7 +129,7 @@ namespace Sample.Widget {
                     }
                     // in 1.9 would use _super
                     //$.Widget.prototype._setOption.call( this, key, value );
-                    WidgetObject.Prototype.SetOption.Call(jQuery.Current, key, value);
+                    ((WidgetObject)WidgetObject.Prototype).SetOption.Call(jQuery.Current, key, value);
                 })
 
                 ));

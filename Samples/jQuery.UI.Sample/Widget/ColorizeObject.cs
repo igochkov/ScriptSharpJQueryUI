@@ -6,7 +6,7 @@
 
 using System;
 using System.Runtime.CompilerServices;
-using jQueryApi.UI.Utilities;
+using jQueryApi.UI;
 using jQueryApi.UI.Widgets;
 
 namespace Sample.Widget {

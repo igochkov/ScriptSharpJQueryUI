@@ -5,7 +5,7 @@
 //
 
 using System.Runtime.CompilerServices;
-using jQueryApi.UI.Utilities;
+using jQueryApi.UI;
 
 namespace Sample.Widget {
     [Imported]

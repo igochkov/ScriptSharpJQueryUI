@@ -5,8 +5,8 @@
 //
 
 using jQueryApi;
+using jQueryApi.UI;
 using jQueryApi.UI.Interactions;
-using jQueryApi.UI.Utilities;
 
 namespace Sample.Position {
     internal static class Default {

@@ -986,13 +986,13 @@ Sample.Widget._default.registerClass('Sample.Widget._default');
             this.changer.remove();
             this.element.removeClass('custom-colorize').enableSelection().css('background-color', 'transparent');
         }, _setOptions: function() {
-            $.Widget.prototype._setOptions.apply(this, arguments);
+            ($.Widget.prototype)._setOptions.apply(this, arguments);
             this._refresh();
         }, _setOption: function(key, value) {
             if (new RegExp('red|green|blue').test(key) && (value < 0 || value > 255)) {
                 return;
             }
-            $.Widget.prototype._setOption.call(this, key, value);
+            ($.Widget.prototype)._setOption.call(this, key, value);
         } });
         $('#my-widget1').colorize();
         $('#my-widget2').colorize({ red: 60, blue: 60 });
