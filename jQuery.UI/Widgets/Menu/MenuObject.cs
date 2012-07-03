@@ -5,7 +5,6 @@
 
 using System;
 using System.Runtime.CompilerServices;
-using jQueryApi.UI.Utilities;
 
 namespace jQueryApi.UI.Widgets {
 
@@ -15,21 +14,11 @@ namespace jQueryApi.UI.Widgets {
     /// <remarks>
     /// <para>A menu can be created from any valid markup as long as the elements have a strict parent/child relationship and each menu item has an anchor. The most commonly used element is the unordered list (UL):</para><c><ul id="menu"><li><a href="#">Item 1</a></li><li><a href="#">Item 2</a></li><li><a href="#">Item 3</a><ul><li><a href="#">Item 3-1</a></li><li><a href="#">Item 3-2</a></li><li><a href="#">Item 3-3</a></li><li><a href="#">Item 3-4</a></li><li><a href="#">Item 3-5</a></li></ul></li><li><a href="#">Item 4</a></li><li><a href="#">Item 5</a></li></ul></c><para>If you use a structure other than UL/LI, including using the same element for the menu and the menu items, use the <code>menus</code> option to specify a way to differentiate the two elements, eg. <code>menus: 'div.menuElement'</code>.</para><para>Any menu item can be disabled by adding the ui-state-disabled class to that element.</para><para>This widget requires some functional CSS, otherwise it won't work. If you build a custom theme, use the widget's specific CSS file as a starting point.</para>
     /// </remarks>
-    /// <example>
-    /// Initialize a menu with default options.
-    /// <code>
-    /// $("#menu").menu();
-    /// </code>
-    /// <code>
-    /// <ul id="menu"><li><a href="#">Item 1</a></li><li><a href="#">Item 2</a><ul><li><a href="#">Item 2-1</a></li></ul></li><li><a href="#">Item 3</a></li></ul>
-    /// </code>
-    /// </example>
     [Imported]
     [IgnoreNamespace]
-    
-    public class MenuObject : WidgetObject {
+    public abstract class MenuObject : WidgetObject {
 
-        public MenuObject() {
+        protected MenuObject() {
         }
 
         [ScriptName("menu")]

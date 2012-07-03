@@ -5,7 +5,6 @@
 
 using System;
 using System.Runtime.CompilerServices;
-using jQueryApi.UI.Utilities;
 
 namespace jQueryApi.UI.Effects {
 
@@ -15,21 +14,11 @@ namespace jQueryApi.UI.Effects {
     /// <remarks>
     /// 
     /// </remarks>
-    /// <example>
-    /// Size an element to 200 x 60.
-    /// <code>
-    /// $("div").click(function () {      $(this).effect("size", { to: {width: 200,height: 60} }, 1000);});
-    /// </code>
-    /// <code>
-    /// <div></div>
-    /// </code>
-    /// </example>
     [Imported]
     [IgnoreNamespace]
-    
-    public class SizeObject : EffectObject {
+    public abstract class SizeObject : EffectObject {
 
-        public SizeObject() {
+        protected SizeObject() {
         }
 
         [ScriptName("size")]

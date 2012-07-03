@@ -5,7 +5,6 @@
 
 using System;
 using System.Runtime.CompilerServices;
-using jQueryApi.UI.Utilities;
 
 namespace jQueryApi.UI.Effects {
 
@@ -15,15 +14,11 @@ namespace jQueryApi.UI.Effects {
     /// <remarks>
     /// 
     /// </remarks>
-    /// <example>
-    /// 
-    /// </example>
     [Imported]
     [IgnoreNamespace]
-    
-    public class BounceObject : EffectObject {
+    public abstract class BounceObject : EffectObject {
 
-        public BounceObject() {
+        protected BounceObject() {
         }
 
         [ScriptName("bounce")]

@@ -5,7 +5,6 @@
 
 using System;
 using System.Runtime.CompilerServices;
-using jQueryApi.UI.Utilities;
 
 namespace jQueryApi.UI.Effects {
 
@@ -15,15 +14,11 @@ namespace jQueryApi.UI.Effects {
     /// <remarks>
     /// 
     /// </remarks>
-    /// <example>
-    /// 
-    /// </example>
     [Imported]
     [IgnoreNamespace]
-    
-    public class EffectObject : jQueryUIObject {
+    public abstract class EffectObject : jQueryUIObject {
 
-        public EffectObject() {
+        protected EffectObject() {
         }
 
         [ScriptName("effect")]

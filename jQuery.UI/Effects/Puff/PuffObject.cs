@@ -5,7 +5,6 @@
 
 using System;
 using System.Runtime.CompilerServices;
-using jQueryApi.UI.Utilities;
 
 namespace jQueryApi.UI.Effects {
 
@@ -15,21 +14,11 @@ namespace jQueryApi.UI.Effects {
     /// <remarks>
     /// This is the only effect without a separate file, it shares a file with the scale effect.
     /// </remarks>
-    /// <example>
-    /// Puff the element away.
-    /// <code>
-    /// $("div").click(function () {      $(this).hide("puff", {}, 1000);});
-    /// </code>
-    /// <code>
-    /// <div></div>
-    /// </code>
-    /// </example>
     [Imported]
     [IgnoreNamespace]
-    
-    public class PuffObject : EffectObject {
+    public abstract class PuffObject : EffectObject {
 
-        public PuffObject() {
+        protected PuffObject() {
         }
 
         [ScriptName("puff")]

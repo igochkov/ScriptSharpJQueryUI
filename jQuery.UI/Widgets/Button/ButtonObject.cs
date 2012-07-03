@@ -5,7 +5,6 @@
 
 using System;
 using System.Runtime.CompilerServices;
-using jQueryApi.UI.Utilities;
 
 namespace jQueryApi.UI.Widgets {
 
@@ -15,21 +14,11 @@ namespace jQueryApi.UI.Widgets {
     /// <remarks>
     /// <para>Button enhances standard form elements like button, input of type submit or reset or anchors to themable buttons with appropiate mouseover and active styles.</para><para>In addition to basic push buttons, radio buttons and checkboxes (inputs of type radio and checkbox) can be converted to buttons: Their associated label is styled to appear as the button, while the underlying input is updated on click.</para><para>In order to group radio buttons, Button also provides an additional widget-method, called buttonset. Its used by selecting a container element (which contains the radio buttons) and calling buttonset(). Buttonset will also provide visual grouping, and therefore should be used whenever you have a group of buttons. It works by selecting all descendents and applying button() to them. You can enable and disable a buttonset, which will enable and disable all contained buttons. Destroying a buttonset also calls each button's destroy method.</para><para>When using an input of type button, submit or reset, support is limited to plain text labels with no icons.</para><para>This widget requires some functional CSS, otherwise it won't work. If you build a custom theme, use the widget's specific CSS file as a starting point.</para>
     /// </remarks>
-    /// <example>
-    /// A simple jQuery UI Button.
-    /// <code>
-    /// $("button").button();
-    /// </code>
-    /// <code>
-    /// <button>Button label</button>
-    /// </code>
-    /// </example>
     [Imported]
     [IgnoreNamespace]
-    
-    public class ButtonObject : WidgetObject {
+    public abstract class ButtonObject : WidgetObject {
 
-        public ButtonObject() {
+        protected ButtonObject() {
         }
 
         [ScriptName("button")]

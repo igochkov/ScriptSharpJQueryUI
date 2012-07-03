@@ -6,7 +6,7 @@
 using System;
 using System.Runtime.CompilerServices;
 
-namespace jQueryApi.UI.Utilities {
+namespace jQueryApi.UI {
 
     [Imported]
     [IgnoreNamespace]

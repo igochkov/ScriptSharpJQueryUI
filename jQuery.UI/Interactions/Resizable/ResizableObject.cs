@@ -5,7 +5,6 @@
 
 using System;
 using System.Runtime.CompilerServices;
-using jQueryApi.UI.Utilities;
 
 namespace jQueryApi.UI.Interactions {
 
@@ -15,21 +14,11 @@ namespace jQueryApi.UI.Interactions {
     /// <remarks>
     /// <para>The jQuery UI Resizable plugin makes selected elements resizable (meaning they have draggable resize handles). You can specify one or more handles as well as min and max width and height.</para><para>All callbacks (start,stop,resize) receive two arguments: The original browser event and a prepared ui object.</para><para>This interaction requires some functional CSS, otherwise it won't work. If you build a custom theme, use the interaction's specific CSS file as a starting point.</para>
     /// </remarks>
-    /// <example>
-    /// A simple jQuery UI Resizable.
-    /// <code>
-    /// $("#resizable").resizable();
-    /// </code>
-    /// <code>
-    /// <div id="resizable"></div>
-    /// </code>
-    /// </example>
     [Imported]
     [IgnoreNamespace]
-    
-    public class ResizableObject : WidgetObject {
+    public abstract class ResizableObject : WidgetObject {
 
-        public ResizableObject() {
+        protected ResizableObject() {
         }
 
         [ScriptName("resizable")]

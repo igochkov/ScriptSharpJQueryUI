@@ -5,7 +5,6 @@
 
 using System;
 using System.Runtime.CompilerServices;
-using jQueryApi.UI.Utilities;
 
 namespace jQueryApi.UI.Interactions {
 
@@ -15,21 +14,11 @@ namespace jQueryApi.UI.Interactions {
     /// <remarks>
     /// <para>The jQuery UI Sortable plugin makes selected elements sortable by dragging with the mouse.</para><para>All callbacks receive two arguments: The original browser event and a prepared ui object.</para>
     /// </remarks>
-    /// <example>
-    /// A simple jQuery UI Sortable.
-    /// <code>
-    /// $("#sortable").sortable();
-    /// </code>
-    /// <code>
-    /// <ul id="sortable"><li>Item 1</li><li>Item 2</li><li>Item 3</li><li>Item 4</li><li>Item 5</li></ul>
-    /// </code>
-    /// </example>
     [Imported]
     [IgnoreNamespace]
-    
-    public class SortableObject : WidgetObject {
+    public abstract class SortableObject : WidgetObject {
 
-        public SortableObject() {
+        protected SortableObject() {
         }
 
         [ScriptName("sortable")]

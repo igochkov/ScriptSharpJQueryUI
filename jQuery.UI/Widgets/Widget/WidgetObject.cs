@@ -5,9 +5,8 @@
 
 using System;
 using System.Runtime.CompilerServices;
-using jQueryApi.UI.Utilities;
 
-namespace jQueryApi.UI.Utilities {
+namespace jQueryApi.UI {
 
     /// <summary>
     /// Create stateful jQuery plugins using the same abstraction that all jQuery UI widgets.
@@ -15,19 +14,16 @@ namespace jQueryApi.UI.Utilities {
     /// <remarks>
     /// <para>You can create new widgets from scratch, using just the <code>$.Widget</code> object as base to inherit from, or you can explicitly inherit from existing jQuery UI or third-party widgets. Defining a widget with the same name as you inherit from even allows you to extend widgets in place.</para><para>For now, more details can be found at <a href="https://github.com/scottgonzalez/widget-factory-docs/">github.com/scottgonzalez/widget-factory-docs/</a></para>
     /// </remarks>
-    /// <example>
-    /// 
-    /// </example>
     [Imported]
     [IgnoreNamespace]
     [ScriptName("$.Widget")]
-    public class WidgetObject : jQueryUIObject {
+    public abstract class WidgetObject : jQueryUIObject {
 
-        public WidgetObject() {
+        protected WidgetObject() {
         }
 
         [IntrinsicProperty]
-        public static WidgetObject Prototype {
+        public static object Prototype {
             get {
                 return null;
             }

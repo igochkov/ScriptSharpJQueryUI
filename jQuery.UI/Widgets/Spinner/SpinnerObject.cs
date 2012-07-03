@@ -5,7 +5,6 @@
 
 using System;
 using System.Runtime.CompilerServices;
-using jQueryApi.UI.Utilities;
 
 namespace jQueryApi.UI.Widgets {
 
@@ -15,15 +14,11 @@ namespace jQueryApi.UI.Widgets {
     /// <remarks>
     /// <para>Spinner wraps a input of type text, adds two buttons to increment and decrement the current value, along with handling key events for the same purpose. It delegates to <a href="https://github.com/jquery/globalize">Globalize</a> for number formatting and parsing.</para><para>This widget requires some functional CSS, otherwise it won't work. If you build a custom theme, use the widget's specific CSS file as a starting point.</para>
     /// </remarks>
-    /// <example>
-    /// 
-    /// </example>
     [Imported]
     [IgnoreNamespace]
-    
-    public class SpinnerObject : WidgetObject {
+    public abstract class SpinnerObject : WidgetObject {
 
-        public SpinnerObject() {
+        protected SpinnerObject() {
         }
 
         [ScriptName("spinner")]

@@ -5,7 +5,6 @@
 
 using System;
 using System.Runtime.CompilerServices;
-using jQueryApi.UI.Utilities;
 
 namespace jQueryApi.UI.Effects {
 
@@ -15,21 +14,11 @@ namespace jQueryApi.UI.Effects {
     /// <remarks>
     /// Very useful when trying to visualize interaction between two elements.<para>The transfer element iself has the class name "ui-effects-transfer", and needs to be styled by you, for example by adding a background or border.</para>
     /// </remarks>
-    /// <example>
-    /// Clicking on the green element transfers to the other.
-    /// <code>
-    /// $("div").click(function () {      var i = 1 - $("div").index(this);      $(this).effect("transfer", { to: $("div").eq(i) }, 1000);});
-    /// </code>
-    /// <code>
-    /// <div></div>
-    /// </code>
-    /// </example>
     [Imported]
     [IgnoreNamespace]
-    
-    public class TransferObject : EffectObject {
+    public abstract class TransferObject : EffectObject {
 
-        public TransferObject() {
+        protected TransferObject() {
         }
 
         [ScriptName("transfer")]

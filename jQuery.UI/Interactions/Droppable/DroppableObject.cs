@@ -5,7 +5,6 @@
 
 using System;
 using System.Runtime.CompilerServices;
-using jQueryApi.UI.Utilities;
 
 namespace jQueryApi.UI.Interactions {
 
@@ -15,21 +14,11 @@ namespace jQueryApi.UI.Interactions {
     /// <remarks>
     /// <para>The jQuery UI Droppable plugin makes selected elements droppable (meaning they accept being dropped on by draggables). You can specify which (individually) or which kind of draggables each will accept.</para>
     /// </remarks>
-    /// <example>
-    /// Makes the div droppable (a drop target for a draggable).
-    /// <code>
-    /// $("#draggable").draggable();    $("#droppable").droppable({      drop: function() { alert('dropped'); }    });
-    /// </code>
-    /// <code>
-    /// <div id="droppable">Drop here</div><div id="draggable">Drag me</div>
-    /// </code>
-    /// </example>
     [Imported]
     [IgnoreNamespace]
-    
-    public class DroppableObject : WidgetObject {
+    public abstract class DroppableObject : WidgetObject {
 
-        public DroppableObject() {
+        protected DroppableObject() {
         }
 
         [ScriptName("droppable")]

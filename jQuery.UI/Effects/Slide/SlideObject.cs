@@ -5,7 +5,6 @@
 
 using System;
 using System.Runtime.CompilerServices;
-using jQueryApi.UI.Utilities;
 
 namespace jQueryApi.UI.Effects {
 
@@ -15,21 +14,11 @@ namespace jQueryApi.UI.Effects {
     /// <remarks>
     /// 
     /// </remarks>
-    /// <example>
-    /// Hides the element by sliding it down.
-    /// <code>
-    /// $("div").click(function () {      $(this).hide("slide", { direction: "down" }, 1000);});
-    /// </code>
-    /// <code>
-    /// <div></div>
-    /// </code>
-    /// </example>
     [Imported]
     [IgnoreNamespace]
-    
-    public class SlideObject : EffectObject {
+    public abstract class SlideObject : EffectObject {
 
-        public SlideObject() {
+        protected SlideObject() {
         }
 
         [ScriptName("slide")]

@@ -5,7 +5,6 @@
 
 using System;
 using System.Runtime.CompilerServices;
-using jQueryApi.UI.Utilities;
 
 namespace jQueryApi.UI.Effects {
 
@@ -15,21 +14,11 @@ namespace jQueryApi.UI.Effects {
     /// <remarks>
     /// 
     /// </remarks>
-    /// <example>
-    /// Shakes 3 times when clicking on the element.
-    /// <code>
-    /// $("div").click(function () {      $(this).effect("shake", { times:3 }, 300);});
-    /// </code>
-    /// <code>
-    /// <div></div>
-    /// </code>
-    /// </example>
     [Imported]
     [IgnoreNamespace]
-    
-    public class ShakeObject : EffectObject {
+    public abstract class ShakeObject : EffectObject {
 
-        public ShakeObject() {
+        protected ShakeObject() {
         }
 
         [ScriptName("shake")]

@@ -5,9 +5,8 @@
 
 using System;
 using System.Runtime.CompilerServices;
-using jQueryApi.UI.Utilities;
 
-namespace jQueryApi.UI.Utilities {
+namespace jQueryApi.UI {
 
     /// <summary>
     /// 
@@ -15,15 +14,11 @@ namespace jQueryApi.UI.Utilities {
     /// <remarks>
     /// 
     /// </remarks>
-    /// <example>
-    /// 
-    /// </example>
     [Imported]
     [IgnoreNamespace]
-    
-    public class jQueryUIObject : jQueryObject {
+    public abstract class jQueryUIObject : jQueryObject {
 
-        public jQueryUIObject() {
+        protected jQueryUIObject() {
         }
 
         [ScriptName("ui")]

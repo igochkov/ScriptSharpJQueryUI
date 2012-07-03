@@ -5,7 +5,6 @@
 
 using System;
 using System.Runtime.CompilerServices;
-using jQueryApi.UI.Utilities;
 
 namespace jQueryApi.UI.Effects {
 
@@ -15,15 +14,11 @@ namespace jQueryApi.UI.Effects {
     /// <remarks>
     /// The container has <code>overflow:hidden</code> applied, so height changes affect what's visible.
     /// </remarks>
-    /// <example>
-    /// 
-    /// </example>
     [Imported]
     [IgnoreNamespace]
-    
-    public class BlindObject : EffectObject {
+    public abstract class BlindObject : EffectObject {
 
-        public BlindObject() {
+        protected BlindObject() {
         }
 
         [ScriptName("blind")]

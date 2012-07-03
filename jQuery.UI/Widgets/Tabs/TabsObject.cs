@@ -5,7 +5,6 @@
 
 using System;
 using System.Runtime.CompilerServices;
-using jQueryApi.UI.Utilities;
 
 namespace jQueryApi.UI.Widgets {
 
@@ -15,21 +14,11 @@ namespace jQueryApi.UI.Widgets {
     /// <remarks>
     /// <para>Tabs are generally used to break content into multiple sections that can be swapped to save space, much like an accordion.</para><para>By default a tab widget will swap between tabbed sections on click, but the events can be changed to onHover through an option. Tab content can be loaded via Ajax by setting an href on a tab.</para><para>This widget requires some functional CSS, otherwise it won't work. If you build a custom theme, use the widget's specific CSS file as a starting point.</para>
     /// </remarks>
-    /// <example>
-    /// 
-    /// <code>
-    /// 
-    /// </code>
-    /// <code>
-    /// 
-    /// </code>
-    /// </example>
     [Imported]
     [IgnoreNamespace]
-    
-    public class TabsObject : WidgetObject {
+    public abstract class TabsObject : WidgetObject {
 
-        public TabsObject() {
+        protected TabsObject() {
         }
 
         [ScriptName("tabs")]
