@@ -17,6 +17,7 @@
 
 using System.IO;
 using System.Linq;
+using ScriptSharp.Tools.jQueryUIGenerator.Model;
 
 namespace ScriptSharp.Tools.jQueryUIGenerator {
     public static class Utils {
@@ -33,8 +34,7 @@ namespace ScriptSharp.Tools.jQueryUIGenerator {
                 dir.Create();
             }
 
-            using (StreamWriter file = new StreamWriter(Path.Combine(dir.FullName, fileName + ".cs")))
-            {
+            using (StreamWriter file = new StreamWriter(Path.Combine(dir.FullName, fileName + ".cs"))) {
                 file.WriteLine(GetFileHeader(fileName + ".cs"));
                 file.WriteLine(content);
             }
@@ -79,6 +79,29 @@ namespace ScriptSharp.Tools.jQueryUIGenerator {
 ";
 
             return string.Format(header, fileName);
+        }
+
+        /// <summary>
+        /// Gets namespace for an entry
+        /// </summary>
+        /// <param name="entry">Entry to be generated</param>
+        /// <returns>The namespace</returns>
+        public static string GetNamespace(Entry entry) {
+            string @namespace = "jQueryApi.UI";
+
+            if (entry == null) {
+                return @namespace;
+            }
+
+            if (entry.Name.ToLower() == "widget" || entry.Category.ToLower() == "utilities") {
+                return @namespace;
+            }
+
+            if (string.IsNullOrEmpty(entry.Category)) {
+                return @namespace;
+            }
+
+            return @namespace + "." + PascalCase(entry.Category);
         }
 
         /// <summary>

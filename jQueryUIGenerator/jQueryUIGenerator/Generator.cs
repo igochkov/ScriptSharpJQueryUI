@@ -95,9 +95,8 @@ namespace ScriptSharp.Tools.jQueryUIGenerator {
             string content =
 @"using System;
 using System.Runtime.CompilerServices;
-using jQueryApi.UI.Utilities;
 
-namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
+namespace {8} {{
 
     /// <summary>
     /// {1}
@@ -105,16 +104,12 @@ namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
     /// <remarks>
     /// {2}
     /// </remarks>
-    /// <example>
-    /// {3}
-    /// </example>
     [Imported]
-    [IgnoreNamespace]
-    {8}
-    public class {0} : " + (string.IsNullOrEmpty(entry.Type) ? "jQuery" : Utils.PascalCase(entry.Type)) + @"Object {{
+    [IgnoreNamespace]{7}
+    public abstract class {0} : " + (string.IsNullOrEmpty(entry.Type) ? "jQuery" : Utils.PascalCase(entry.Type)) + @"Object {{
 
-        public {0}() {{
-        }}{4}{5}{6}{7}
+        protected {0}() {{
+        }}{3}{4}{5}{6}
     }}
 }}";
 
@@ -146,7 +141,7 @@ namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
             @"
 
         [IntrinsicProperty]
-        public static WidgetObject Prototype {{
+        public static object Prototype {{
             get {{
                 return null;
             }}
@@ -184,18 +179,10 @@ namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
 
 ";
 
-            string example = @"{0}
-    /// <code>
-    /// {1}
-    /// </code>
-    /// <code>
-    /// {2}
-    /// </code>";
-
             StringBuilder methodsContent = new StringBuilder();
 
             foreach (var method in entry.Methods
-                // exclude the widget && jQuery methods as they will be inherit
+                                        // exclude the jQuery methods as they will be inherit
                                         .Where(m => entry.Name.ToLower() == "widget" || !excludeJQueryMethods.Contains(m.Name.ToLower()))
                                         .OrderBy(m => m.Name)) {
 
@@ -233,24 +220,25 @@ namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
                                         , className
                                         , Utils.FormatXmlComment(entry.Description.Replace("<entryname />", entry.Name))
                                         , Utils.FormatXmlComment(entry.LongDescription.Replace("<entryname />", entry.Name))
-                                        , (entry.Example != null) ? string.Format(example, Utils.FormatXmlComment(entry.Example.Description), Utils.FormatXmlComment(entry.Example.Code), Utils.FormatXmlComment(entry.Example.Html)) : string.Empty
                                         , string.Empty
                                         , string.Empty
                                         , string.Empty
                                         , string.Format(overload4, entry.Name, Utils.PascalCase(entry.Name)) + methodsContent.ToString()
-                                        , "[ScriptName(\"$.Widget\")]");
+                                        , @"
+    [ScriptName(""$.Widget"")]"
+                                        , Utils.GetNamespace(entry));
             } else {
                 formatedContent
                     = string.Format(content
                                     , className
                                     , Utils.FormatXmlComment(entry.Description.Replace("<entryname />", entry.Name))
                                     , Utils.FormatXmlComment(entry.LongDescription.Replace("<entryname />", entry.Name))
-                                    , (entry.Example != null) ? string.Format(example, Utils.FormatXmlComment(entry.Example.Description), Utils.FormatXmlComment(entry.Example.Code), Utils.FormatXmlComment(entry.Example.Html)) : string.Empty
                                     , string.Format(overload1, entry.Name, Utils.PascalCase(entry.Name), (entry.Name.ToLower() == "position" || entry.Name.ToLower() == "size") ? "new " : string.Empty)
                                     , (entry.Options.Count > 0) ? string.Format(overload2, entry.Name, Utils.PascalCase(entry.Name)) : string.Empty
                                     , (entry.Methods.Where(m => !excludeJQueryMethods.Contains(m.Name.ToLower())).Count() > 0) ? string.Format(overload3, entry.Name, Utils.PascalCase(entry.Name)) : string.Empty
                                     , methodsContent.ToString()
-                                    , string.Empty);
+                                    , string.Empty
+                                    , Utils.GetNamespace(entry));
             }
 
             Utils.CreateFile(Path.Combine(DestinationPath, Utils.PascalCase(entry.Category), Utils.PascalCase(entry.Name)), className, formatedContent);
@@ -267,7 +255,7 @@ namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
 @"using System;
 using System.Runtime.CompilerServices;
 
-namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
+namespace {4} {{
 
     [Imported]
     [IgnoreNamespace]
@@ -346,7 +334,12 @@ namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
             }
 
             Utils.CreateFile(Path.Combine(DestinationPath, Utils.PascalCase(entry.Category), Utils.PascalCase(entry.Name)), className
-                , string.Format(content, className, eventsContent.ToString(), optionsContent.ToString(), (entry.Name.ToLower() != "widget") ? "sealed" : string.Empty));
+                , string.Format(content
+                                , className
+                                , eventsContent.ToString()
+                                , optionsContent.ToString()
+                                , (entry.Name.ToLower() != "widget") ? "sealed" : string.Empty
+                                , Utils.GetNamespace(entry)));
         }
 
         private void RenderEvents(Entry entry) {
@@ -358,7 +351,7 @@ namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
 @"using System;
 using System.Runtime.CompilerServices;
 
-namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
+namespace {2} {{
 
     [Imported]
     [IgnoreNamespace]
@@ -400,7 +393,7 @@ namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
 
                     Utils.CreateFile(Path.Combine(DestinationPath, Utils.PascalCase(entry.Category), Utils.PascalCase(entry.Name))
                                     , className
-                                    , string.Format(content, className, properties.ToString()));
+                                    , string.Format(content, className, properties.ToString(), Utils.GetNamespace(entry)));
                 }
             }
         }
@@ -416,7 +409,7 @@ namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
 @"using System;
 using System.Runtime.CompilerServices;
 
-namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
+namespace {2} {{
 
     [Imported]
     [IgnoreNamespace]
@@ -445,7 +438,7 @@ namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
             }
 
             Utils.CreateFile(Path.Combine(DestinationPath, Utils.PascalCase(entry.Category), Utils.PascalCase(entry.Name)), className
-                , string.Format(content, className, enumValues.ToString().Trim(',')));
+                , string.Format(content, className, enumValues.ToString().Trim(','), Utils.GetNamespace(entry)));
         }
 
         private void RenderEventsEnum(Entry entry, Entry baseEntry = null) {
@@ -459,7 +452,7 @@ namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
 @"using System;
 using System.Runtime.CompilerServices;
 
-namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
+namespace {2} {{
 
     [Imported]
     [IgnoreNamespace]
@@ -488,7 +481,7 @@ namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
             }
 
             Utils.CreateFile(Path.Combine(DestinationPath, Utils.PascalCase(entry.Category), Utils.PascalCase(entry.Name)), className
-                , string.Format(content, className, enumValues.ToString().Trim(',')));
+                , string.Format(content, className, enumValues.ToString().Trim(','), Utils.GetNamespace(entry)));
         }
 
         private void RenderMethodEnum(Entry entry, Entry baseEntry = null) {
@@ -506,7 +499,7 @@ namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
 @"using System;
 using System.Runtime.CompilerServices;
 
-namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
+namespace {2} {{
 
     [Imported]
     [IgnoreNamespace]
@@ -541,7 +534,7 @@ namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
             }
 
             Utils.CreateFile(Path.Combine(DestinationPath, Utils.PascalCase(entry.Category), Utils.PascalCase(entry.Name)), className
-                , string.Format(content, className, enumValues.ToString().Trim(',')));
+                , string.Format(content, className, enumValues.ToString().Trim(','), Utils.GetNamespace(entry)));
         }
 
         private void RenderEventHandler() {
@@ -550,40 +543,37 @@ namespace jQueryApi.UI." + Utils.PascalCase(entry.Category) + @" {{
             string content =
 @"using System.Runtime.CompilerServices;
 
-namespace jQueryApi.UI {
+namespace " + Utils.GetNamespace(null) + @" {
 
     [Imported]
     [IgnoreNamespace]
     public delegate void " + className + @"<T>(jQueryEvent e, T uiEvent);
 }";
 
-            Utils.CreateFile(Path.Combine(DestinationPath, "Utilities", "jQueryUI"), className, content);
+            Utils.CreateFile(Path.Combine(DestinationPath, "jQueryUI"), className, content);
         }
 
         private void RenderJQueryUIWidget() {
-            string className = "jQueryUIWidget";
+            string className = "jQueryUI";
 
             string content =
 @"using System.Runtime.CompilerServices;
 
-namespace jQueryApi.UI.Utilities {
+namespace " + Utils.GetNamespace(null) + @" {
     [Imported]
     [IgnoreNamespace]
     [ScriptName(""$"")]
-    public static class jQueryUIWidget {
+    public static class jQueryUI {
         /// <summary>
         /// Create stateful jQuery plugins using the same abstraction that all jQuery UI widgets.
         /// </summary>
-        /// <remarks>
-        /// <para>You can create new widgets from scratch, using just the <code>$.Widget</code> object as base to inherit from, or you can explicitly inherit from existing jQuery UI or third-party widgets. Defining a widget with the same name as you inherit from even allows you to extend widgets in place.</para><para>For now, more details can be found at <a href=""https://github.com/scottgonzalez/widget-factory-docs/"">github.com/scottgonzalez/widget-factory-docs/</a></para>
-        /// </remarks>
         [ScriptName(""widget"")]
         public static WidgetObject Create(string name, params object[] options) {
             return null;
         }
     }
 }";
-            Utils.CreateFile(Path.Combine(DestinationPath, "Utilities", "Widget"), className, content);
+            Utils.CreateFile(Path.Combine(DestinationPath, "jQueryUI"), className, content);
         }
 
         /// <summary>
