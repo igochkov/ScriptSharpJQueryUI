@@ -46,6 +46,7 @@
     <Compile Include="Effects\Blind\*.cs" />
     <Compile Include="Effects\Bounce\*.cs" />
     <Compile Include="Widgets\Button\*.cs" />
+    <Compile Include="Widgets\ButtonSet\*.cs" />
     <Compile Include="Effects\Clip\*.cs" />
     <Compile Include="jQueryUI\*.cs" />
     <Compile Include="Widgets\DatePicker\*.cs" />
