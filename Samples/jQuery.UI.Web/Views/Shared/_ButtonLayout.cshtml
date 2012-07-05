@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="demo-header">
+    <h2>Button</h2>
+</div>
+<div id="demo-config">
+    <div id="demo-frame-wrapper">
+        <div id="theme-switcher"></div>
+        @RenderBody()
+    </div>
+    <div id="demo-config-menu">
+        <div class="demos-nav">
+            <h4>
+                Examples</h4>
+            <ul>
+                <li>@Html.ActionLink("Default functionality", "Default", "Button")</li>
+                <li>@Html.ActionLink("Radios", "Radios", "Button")</li>
+                <li>@Html.ActionLink("Checkboxes", "CheckBoxes", "Button")</li>
+                <li>@Html.ActionLink("Icons", "Icons", "Button")</li>
+                <li>@Html.ActionLink("Toolbar", "ToolBar", "Button")</li>
+                <li>@Html.ActionLink("Split Button", "SplitButton", "Button")</li>
+            </ul>
+        </div>
+    </div>
+</div>

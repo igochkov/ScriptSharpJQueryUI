@@ -83,6 +83,50 @@ Sample.AutoComplete._default = function Sample_AutoComplete__default() {
 }
 
 
+Type.registerNamespace('Sample.Button');
+
+////////////////////////////////////////////////////////////////////////////////
+// Sample.Button._checkBoxes
+
+Sample.Button._checkBoxes = function Sample_Button__checkBoxes() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Sample.Button._splitButton
+
+Sample.Button._splitButton = function Sample_Button__splitButton() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Sample.Button._toolBar
+
+Sample.Button._toolBar = function Sample_Button__toolBar() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Sample.Button._icons
+
+Sample.Button._icons = function Sample_Button__icons() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Sample.Button._radios
+
+Sample.Button._radios = function Sample_Button__radios() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Sample.Button._default
+
+Sample.Button._default = function Sample_Button__default() {
+}
+
+
 Type.registerNamespace('Sample.Position');
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -487,6 +531,12 @@ Sample.Accordion._fillSpace.registerClass('Sample.Accordion._fillSpace');
 Sample.Accordion._default.registerClass('Sample.Accordion._default');
 Sample.AutoComplete._remoteDatasource.registerClass('Sample.AutoComplete._remoteDatasource');
 Sample.AutoComplete._default.registerClass('Sample.AutoComplete._default');
+Sample.Button._checkBoxes.registerClass('Sample.Button._checkBoxes');
+Sample.Button._splitButton.registerClass('Sample.Button._splitButton');
+Sample.Button._toolBar.registerClass('Sample.Button._toolBar');
+Sample.Button._icons.registerClass('Sample.Button._icons');
+Sample.Button._radios.registerClass('Sample.Button._radios');
+Sample.Button._default.registerClass('Sample.Button._default');
 Sample.Position._cycling.registerClass('Sample.Position._cycling');
 Sample.Position._default.registerClass('Sample.Position._default');
 Sample.Sortable._connectLists.registerClass('Sample.Sortable._connectLists');
@@ -600,6 +650,68 @@ Sample.Widget._default.registerClass('Sample.Widget._default');
     $(function() {
         var availableTags = [ 'ActionScript', 'AppleScript', 'Asp', 'BASIC', 'C', 'C++', 'Clojure', 'COBOL', 'ColdFusion', 'Erlang', 'Fortran', 'Groovy', 'Haskell', 'Java', 'JavaScript', 'Lisp', 'Perl', 'PHP', 'Python', 'Ruby', 'Scala', 'Scheme' ];
         $('#autocompleteTags').autocomplete({ source: availableTags });
+    });
+})();
+(function () {
+    $(function() {
+        $('#button5').button();
+        $('#format').buttonset();
+    });
+})();
+(function () {
+    $(function() {
+        $('#rerun').button().click(function(e) {
+            alert('Running the last action');
+        });
+        $('#select').button({ text: false, icons: { primary: 'ui-icon-triangle-1-s' } }).click(function(e) {
+            alert('Could display a menu to select an action');
+        }).parent().buttonset();
+    });
+})();
+(function () {
+    $(function() {
+        $('#beginning').button({ text: false, icons: { primary: 'ui-icon-seek-start' } });
+        $('#rewind').button({ text: false, icons: { primary: 'ui-icon-seek-prev' } });
+        $('#play').button({ text: false, icons: { primary: 'ui-icon-play' } }).click(function(e) {
+            var options;
+            if ($(this).text() === 'play') {
+                options = { label: 'pause', icons: { primary: 'ui-icon-pause' } };
+            }
+            else {
+                options = { label: 'play', icons: { primary: 'ui-icon-play' } };
+            }
+            $(this).button('option', options);
+        });
+        $('#stop').button({ text: false, icons: { primary: 'ui-icon-stop' } }).click(function(e) {
+            $('#play').button('option', { label: 'play', icons: { primary: 'ui-icon-play' } });
+        });
+        $('#forward').button({ text: false, icons: { primary: 'ui-icon-seek-nex' } });
+        $('#end').button({ text: false, icons: { primary: 'ui-icon-seek-end' } });
+        $('#shuffle').button();
+        $('#repeat').buttonset();
+    });
+})();
+(function () {
+    $(function() {
+        $('#button6').button({ icons: { primary: 'ui-icon-locked' }, text: false });
+        $('#button7').button({ icons: { primary: 'ui-icon-locked' } });
+        $('#button8').button({ icons: { primary: 'ui-icon-gear', secondary: 'ui-icon-triangle-1-s' } });
+        $('#button9').button({ icons: { primary: 'ui-icon-gear', secondary: 'ui-icon-triangle-1-s' }, text: false });
+    });
+})();
+(function () {
+    $(function() {
+        $('#button4').buttonset();
+    });
+})();
+(function () {
+    $(function() {
+        var demo = $('.demo');
+        $('#button1, #button2, #button3', demo).button();
+        $('#button3', demo).click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        });
     });
 })();
 (function () {

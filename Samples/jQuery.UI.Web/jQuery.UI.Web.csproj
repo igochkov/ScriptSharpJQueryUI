@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AutoCompleteController.cs" />
     <Compile Include="Controllers\AccordionController.cs" />
+    <Compile Include="Controllers\ButtonController.cs" />
     <Compile Include="Controllers\PositionController.cs" />
     <Compile Include="Controllers\ProgressBarController.cs" />
     <Compile Include="Controllers\DraggableController.cs" />
@@ -348,6 +349,27 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Accordion\Sortable.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_ButtonLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Button\Default.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Button\Radios.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Button\Icons.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Button\ToolBar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Button\SplitButton.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Button\CheckBoxes.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

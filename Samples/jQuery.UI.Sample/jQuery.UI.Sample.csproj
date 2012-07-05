@@ -65,6 +65,12 @@
     <Compile Include="Accordion\FillSpace.cs" />
     <Compile Include="Accordion\Default.cs" />
     <Compile Include="AutoComplete\RemoteDatasource.cs" />
+    <Compile Include="Button\CheckBoxes.cs" />
+    <Compile Include="Button\SplitButton.cs" />
+    <Compile Include="Button\ToolBar.cs" />
+    <Compile Include="Button\Icons.cs" />
+    <Compile Include="Button\Radios.cs" />
+    <Compile Include="Button\Default.cs" />
     <Compile Include="Position\Cycling.cs" />
     <Compile Include="Position\Default.cs" />
     <Compile Include="Sortable\ConnectLists.cs" />

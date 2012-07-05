@@ -1,0 +1,35 @@
+﻿@{
+    Layout = "~/Views/Shared/_ButtonLayout.cshtml";
+}
+<style>
+    #toolbar {
+        padding: 10px 4px;
+    }
+</style>
+<div id="demo-frame">
+    <div class="demo">
+        <span id="toolbar" class="ui-widget-header ui-corner-all">
+            <button id="beginning">go to beginning</button>
+            <button id="rewind">rewind</button>
+            <button id="play">play</button>
+            <button id="stop">stop</button>
+            <button id="forward">fast forward</button>
+            <button id="end">go to end</button>
+
+            <input type="checkbox" id="shuffle" /><label for="shuffle">Shuffle</label>
+
+            <span id="repeat">
+                <input type="radio" id="repeat0" name="repeat" checked="checked" /><label for="repeat0">No Repeat</label>
+                <input type="radio" id="repeat1" name="repeat" /><label for="repeat1">Once</label>
+                <input type="radio" id="repeatall" name="repeat" /><label for="repeatall">All</label>
+            </span>
+        </span>
+
+    </div>
+</div>
+<div class="demo-description">
+    <p>
+        A mediaplayer toolbar. Take a look at the underlying markup: A few button elements,
+	an input of type checkbox for the Shuffle button, and three inputs of type radio for the Repeat options. 
+    </p>
+</div>
