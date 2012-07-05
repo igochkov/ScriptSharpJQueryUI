@@ -188,6 +188,7 @@ namespace ScriptSharp.Tools.jQueryUIGenerator {
                        .Replace("progressbar", "ProgressBar")
                        .Replace("tabsselect", "TabsSelect")
                        .Replace("tabsload", "TabsLoad")
+                       .Replace("buttonset", "ButtonSet")
                        .TrimStart('_');
 
             if (word.StartsWith("jQuery")) {
