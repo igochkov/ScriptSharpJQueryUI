@@ -556,6 +556,64 @@ Sample.ProgressBar._default = function Sample_ProgressBar__default() {
 }
 
 
+Type.registerNamespace('Sample.Tabs');
+
+////////////////////////////////////////////////////////////////////////////////
+// Sample.Tabs._ajax
+
+Sample.Tabs._ajax = function Sample_Tabs__ajax() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Sample.Tabs._collapsible
+
+Sample.Tabs._collapsible = function Sample_Tabs__collapsible() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Sample.Tabs._bottom
+
+Sample.Tabs._bottom = function Sample_Tabs__bottom() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Sample.Tabs._cookie
+
+Sample.Tabs._cookie = function Sample_Tabs__cookie() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Sample.Tabs._manipulation
+
+Sample.Tabs._manipulation = function Sample_Tabs__manipulation() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Sample.Tabs._sortable
+
+Sample.Tabs._sortable = function Sample_Tabs__sortable() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Sample.Tabs._mouseOver
+
+Sample.Tabs._mouseOver = function Sample_Tabs__mouseOver() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Sample.Tabs._default
+
+Sample.Tabs._default = function Sample_Tabs__default() {
+}
+
+
 Type.registerNamespace('Sample.Widget');
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -633,6 +691,14 @@ Sample.Droppable._default.registerClass('Sample.Droppable._default');
 Sample.ProgressBar._resizableBar.registerClass('Sample.ProgressBar._resizableBar');
 Sample.ProgressBar._animated.registerClass('Sample.ProgressBar._animated');
 Sample.ProgressBar._default.registerClass('Sample.ProgressBar._default');
+Sample.Tabs._ajax.registerClass('Sample.Tabs._ajax');
+Sample.Tabs._collapsible.registerClass('Sample.Tabs._collapsible');
+Sample.Tabs._bottom.registerClass('Sample.Tabs._bottom');
+Sample.Tabs._cookie.registerClass('Sample.Tabs._cookie');
+Sample.Tabs._manipulation.registerClass('Sample.Tabs._manipulation');
+Sample.Tabs._sortable.registerClass('Sample.Tabs._sortable');
+Sample.Tabs._mouseOver.registerClass('Sample.Tabs._mouseOver');
+Sample.Tabs._default.registerClass('Sample.Tabs._default');
 Sample.Widget._default.registerClass('Sample.Widget._default');
 (function () {
     $(function() {
@@ -1213,6 +1279,81 @@ Sample.Widget._default.registerClass('Sample.Widget._default');
 (function () {
     $(function() {
         $('#progressbar1').progressbar({ value: 37 });
+    });
+})();
+(function () {
+    $(function() {
+        $('#tabs2').tabs({ ajaxOptions: { error: function(xhr, status, index, anchor) {
+            $(anchor.hash).html("Couldn't load this tab. We'll try to fix this as soon as possible. " + "If this wouldn't be a demo.");
+        } } });
+    });
+})();
+(function () {
+    $(function() {
+        $('#tabs4').tabs({ collapsible: true });
+    });
+})();
+(function () {
+    $(function() {
+        $('#tabs7').tabs();
+        $('.tabs-bottom .ui-tabs-nav, .tabs-bottom .ui-tabs-nav > *').removeClass('ui-corner-all ui-corner-top').addClass('ui-corner-bottom');
+    });
+})();
+(function () {
+    $(function() {
+        $('#tabs8').tabs({ cookie: { expires: 1 } });
+    });
+})();
+(function () {
+    $(function() {
+        var tab_title_input = $('#tab_title');
+        var tab_content_input = $('#tab_content');
+        var tab_counter = 2;
+        var tabs = $('#tabs6').tabs({ tabTemplate: "<li><a href='#{href}'>#{label}</a> <span class='ui-icon ui-icon-close'>Remove Tab</span></li>", add: function(eevent, ui) {
+            var tab_content = tab_content_input.val() || ('Tab ' + tab_counter + ' content.');
+            $(ui.panel).append('<p>' + tab_content + '</p>');
+        } });
+        var addTab = function() {
+            var tab_title = tab_title_input.val() || ('Tab ' + tab_counter);
+            tab_counter++;
+        };
+        var dialog = $('#dialog11').dialog({ autoOpen: false, modal: true, buttons: { Add: function() {
+            addTab();
+            $(this).dialog('close');
+        }, Cancel: function() {
+            $(this).dialog('open');
+        } }, open: function() {
+            tab_title_input.focus();
+        }, close: function() {
+            $('form', $(this)).submit(function(e) {
+                addTab();
+                $(this).dialog('close');
+                e.preventDefault();
+                e.stopPropagation();
+            });
+        } });
+        $('#add_tab').button().click(function(e) {
+            dialog.dialog('open');
+        });
+        $('#tabs span.ui-icon-close').live('click', function(e) {
+            var index = $('li', tabs).index($(this).parent()[0]);
+            tabs.tabs({ remove: index });
+        });
+    });
+})();
+(function () {
+    $(function() {
+        $('#tabs5').tabs().find('.ui-tabs-nav').sortable({ axis: 'x' });
+    });
+})();
+(function () {
+    $(function() {
+        $('#tabs3').tabs({ event: 'mouseover' });
+    });
+})();
+(function () {
+    $(function() {
+        $('#tabs1').tabs();
     });
 })();
 (function () {

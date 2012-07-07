@@ -1,0 +1,28 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="demo-header">
+    <h2>Tabs</h2>
+</div>
+<div id="demo-config">
+    <div id="demo-frame-wrapper">
+        <div id="theme-switcher"></div>
+        @RenderBody()
+    </div>
+    <div id="demo-config-menu">
+        <div class="demos-nav">
+            <h4>
+                Examples</h4>
+            <ul>
+                <li>@Html.ActionLink("Default functionality", "Default", "Tabs")</li>
+                <li>@Html.ActionLink("Content via Ajax", "Ajax", "Tabs")</li>
+                <li>@Html.ActionLink("Open on mouseover", "MouseOver", "Tabs")</li>
+                <li>@Html.ActionLink("Collapse content", "Collapsible", "Tabs")</li>
+                <li>@Html.ActionLink("Sortable", "Sortable", "Tabs")</li>
+                <li>@Html.ActionLink("Simple manipulation", "Manipulation", "Tabs")</li>
+                <li>@Html.ActionLink("Tabs below content", "Bottom", "Tabs")</li>
+                <li>@Html.ActionLink("Cookie persistence", "Cookie", "Tabs")</li>
+            </ul>
+        </div>
+    </div>
+</div>

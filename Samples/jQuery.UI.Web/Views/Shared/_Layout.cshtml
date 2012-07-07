@@ -11,6 +11,7 @@
     <script src="http://jqueryui.com/themeroller/themeswitchertool/" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/mscorlib.debug.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/jQuery.UI.Sample.debug.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.cookie.js")" type="text/javascript"></script>
     <script>
         $(document).ready(function () {
             $('#theme-switcher').themeswitcher();
@@ -51,11 +52,11 @@
                                                     <dd>@Html.ActionLink("Dialog", "Default", "Dialog")</dd>
                                                     <dd>@Html.ActionLink("ProgressBar", "Default", "ProgressBar")</dd>
                                                     <dd>Slider</dd>
-                                                    <dd>Tabs</dd>
+                                                    <dd>@Html.ActionLink("Tabs", "Default", "Tabs")</dd>
                                                     @*
                                                     <dd>@Html.ActionLink("DatePicker", "Default", "DatePicker")</dd>
                                                     <dd>@Html.ActionLink("Slider", "Default", "Slider")</dd>
-                                                    <dd>@Html.ActionLink("Tabs", "Default", "Tabs")</dd>*@
+                                                    *@
                                                     <dt>Utilities</dt>
                                                     <dd>@Html.ActionLink("Position", "Default", "Position")</dd>
                                                     <dd>@Html.ActionLink("Widget", "Default", "Widget")</dd>

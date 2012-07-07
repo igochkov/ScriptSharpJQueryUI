@@ -72,6 +72,7 @@
     <Compile Include="Controllers\AutoCompleteController.cs" />
     <Compile Include="Controllers\AccordionController.cs" />
     <Compile Include="Controllers\ButtonController.cs" />
+    <Compile Include="Controllers\TabsController.cs" />
     <Compile Include="Controllers\DialogController.cs" />
     <Compile Include="Controllers\PositionController.cs" />
     <Compile Include="Controllers\ProgressBarController.cs" />
@@ -101,10 +102,13 @@
     <Content Include="Content\images\ScriptSharp.png" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\jquery.cookie.js" />
     <Content Include="Scripts\jQuery.UI.Sample.debug.js" />
     <Content Include="Scripts\jQuery.UI.Sample.js" />
     <Content Include="Scripts\mscorlib.debug.js" />
     <Content Include="Scripts\mscorlib.js" />
+    <Content Include="Ajax\Content1.html" />
+    <Content Include="Ajax\Content2.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -375,7 +379,9 @@
   <ItemGroup>
     <Content Include="Views\Shared\_DialogLayout.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Views\Tabs\Cookie.cshtml" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Dialog\Default.cshtml" />
   </ItemGroup>
@@ -393,6 +399,33 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Dialog\ModalConfirmation.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_TabsLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Tabs\Default.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Tabs\Ajax.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Tabs\MouseOver.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Tabs\Collapsible.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Tabs\Sortable.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Tabs\Manipulation.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Tabs\Bottom.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Tabs\Content3Slow.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

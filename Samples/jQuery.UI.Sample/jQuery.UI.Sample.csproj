@@ -125,6 +125,14 @@
     <Compile Include="ProgressBar\Animated.cs" />
     <Compile Include="ProgressBar\Default.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tabs\Ajax.cs" />
+    <Compile Include="Tabs\Collapsible.cs" />
+    <Compile Include="Tabs\Bottom.cs" />
+    <Compile Include="Tabs\Cookie.cs" />
+    <Compile Include="Tabs\Manipulation.cs" />
+    <Compile Include="Tabs\Sortable.cs" />
+    <Compile Include="Tabs\MouseOver.cs" />
+    <Compile Include="Tabs\Default.cs" />
     <Compile Include="Widget\ColorizeMethod.cs" />
     <Compile Include="Widget\ColorizeObject.cs" />
     <Compile Include="Widget\ColorizeOption.cs" />
@@ -134,5 +142,6 @@
   <ItemGroup>
     <None Include="Properties\jQuery.UI.Sample.script" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(ProgramFiles)\ScriptSharp\v1.0\ScriptSharp.targets" />
 </Project>
