@@ -71,6 +71,12 @@
     <Compile Include="Button\Icons.cs" />
     <Compile Include="Button\Radios.cs" />
     <Compile Include="Button\Default.cs" />
+    <Compile Include="Dialog\AnimatedDialog.cs" />
+    <Compile Include="Dialog\ModalForm.cs" />
+    <Compile Include="Dialog\ModalConfirmation.cs" />
+    <Compile Include="Dialog\ModalMessage.cs" />
+    <Compile Include="Dialog\ModalDialog.cs" />
+    <Compile Include="Dialog\Default.cs" />
     <Compile Include="Position\Cycling.cs" />
     <Compile Include="Position\Default.cs" />
     <Compile Include="Sortable\ConnectLists.cs" />

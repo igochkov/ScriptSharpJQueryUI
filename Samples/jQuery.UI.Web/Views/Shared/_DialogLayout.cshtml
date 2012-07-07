@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="demo-header">
+    <h2>Dialog</h2>
+</div>
+<div id="demo-config">
+    <div id="demo-frame-wrapper">
+        <div id="theme-switcher"></div>
+        @RenderBody()
+    </div>
+    <div id="demo-config-menu">
+        <div class="demos-nav">
+            <h4>
+                Examples</h4>
+            <ul>
+                <li>@Html.ActionLink("Default functionality", "Default", "Dialog")</li>
+                <li>@Html.ActionLink("Animated dialog", "AnimatedDialog", "Dialog")</li>
+                <li>@Html.ActionLink("Modal dialog", "ModalDialog", "Dialog")</li>
+                <li>@Html.ActionLink("Modal message", "ModalMessage", "Dialog")</li>
+                <li>@Html.ActionLink("Modal confirmation", "ModalConfirmation", "Dialog")</li>
+                <li>@Html.ActionLink("Modal form", "ModalForm", "Dialog")</li>
+            </ul>
+        </div>
+    </div>
+</div>

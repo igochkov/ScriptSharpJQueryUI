@@ -8,8 +8,8 @@ Sample.Accordion._Icons=function(){}
 Sample.Accordion._Sortable=function(){}
 Sample.Accordion._FillSpace=function(){}
 Sample.Accordion._Default=function(){}
-Type.registerNamespace('Sample.AutoComplete');Sample.AutoComplete.jQueryUISample$5=function(){}
-Sample.AutoComplete.jQueryUISample$5.$0=function($p0){$('<div/>').text($p0).prependTo('#log');$('#log').scrollTop(0);}
+Type.registerNamespace('Sample.AutoComplete');Sample.AutoComplete.jQueryUISample$6=function(){}
+Sample.AutoComplete.jQueryUISample$6.$0=function($p0){$('<div/>').text($p0).prependTo('#log');$('#log').scrollTop(0);}
 Sample.AutoComplete._Default=function(){}
 Type.registerNamespace('Sample.Button');Sample.Button._CheckBoxes=function(){}
 Sample.Button._SplitButton=function(){}
@@ -17,35 +17,41 @@ Sample.Button._ToolBar=function(){}
 Sample.Button._Icons=function(){}
 Sample.Button._Radios=function(){}
 Sample.Button._Default=function(){}
+Type.registerNamespace('Sample.Dialog');Sample.Dialog._AnimatedDialog=function(){}
+Sample.Dialog._ModalForm=function(){}
+Sample.Dialog.jQueryUISample$9=function(){}
+Sample.Dialog._ModalMessage=function(){}
+Sample.Dialog._ModalDialog=function(){}
+Sample.Dialog._Default=function(){}
 Type.registerNamespace('Sample.Position');Sample.Position._Cycling=function(){}
 Sample.Position._Default=function(){}
 Sample.Position._Default.$0=function($p0){$('.positionable').position({my:$('#my_horizontal').val()+' '+$('#my_vertical').val(),at:$('#at_horizontal').val()+' '+$('#at_vertical').val(),offset:$('#offset').val(),collision:$('#collision_horizontal').val()+' '+$('#collision_vertical').val()});}
 Type.registerNamespace('Sample.Sortable');Sample.Sortable._ConnectLists=function(){}
-Sample.Sortable.jQueryUISample$7=function(){}
+Sample.Sortable.jQueryUISample$8=function(){}
 Sample.Sortable._Portlets=function(){}
 Sample.Sortable._DispalyAsGrid=function(){}
 Sample.Sortable._DelayStart=function(){}
 Sample.Sortable._IncludeExclude=function(){}
 Sample.Sortable._EmptyLists=function(){}
-Sample.Sortable.jQueryUISample$8=function(){}
+Sample.Sortable.jQueryUISample$7=function(){}
 Sample.Sortable._Default=function(){}
 Type.registerNamespace('Sample.Resizable');Sample.Resizable._Animate=function(){}
 Sample.Resizable._Textarea=function(){}
 Sample.Resizable._ResizeHelper=function(){}
-Sample.Resizable.jQueryUISample$6=function(){}
+Sample.Resizable.jQueryUISample$0=function(){}
 Sample.Resizable._VisualFeedback=function(){}
 Sample.Resizable._SnapToGrid=function(){}
 Sample.Resizable._DelayStart=function(){}
 Sample.Resizable._ResizeArea=function(){}
 Sample.Resizable._MaxMinSize=function(){}
-Sample.Resizable.jQueryUISample$0=function(){}
+Sample.Resizable.jQueryUISample$1=function(){}
 Sample.Resizable._Default=function(){}
 Type.registerNamespace('Sample.Selectable');Sample.Selectable._DisplayAsGrid=function(){}
 Sample.Selectable._Serialize=function(){}
 Sample.Selectable._Default=function(){}
-Type.registerNamespace('Sample.Draggable');Sample.Draggable.jQueryUISample$1=function(){}
+Type.registerNamespace('Sample.Draggable');Sample.Draggable.jQueryUISample$2=function(){}
 Sample.Draggable._AutoScroll=function(){}
-Sample.Draggable.jQueryUISample$2=function(){}
+Sample.Draggable.jQueryUISample$3=function(){}
 Sample.Draggable._CursorStyle=function(){}
 Sample.Draggable._DragHandle=function(){}
 Sample.Draggable._VisualFeedback=function(){}
@@ -55,8 +61,8 @@ Sample.Draggable._DelayStart=function(){}
 Sample.Draggable._Events=function(){}
 Sample.Draggable._Events.$0=function($p0,$p1){if(!$p0.hasClass('ui-state-hover')){$p0.addClass('ui-state-hover').siblings().removeClass('ui-state-hover');}$('span.count',$p0).text($p1.toString());}
 Sample.Draggable._Snap=function(){}
-Type.registerNamespace('Sample.Droppable');Sample.Droppable.jQueryUISample$3=function(){}
-Sample.Droppable.jQueryUISample$4=function(){}
+Type.registerNamespace('Sample.Droppable');Sample.Droppable.jQueryUISample$4=function(){}
+Sample.Droppable.jQueryUISample$5=function(){}
 Sample.Droppable._VisualFeedback=function(){}
 Sample.Droppable._Revert=function(){}
 Sample.Droppable._ShoppingCart=function(){}
@@ -72,7 +78,7 @@ Type.registerNamespace('Sample.ProgressBar');Sample.ProgressBar._ResizableBar=fu
 Sample.ProgressBar._Animated=function(){}
 Sample.ProgressBar._Default=function(){}
 Type.registerNamespace('Sample.Widget');Sample.Widget._Default=function(){}
-Sample.Accordion._NoAuto.registerClass('Sample.Accordion._NoAuto');Sample.Accordion._Collapse.registerClass('Sample.Accordion._Collapse');Sample.Accordion._MouseOver.registerClass('Sample.Accordion._MouseOver');Sample.Accordion._HoverIntent.registerClass('Sample.Accordion._HoverIntent');Sample.Accordion._Icons.registerClass('Sample.Accordion._Icons');Sample.Accordion._Sortable.registerClass('Sample.Accordion._Sortable');Sample.Accordion._FillSpace.registerClass('Sample.Accordion._FillSpace');Sample.Accordion._Default.registerClass('Sample.Accordion._Default');Sample.AutoComplete.jQueryUISample$5.registerClass('Sample.AutoComplete.jQueryUISample$5');Sample.AutoComplete._Default.registerClass('Sample.AutoComplete._Default');Sample.Button._CheckBoxes.registerClass('Sample.Button._CheckBoxes');Sample.Button._SplitButton.registerClass('Sample.Button._SplitButton');Sample.Button._ToolBar.registerClass('Sample.Button._ToolBar');Sample.Button._Icons.registerClass('Sample.Button._Icons');Sample.Button._Radios.registerClass('Sample.Button._Radios');Sample.Button._Default.registerClass('Sample.Button._Default');Sample.Position._Cycling.registerClass('Sample.Position._Cycling');Sample.Position._Default.registerClass('Sample.Position._Default');Sample.Sortable._ConnectLists.registerClass('Sample.Sortable._ConnectLists');Sample.Sortable.jQueryUISample$7.registerClass('Sample.Sortable.jQueryUISample$7');Sample.Sortable._Portlets.registerClass('Sample.Sortable._Portlets');Sample.Sortable._DispalyAsGrid.registerClass('Sample.Sortable._DispalyAsGrid');Sample.Sortable._DelayStart.registerClass('Sample.Sortable._DelayStart');Sample.Sortable._IncludeExclude.registerClass('Sample.Sortable._IncludeExclude');Sample.Sortable._EmptyLists.registerClass('Sample.Sortable._EmptyLists');Sample.Sortable.jQueryUISample$8.registerClass('Sample.Sortable.jQueryUISample$8');Sample.Sortable._Default.registerClass('Sample.Sortable._Default');Sample.Resizable._Animate.registerClass('Sample.Resizable._Animate');Sample.Resizable._Textarea.registerClass('Sample.Resizable._Textarea');Sample.Resizable._ResizeHelper.registerClass('Sample.Resizable._ResizeHelper');Sample.Resizable.jQueryUISample$6.registerClass('Sample.Resizable.jQueryUISample$6');Sample.Resizable._VisualFeedback.registerClass('Sample.Resizable._VisualFeedback');Sample.Resizable._SnapToGrid.registerClass('Sample.Resizable._SnapToGrid');Sample.Resizable._DelayStart.registerClass('Sample.Resizable._DelayStart');Sample.Resizable._ResizeArea.registerClass('Sample.Resizable._ResizeArea');Sample.Resizable._MaxMinSize.registerClass('Sample.Resizable._MaxMinSize');Sample.Resizable.jQueryUISample$0.registerClass('Sample.Resizable.jQueryUISample$0');Sample.Resizable._Default.registerClass('Sample.Resizable._Default');Sample.Selectable._DisplayAsGrid.registerClass('Sample.Selectable._DisplayAsGrid');Sample.Selectable._Serialize.registerClass('Sample.Selectable._Serialize');Sample.Selectable._Default.registerClass('Sample.Selectable._Default');Sample.Draggable.jQueryUISample$1.registerClass('Sample.Draggable.jQueryUISample$1');Sample.Draggable._AutoScroll.registerClass('Sample.Draggable._AutoScroll');Sample.Draggable.jQueryUISample$2.registerClass('Sample.Draggable.jQueryUISample$2');Sample.Draggable._CursorStyle.registerClass('Sample.Draggable._CursorStyle');Sample.Draggable._DragHandle.registerClass('Sample.Draggable._DragHandle');Sample.Draggable._VisualFeedback.registerClass('Sample.Draggable._VisualFeedback');Sample.Draggable._RevertPosition.registerClass('Sample.Draggable._RevertPosition');Sample.Draggable._Default.registerClass('Sample.Draggable._Default');Sample.Draggable._DelayStart.registerClass('Sample.Draggable._DelayStart');Sample.Draggable._Events.registerClass('Sample.Draggable._Events');Sample.Draggable._Snap.registerClass('Sample.Draggable._Snap');Sample.Droppable.jQueryUISample$3.registerClass('Sample.Droppable.jQueryUISample$3');Sample.Droppable.jQueryUISample$4.registerClass('Sample.Droppable.jQueryUISample$4');Sample.Droppable._VisualFeedback.registerClass('Sample.Droppable._VisualFeedback');Sample.Droppable._Revert.registerClass('Sample.Droppable._Revert');Sample.Droppable._ShoppingCart.registerClass('Sample.Droppable._ShoppingCart');Sample.Droppable._PhotoManager.registerClass('Sample.Droppable._PhotoManager');Sample.Droppable._Default.registerClass('Sample.Droppable._Default');Sample.ProgressBar._ResizableBar.registerClass('Sample.ProgressBar._ResizableBar');Sample.ProgressBar._Animated.registerClass('Sample.ProgressBar._Animated');Sample.ProgressBar._Default.registerClass('Sample.ProgressBar._Default');Sample.Widget._Default.registerClass('Sample.Widget._Default');(function(){$(function(){
+Sample.Accordion._NoAuto.registerClass('Sample.Accordion._NoAuto');Sample.Accordion._Collapse.registerClass('Sample.Accordion._Collapse');Sample.Accordion._MouseOver.registerClass('Sample.Accordion._MouseOver');Sample.Accordion._HoverIntent.registerClass('Sample.Accordion._HoverIntent');Sample.Accordion._Icons.registerClass('Sample.Accordion._Icons');Sample.Accordion._Sortable.registerClass('Sample.Accordion._Sortable');Sample.Accordion._FillSpace.registerClass('Sample.Accordion._FillSpace');Sample.Accordion._Default.registerClass('Sample.Accordion._Default');Sample.AutoComplete.jQueryUISample$6.registerClass('Sample.AutoComplete.jQueryUISample$6');Sample.AutoComplete._Default.registerClass('Sample.AutoComplete._Default');Sample.Button._CheckBoxes.registerClass('Sample.Button._CheckBoxes');Sample.Button._SplitButton.registerClass('Sample.Button._SplitButton');Sample.Button._ToolBar.registerClass('Sample.Button._ToolBar');Sample.Button._Icons.registerClass('Sample.Button._Icons');Sample.Button._Radios.registerClass('Sample.Button._Radios');Sample.Button._Default.registerClass('Sample.Button._Default');Sample.Dialog._AnimatedDialog.registerClass('Sample.Dialog._AnimatedDialog');Sample.Dialog._ModalForm.registerClass('Sample.Dialog._ModalForm');Sample.Dialog.jQueryUISample$9.registerClass('Sample.Dialog.jQueryUISample$9');Sample.Dialog._ModalMessage.registerClass('Sample.Dialog._ModalMessage');Sample.Dialog._ModalDialog.registerClass('Sample.Dialog._ModalDialog');Sample.Dialog._Default.registerClass('Sample.Dialog._Default');Sample.Position._Cycling.registerClass('Sample.Position._Cycling');Sample.Position._Default.registerClass('Sample.Position._Default');Sample.Sortable._ConnectLists.registerClass('Sample.Sortable._ConnectLists');Sample.Sortable.jQueryUISample$8.registerClass('Sample.Sortable.jQueryUISample$8');Sample.Sortable._Portlets.registerClass('Sample.Sortable._Portlets');Sample.Sortable._DispalyAsGrid.registerClass('Sample.Sortable._DispalyAsGrid');Sample.Sortable._DelayStart.registerClass('Sample.Sortable._DelayStart');Sample.Sortable._IncludeExclude.registerClass('Sample.Sortable._IncludeExclude');Sample.Sortable._EmptyLists.registerClass('Sample.Sortable._EmptyLists');Sample.Sortable.jQueryUISample$7.registerClass('Sample.Sortable.jQueryUISample$7');Sample.Sortable._Default.registerClass('Sample.Sortable._Default');Sample.Resizable._Animate.registerClass('Sample.Resizable._Animate');Sample.Resizable._Textarea.registerClass('Sample.Resizable._Textarea');Sample.Resizable._ResizeHelper.registerClass('Sample.Resizable._ResizeHelper');Sample.Resizable.jQueryUISample$0.registerClass('Sample.Resizable.jQueryUISample$0');Sample.Resizable._VisualFeedback.registerClass('Sample.Resizable._VisualFeedback');Sample.Resizable._SnapToGrid.registerClass('Sample.Resizable._SnapToGrid');Sample.Resizable._DelayStart.registerClass('Sample.Resizable._DelayStart');Sample.Resizable._ResizeArea.registerClass('Sample.Resizable._ResizeArea');Sample.Resizable._MaxMinSize.registerClass('Sample.Resizable._MaxMinSize');Sample.Resizable.jQueryUISample$1.registerClass('Sample.Resizable.jQueryUISample$1');Sample.Resizable._Default.registerClass('Sample.Resizable._Default');Sample.Selectable._DisplayAsGrid.registerClass('Sample.Selectable._DisplayAsGrid');Sample.Selectable._Serialize.registerClass('Sample.Selectable._Serialize');Sample.Selectable._Default.registerClass('Sample.Selectable._Default');Sample.Draggable.jQueryUISample$2.registerClass('Sample.Draggable.jQueryUISample$2');Sample.Draggable._AutoScroll.registerClass('Sample.Draggable._AutoScroll');Sample.Draggable.jQueryUISample$3.registerClass('Sample.Draggable.jQueryUISample$3');Sample.Draggable._CursorStyle.registerClass('Sample.Draggable._CursorStyle');Sample.Draggable._DragHandle.registerClass('Sample.Draggable._DragHandle');Sample.Draggable._VisualFeedback.registerClass('Sample.Draggable._VisualFeedback');Sample.Draggable._RevertPosition.registerClass('Sample.Draggable._RevertPosition');Sample.Draggable._Default.registerClass('Sample.Draggable._Default');Sample.Draggable._DelayStart.registerClass('Sample.Draggable._DelayStart');Sample.Draggable._Events.registerClass('Sample.Draggable._Events');Sample.Draggable._Snap.registerClass('Sample.Draggable._Snap');Sample.Droppable.jQueryUISample$4.registerClass('Sample.Droppable.jQueryUISample$4');Sample.Droppable.jQueryUISample$5.registerClass('Sample.Droppable.jQueryUISample$5');Sample.Droppable._VisualFeedback.registerClass('Sample.Droppable._VisualFeedback');Sample.Droppable._Revert.registerClass('Sample.Droppable._Revert');Sample.Droppable._ShoppingCart.registerClass('Sample.Droppable._ShoppingCart');Sample.Droppable._PhotoManager.registerClass('Sample.Droppable._PhotoManager');Sample.Droppable._Default.registerClass('Sample.Droppable._Default');Sample.ProgressBar._ResizableBar.registerClass('Sample.ProgressBar._ResizableBar');Sample.ProgressBar._Animated.registerClass('Sample.ProgressBar._Animated');Sample.ProgressBar._Default.registerClass('Sample.ProgressBar._Default');Sample.Widget._Default.registerClass('Sample.Widget._Default');(function(){$(function(){
 $('#accordion3').accordion({autoHeight:false,navigation:true});});})();
 (function(){$(function(){
 $('#accordion4').accordion({collapsible:true});});})();
@@ -94,7 +100,7 @@ $('#accordion2').accordion('refresh');}});});})();
 $('#accordion1').accordion();});})();
 (function(){$(function(){
 var $1_0={};$1_0.source='Search';$1_0.minLength=2;$1_0.select=function($p2_0,$p2_1){
-Sample.AutoComplete.jQueryUISample$5.$0(($p2_1.item!=null)?'Selected: '+($p2_1.item).value+' aka '+($p2_1.item).id:'Nothing selected, input was '+$(this).val());};$('#birds').autocomplete($1_0);});})();
+Sample.AutoComplete.jQueryUISample$6.$0(($p2_1.item!=null)?'Selected: '+($p2_1.item).value+' aka '+($p2_1.item).id:'Nothing selected, input was '+$(this).val());};$('#birds').autocomplete($1_0);});})();
 (function(){$(function(){
 var $1_0=['ActionScript','AppleScript','Asp','BASIC','C','C++','Clojure','COBOL','ColdFusion','Erlang','Fortran','Groovy','Haskell','Java','JavaScript','Lisp','Perl','PHP','Python','Ruby','Scala','Scheme'];$('#autocompleteTags').autocomplete({source:$1_0});});})();
 (function(){$(function(){
@@ -114,6 +120,30 @@ $('#button4').buttonset();});})();
 (function(){$(function(){
 var $1_0=$('.demo');$('#button1, #button2, #button3',$1_0).button();$('#button3',$1_0).click(function($p2_0){
 $p2_0.preventDefault();$p2_0.stopPropagation();});});})();
+(function(){$(function(){
+$('#dialog2').dialog({autoOpen:false,show:'blind',hide:'explode'});$('#opener').click(function($p2_0){
+$('#dialog2').dialog('open');$p2_0.preventDefault();$p2_0.stopPropagation();});});})();
+(function(){$(function(){
+var $1_0=$('#name');var $1_1=$('#email');var $1_2=$('#password');var $1_3=$([]).add($1_0).add($1_1).add($1_2);var $1_4=$('.validateTips');var $1_5=function($p2_0){
+$1_4.text($p2_0).addClass('ui-state-highlight');window.setTimeout(function(){
+$1_4.removeClass('ui-state-highlight');},500);};var $1_6=function($p2_0,$p2_1,$p2_2,$p2_3){
+if($p2_0.val().length>$p2_3||$p2_0.val().length<$p2_2){$p2_0.addClass('ui-state-error');$1_5('Length of '+$p2_1+' must be between '+$p2_2+' and '+$p2_3+'.');return false;}else{return true;}};var $1_7=function($p2_0,$p2_1,$p2_2){
+if(!$p2_1.test($p2_0.val())){$p2_0.addClass('ui-state-error');$1_5($p2_2);return false;}else{return true;}};$('#dialog-form').dialog({autoOpen:false,height:300,width:350,modal:true,buttons:{'Create an account':function(){
+var $2_0=true;$1_3.removeClass('ui-state-error');$2_0=$2_0&&$1_6($1_0,'username',3,16);$2_0=$2_0&&$1_6($1_1,'email',6,80);$2_0=$2_0&&$1_6($1_2,'password',5,16);$2_0=$2_0&&$1_7($1_0,new RegExp('^[a-z]([0-9a-z_])+$'),'Username may consist of a-z, 0-9, underscores, begin with a letter.');$2_0=$2_0&&$1_7($1_1,new RegExp("^((([a-z]|\\d|[!#\\$%&'\\*\\+\\-\\/=\\?\\^_`{\\|}~]|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])+(\\.([a-z]|\\d|[!#\\$%&'\\*\\+\\-\\/=\\?\\^_`{\\|}~]|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])+)*)|((\\x22)((((\\x20|\\x09)*(\\x0d\\x0a))?(\\x20|\\x09)+)?(([\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x7f]|\\x21|[\\x23-\\x5b]|[\\x5d-\\x7e]|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])|(\\\\([\\x01-\\x09\\x0b\\x0c\\x0d-\\x7f]|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF]))))*(((\\x20|\\x09)*(\\x0d\\x0a))?(\\x20|\\x09)+)?(\\x22)))@((([a-z]|\\d|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])|(([a-z]|\\d|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])([a-z]|\\d|-|\\.|_|~|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])*([a-z]|\\d|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])))\\.)+(([a-z]|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])|(([a-z]|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])([a-z]|\\d|-|\\.|_|~|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])*([a-z]|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])))\\.?$"),'eg. ui@jquery.com');$2_0=$2_0&&$1_7($1_2,new RegExp('^([0-9a-zA-Z])+$'),'Password field only allow : a-z 0-9');if($2_0){$('#users tbody').append('<tr>'+'<td>'+$1_0.val()+'</td>'+'<td>'+$1_1.val()+'</td>'+'<td>'+$1_2.val()+'</td>'+'</tr>');$(this).dialog('close');}},Cancel:function(){
+$(this).dialog('close');}},close:function(){
+$1_3.val('').removeClass('ui-state-error');}});$('#create-user').button().click(function($p2_0){
+$('#dialog-form').dialog('open');});});})();
+(function(){$(function(){
+$('#dialog-confirm').dialog({resizable:false,height:200,width:500,modal:true,buttons:{'Delete all items':function(){
+$(this).dialog('close');},Cancel:function(){
+$(this).dialog('close');}}});});})();
+(function(){$(function(){
+$('#dialog-message').dialog({modal:true,buttons:{Ok:function(){
+$(this).dialog('close');}}});});})();
+(function(){$(function(){
+$('#dialog-modal').dialog({height:140,modal:true});});})();
+(function(){$(function(){
+$('#dialog1').dialog();});})();
 (function(){$(function(){
 });})();
 (function(){$(function(){

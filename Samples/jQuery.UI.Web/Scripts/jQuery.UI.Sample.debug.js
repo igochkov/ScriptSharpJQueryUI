@@ -127,6 +127,50 @@ Sample.Button._default = function Sample_Button__default() {
 }
 
 
+Type.registerNamespace('Sample.Dialog');
+
+////////////////////////////////////////////////////////////////////////////////
+// Sample.Dialog._animatedDialog
+
+Sample.Dialog._animatedDialog = function Sample_Dialog__animatedDialog() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Sample.Dialog._modalForm
+
+Sample.Dialog._modalForm = function Sample_Dialog__modalForm() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Sample.Dialog._modalConfirmation
+
+Sample.Dialog._modalConfirmation = function Sample_Dialog__modalConfirmation() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Sample.Dialog._modalMessage
+
+Sample.Dialog._modalMessage = function Sample_Dialog__modalMessage() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Sample.Dialog._modalDialog
+
+Sample.Dialog._modalDialog = function Sample_Dialog__modalDialog() {
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Sample.Dialog._default
+
+Sample.Dialog._default = function Sample_Dialog__default() {
+}
+
+
 Type.registerNamespace('Sample.Position');
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -537,6 +581,12 @@ Sample.Button._toolBar.registerClass('Sample.Button._toolBar');
 Sample.Button._icons.registerClass('Sample.Button._icons');
 Sample.Button._radios.registerClass('Sample.Button._radios');
 Sample.Button._default.registerClass('Sample.Button._default');
+Sample.Dialog._animatedDialog.registerClass('Sample.Dialog._animatedDialog');
+Sample.Dialog._modalForm.registerClass('Sample.Dialog._modalForm');
+Sample.Dialog._modalConfirmation.registerClass('Sample.Dialog._modalConfirmation');
+Sample.Dialog._modalMessage.registerClass('Sample.Dialog._modalMessage');
+Sample.Dialog._modalDialog.registerClass('Sample.Dialog._modalDialog');
+Sample.Dialog._default.registerClass('Sample.Dialog._default');
 Sample.Position._cycling.registerClass('Sample.Position._cycling');
 Sample.Position._default.registerClass('Sample.Position._default');
 Sample.Sortable._connectLists.registerClass('Sample.Sortable._connectLists');
@@ -712,6 +762,98 @@ Sample.Widget._default.registerClass('Sample.Widget._default');
             e.preventDefault();
             e.stopPropagation();
         });
+    });
+})();
+(function () {
+    $(function() {
+        $('#dialog2').dialog({ autoOpen: false, show: 'blind', hide: 'explode' });
+        $('#opener').click(function(e) {
+            $('#dialog2').dialog('open');
+            e.preventDefault();
+            e.stopPropagation();
+        });
+    });
+})();
+(function () {
+    $(function() {
+        var name = $('#name');
+        var email = $('#email');
+        var password = $('#password');
+        var allFields = $([]).add(name).add(email).add(password);
+        var tips = $('.validateTips');
+        var updateTips = function(t) {
+            tips.text(t).addClass('ui-state-highlight');
+            window.setTimeout(function() {
+                tips.removeClass('ui-state-highlight');
+            }, 500);
+        };
+        var checkLength = function(o, n, min, max) {
+            if (o.val().length > max || o.val().length < min) {
+                o.addClass('ui-state-error');
+                updateTips('Length of ' + n + ' must be between ' + min + ' and ' + max + '.');
+                return false;
+            }
+            else {
+                return true;
+            }
+        };
+        var checkRegexp = function(o, regexp, n) {
+            if (!regexp.test(o.val())) {
+                o.addClass('ui-state-error');
+                updateTips(n);
+                return false;
+            }
+            else {
+                return true;
+            }
+        };
+        $('#dialog-form').dialog({ autoOpen: false, height: 300, width: 350, modal: true, buttons: { 'Create an account': function() {
+            var bValid = true;
+            allFields.removeClass('ui-state-error');
+            bValid = bValid && checkLength(name, 'username', 3, 16);
+            bValid = bValid && checkLength(email, 'email', 6, 80);
+            bValid = bValid && checkLength(password, 'password', 5, 16);
+            bValid = bValid && checkRegexp(name, new RegExp('^[a-z]([0-9a-z_])+$'), 'Username may consist of a-z, 0-9, underscores, begin with a letter.');
+            bValid = bValid && checkRegexp(email, new RegExp("^((([a-z]|\\d|[!#\\$%&'\\*\\+\\-\\/=\\?\\^_`{\\|}~]|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])+(\\.([a-z]|\\d|[!#\\$%&'\\*\\+\\-\\/=\\?\\^_`{\\|}~]|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])+)*)|((\\x22)((((\\x20|\\x09)*(\\x0d\\x0a))?(\\x20|\\x09)+)?(([\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x7f]|\\x21|[\\x23-\\x5b]|[\\x5d-\\x7e]|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])|(\\\\([\\x01-\\x09\\x0b\\x0c\\x0d-\\x7f]|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF]))))*(((\\x20|\\x09)*(\\x0d\\x0a))?(\\x20|\\x09)+)?(\\x22)))@((([a-z]|\\d|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])|(([a-z]|\\d|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])([a-z]|\\d|-|\\.|_|~|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])*([a-z]|\\d|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])))\\.)+(([a-z]|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])|(([a-z]|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])([a-z]|\\d|-|\\.|_|~|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])*([a-z]|[\\u00A0-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFEF])))\\.?$"), 'eg. ui@jquery.com');
+            bValid = bValid && checkRegexp(password, new RegExp('^([0-9a-zA-Z])+$'), 'Password field only allow : a-z 0-9');
+            if (bValid) {
+                $('#users tbody').append('<tr>' + '<td>' + name.val() + '</td>' + '<td>' + email.val() + '</td>' + '<td>' + password.val() + '</td>' + '</tr>');
+                $(this).dialog('close');
+            }
+        }, Cancel: function() {
+            $(this).dialog('close');
+        } }, close: function() {
+            allFields.val('').removeClass('ui-state-error');
+        } });
+        $('#create-user').button().click(function(e) {
+            $('#dialog-form').dialog('open');
+        });
+    });
+})();
+(function () {
+    $(function() {
+        $('#dialog-confirm').dialog({ resizable: false, height: 200, width: 500, modal: true, buttons: { 'Delete all items': function() {
+            $(this).dialog('close');
+        }, Cancel: function() {
+            $(this).dialog('close');
+        } } });
+    });
+})();
+(function () {
+    $(function() {
+        $('#dialog-message').dialog({ modal: true, buttons: { Ok: function() {
+            $(this).dialog('close');
+        } } });
+    });
+})();
+(function () {
+    $(function() {
+        $('#dialog-modal').dialog({ height: 140, modal: true });
+    });
+})();
+(function () {
+    $(function() {
+        $('#dialog1').dialog();
     });
 })();
 (function () {

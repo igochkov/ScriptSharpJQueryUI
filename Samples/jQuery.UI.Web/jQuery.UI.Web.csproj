@@ -72,6 +72,7 @@
     <Compile Include="Controllers\AutoCompleteController.cs" />
     <Compile Include="Controllers\AccordionController.cs" />
     <Compile Include="Controllers\ButtonController.cs" />
+    <Compile Include="Controllers\DialogController.cs" />
     <Compile Include="Controllers\PositionController.cs" />
     <Compile Include="Controllers\ProgressBarController.cs" />
     <Compile Include="Controllers\DraggableController.cs" />
@@ -370,6 +371,28 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Button\CheckBoxes.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_DialogLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Views\Dialog\Default.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Dialog\ModalForm.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Dialog\AnimatedDialog.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Dialog\ModalDialog.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Dialog\ModalMessage.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Dialog\ModalConfirmation.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
