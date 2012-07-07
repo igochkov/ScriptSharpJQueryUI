@@ -15,7 +15,7 @@ namespace Sample.Widget {
             jQuery.OnDocumentReady(delegate() {
                 // the widget definition, where "custom" is the namespace,
                 // "colorize" the widget name
-                jQueryUI.Create("custom.colorize",
+                jQueryUI.CreateWidget("custom.colorize",
                     new WidgetOptions(
                     // default options
                     "options", new ColorizeOptions(
