@@ -16,9 +16,9 @@ namespace jQueryApi.UI.Interactions {
     /// </remarks>
     [Imported]
     [IgnoreNamespace]
-    public abstract class DroppableObject : WidgetObject {
+    public sealed class DroppableObject : WidgetObject {
 
-        protected DroppableObject() {
+        public DroppableObject() {
         }
 
         [ScriptName("droppable")]

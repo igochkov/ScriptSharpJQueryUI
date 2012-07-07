@@ -14,7 +14,12 @@ namespace jQueryApi.UI {
         /// Create stateful jQuery plugins using the same abstraction that all jQuery UI widgets.
         /// </summary>
         [ScriptName("widget")]
-        public static WidgetObject Create(string name, params object[] options) {
+        public static WidgetObject CreateWidget(string name, object options) {
+            return null;
+        }
+
+        [ScriptName("widget")]
+        public static WidgetObject CreateWidget(string name, WidgetType baseWidgetType, object options) {
             return null;
         }
     }

@@ -16,9 +16,9 @@ namespace jQueryApi.UI.Widgets {
     /// </remarks>
     [Imported]
     [IgnoreNamespace]
-    public abstract class TabsObject : WidgetObject {
+    public sealed class TabsObject : WidgetObject {
 
-        protected TabsObject() {
+        public TabsObject() {
         }
 
         [ScriptName("tabs")]

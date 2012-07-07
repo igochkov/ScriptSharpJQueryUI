@@ -16,9 +16,9 @@ namespace jQueryApi.UI.Effects {
     /// </remarks>
     [Imported]
     [IgnoreNamespace]
-    public abstract class TransferObject : EffectObject {
+    public sealed class TransferObject : EffectObject {
 
-        protected TransferObject() {
+        public TransferObject() {
         }
 
         [ScriptName("transfer")]

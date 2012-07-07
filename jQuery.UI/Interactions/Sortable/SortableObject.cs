@@ -16,9 +16,9 @@ namespace jQueryApi.UI.Interactions {
     /// </remarks>
     [Imported]
     [IgnoreNamespace]
-    public abstract class SortableObject : WidgetObject {
+    public sealed class SortableObject : WidgetObject {
 
-        protected SortableObject() {
+        public SortableObject() {
         }
 
         [ScriptName("sortable")]

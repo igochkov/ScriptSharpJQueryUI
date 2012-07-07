@@ -16,9 +16,9 @@ namespace jQueryApi.UI.Effects {
     /// </remarks>
     [Imported]
     [IgnoreNamespace]
-    public abstract class PulsateObject : EffectObject {
+    public sealed class PulsateObject : EffectObject {
 
-        protected PulsateObject() {
+        public PulsateObject() {
         }
 
         [ScriptName("pulsate")]

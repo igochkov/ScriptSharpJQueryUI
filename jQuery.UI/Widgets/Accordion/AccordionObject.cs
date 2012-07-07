@@ -16,9 +16,9 @@ namespace jQueryApi.UI.Widgets {
     /// </remarks>
     [Imported]
     [IgnoreNamespace]
-    public abstract class AccordionObject : WidgetObject {
+    public sealed class AccordionObject : WidgetObject {
 
-        protected AccordionObject() {
+        public AccordionObject() {
         }
 
         [ScriptName("accordion")]

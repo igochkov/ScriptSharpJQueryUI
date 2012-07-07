@@ -16,9 +16,9 @@ namespace jQueryApi.UI.Widgets {
     /// </remarks>
     [Imported]
     [IgnoreNamespace]
-    public abstract class TooltipObject : WidgetObject {
+    public sealed class TooltipObject : WidgetObject {
 
-        protected TooltipObject() {
+        public TooltipObject() {
         }
 
         [ScriptName("tooltip")]

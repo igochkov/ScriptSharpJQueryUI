@@ -18,7 +18,7 @@ namespace jQueryApi.UI {
     [IgnoreNamespace]
     public abstract class jQueryUIObject : jQueryObject {
 
-        protected jQueryUIObject() {
+        public jQueryUIObject() {
         }
 
         [ScriptName("ui")]

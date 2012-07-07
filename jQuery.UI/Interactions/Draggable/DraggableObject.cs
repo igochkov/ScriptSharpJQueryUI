@@ -16,9 +16,9 @@ namespace jQueryApi.UI.Interactions {
     /// </remarks>
     [Imported]
     [IgnoreNamespace]
-    public abstract class DraggableObject : WidgetObject {
+    public sealed class DraggableObject : WidgetObject {
 
-        protected DraggableObject() {
+        public DraggableObject() {
         }
 
         [ScriptName("draggable")]

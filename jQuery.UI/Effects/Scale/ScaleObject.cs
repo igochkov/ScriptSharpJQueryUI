@@ -16,9 +16,9 @@ namespace jQueryApi.UI.Effects {
     /// </remarks>
     [Imported]
     [IgnoreNamespace]
-    public abstract class ScaleObject : EffectObject {
+    public sealed class ScaleObject : EffectObject {
 
-        protected ScaleObject() {
+        public ScaleObject() {
         }
 
         [ScriptName("scale")]

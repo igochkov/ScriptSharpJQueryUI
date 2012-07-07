@@ -16,9 +16,9 @@ namespace jQueryApi.UI.Effects {
     /// </remarks>
     [Imported]
     [IgnoreNamespace]
-    public abstract class ShakeObject : EffectObject {
+    public sealed class ShakeObject : EffectObject {
 
-        protected ShakeObject() {
+        public ShakeObject() {
         }
 
         [ScriptName("shake")]

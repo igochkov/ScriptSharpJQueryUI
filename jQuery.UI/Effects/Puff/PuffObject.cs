@@ -16,9 +16,9 @@ namespace jQueryApi.UI.Effects {
     /// </remarks>
     [Imported]
     [IgnoreNamespace]
-    public abstract class PuffObject : EffectObject {
+    public sealed class PuffObject : EffectObject {
 
-        protected PuffObject() {
+        public PuffObject() {
         }
 
         [ScriptName("puff")]

@@ -16,9 +16,9 @@ namespace jQueryApi.UI.Widgets {
     /// </remarks>
     [Imported]
     [IgnoreNamespace]
-    public abstract class ProgressBarObject : WidgetObject {
+    public sealed class ProgressBarObject : WidgetObject {
 
-        protected ProgressBarObject() {
+        public ProgressBarObject() {
         }
 
         [ScriptName("progressbar")]

@@ -16,9 +16,9 @@ namespace jQueryApi.UI.Interactions {
     /// </remarks>
     [Imported]
     [IgnoreNamespace]
-    public abstract class ResizableObject : WidgetObject {
+    public sealed class ResizableObject : WidgetObject {
 
-        protected ResizableObject() {
+        public ResizableObject() {
         }
 
         [ScriptName("resizable")]

@@ -16,9 +16,9 @@ namespace jQueryApi.UI.Widgets {
     /// </remarks>
     [Imported]
     [IgnoreNamespace]
-    public abstract class DialogObject : WidgetObject {
+    public sealed class DialogObject : WidgetObject {
 
-        protected DialogObject() {
+        public DialogObject() {
         }
 
         [ScriptName("dialog")]

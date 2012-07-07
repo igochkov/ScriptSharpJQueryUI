@@ -16,9 +16,9 @@ namespace jQueryApi.UI.Effects {
     /// </remarks>
     [Imported]
     [IgnoreNamespace]
-    public abstract class FadeObject : EffectObject {
+    public sealed class FadeObject : EffectObject {
 
-        protected FadeObject() {
+        public FadeObject() {
         }
 
         [ScriptName("fade")]

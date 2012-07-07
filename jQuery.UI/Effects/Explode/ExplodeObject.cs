@@ -16,9 +16,9 @@ namespace jQueryApi.UI.Effects {
     /// </remarks>
     [Imported]
     [IgnoreNamespace]
-    public abstract class ExplodeObject : EffectObject {
+    public sealed class ExplodeObject : EffectObject {
 
-        protected ExplodeObject() {
+        public ExplodeObject() {
         }
 
         [ScriptName("explode")]

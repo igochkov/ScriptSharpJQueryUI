@@ -16,9 +16,9 @@ namespace jQueryApi.UI.Interactions {
     /// </remarks>
     [Imported]
     [IgnoreNamespace]
-    public abstract class SelectableObject : WidgetObject {
+    public sealed class SelectableObject : WidgetObject {
 
-        protected SelectableObject() {
+        public SelectableObject() {
         }
 
         [ScriptName("selectable")]

@@ -16,9 +16,9 @@ namespace jQueryApi.UI.Widgets {
     /// </remarks>
     [Imported]
     [IgnoreNamespace]
-    public abstract class AutoCompleteObject : WidgetObject {
+    public sealed class AutoCompleteObject : WidgetObject {
 
-        protected AutoCompleteObject() {
+        public AutoCompleteObject() {
         }
 
         [ScriptName("autocomplete")]

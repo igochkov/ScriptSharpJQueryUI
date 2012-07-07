@@ -16,9 +16,9 @@ namespace jQueryApi.UI.Effects {
     /// </remarks>
     [Imported]
     [IgnoreNamespace]
-    public abstract class FoldObject : EffectObject {
+    public sealed class FoldObject : EffectObject {
 
-        protected FoldObject() {
+        public FoldObject() {
         }
 
         [ScriptName("fold")]
