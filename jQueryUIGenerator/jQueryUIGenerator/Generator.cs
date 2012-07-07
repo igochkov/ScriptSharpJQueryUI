@@ -31,6 +31,7 @@ namespace ScriptSharp.Tools.jQueryUIGenerator {
         private TextWriter Messages;
 
         private string[] excludeJQueryMethods = new string[] { "show", "hide", "toarray" };
+        private string[] abstractObjects = new string[] { "widget", "effect", "ui" };
 
         /// <summary>
         /// Creates a generator of ScriptSharp jQueryUI library.
@@ -70,9 +71,9 @@ namespace ScriptSharp.Tools.jQueryUIGenerator {
                 RenderEntry(entry, baseEntry);
             }
 
-            Messages.WriteLine("Generating jQueryUI base files.");
             RenderEventHandler();
-            RenderJQueryUIWidget();
+            RenderJQueryUI();
+            RenderWidgetType(entries);
         }
 
         private void RenderEntry(Entry entry, Entry baseEntry = null) {
@@ -106,9 +107,11 @@ namespace {8} {{
     /// </remarks>
     [Imported]
     [IgnoreNamespace]{7}
-    public abstract class {0} : " + (string.IsNullOrEmpty(entry.Type) ? "jQuery" : Utils.PascalCase(entry.Type)) + @"Object {{
+    public "
++ (abstractObjects.Contains(entry.Name.ToLower()) ? "abstract" : "sealed") + @" class {0} : "
++ (string.IsNullOrEmpty(entry.Type) ? "jQuery" : Utils.PascalCase(entry.Type)) + @"Object {{
 
-        protected {0}() {{
+        " + ((entry.Name.ToLower() == "widget") ? "protected" : "public") + @" {0}() {{
         }}{3}{4}{5}{6}
     }}
 }}";
@@ -182,7 +185,7 @@ namespace {8} {{
             StringBuilder methodsContent = new StringBuilder();
 
             foreach (var method in entry.Methods
-                                        // exclude the jQuery methods as they will be inherit
+                // exclude the jQuery methods as they will be inherit
                                         .Where(m => entry.Name.ToLower() == "widget" || !excludeJQueryMethods.Contains(m.Name.ToLower()))
                                         .OrderBy(m => m.Name)) {
 
@@ -469,7 +472,7 @@ namespace {2} {{
             }
 
             foreach (var @event in events.OrderBy(e => e.Name)
-                                         .GroupBy(e => e.Name)){
+                                         .GroupBy(e => e.Name)) {
                 enumValues.AppendLine();
                 enumValues.AppendLine();
                 if (!string.IsNullOrEmpty(@event.Min(e => e.Description))) {
@@ -513,7 +516,7 @@ namespace {2} {{
 
             if (baseEntry != null) {
                 methods = methods.Union(baseEntry.Methods
-                                                 // filter private methods from the base entry
+                    // filter private methods from the base entry
                                                  .Where(m => !m.Name.StartsWith("_")))
                                  .Where(m => !excludeJQueryMethods.Contains(m.Name.ToLower()));
             }
@@ -550,10 +553,11 @@ namespace " + Utils.GetNamespace(null) + @" {
     public delegate void " + className + @"<T>(jQueryEvent e, T uiEvent);
 }";
 
+            Messages.WriteLine("Generating " + Path.Combine(DestinationPath, "jQueryUI", className));
             Utils.CreateFile(Path.Combine(DestinationPath, "jQueryUI"), className, content);
         }
 
-        private void RenderJQueryUIWidget() {
+        private void RenderJQueryUI() {
             string className = "jQueryUI";
 
             string content =
@@ -568,12 +572,54 @@ namespace " + Utils.GetNamespace(null) + @" {
         /// Create stateful jQuery plugins using the same abstraction that all jQuery UI widgets.
         /// </summary>
         [ScriptName(""widget"")]
-        public static WidgetObject Create(string name, params object[] options) {
+        public static WidgetObject CreateWidget(string name, object options) {
+            return null;
+        }
+
+        [ScriptName(""widget"")]
+        public static WidgetObject CreateWidget(string name, WidgetType baseWidgetType, object options) {
             return null;
         }
     }
 }";
+            Messages.WriteLine("Generating " + Path.Combine(DestinationPath, "jQueryUI", className));
             Utils.CreateFile(Path.Combine(DestinationPath, "jQueryUI"), className, content);
+        }
+
+        private void RenderWidgetType(IList<Entry> entries) {
+            string className = "WidgetType";
+
+            string content =
+@"using System.Runtime.CompilerServices;
+
+namespace {0} {{
+    [Imported]
+    [IgnoreNamespace]
+    [ScriptName(""$.ui"")]
+    public sealed class WidgetType {{
+         private WidgetType() {{
+         }}
+         {1}
+    }}
+}}";
+            StringBuilder fields = new StringBuilder();
+
+            foreach (Entry entry in entries) {
+                if (!string.IsNullOrEmpty(entry.Type)) {
+                    if (entry.Type.ToLower() == "widget") {
+                        fields.AppendLine();
+                        fields.Append("         ");
+                        fields.Append("public static readonly WidgetType ");
+                        fields.Append(Utils.PascalCase(entry.Name));
+                        fields.AppendLine(" = null;");
+                    }
+                }
+            }
+
+            Messages.WriteLine("Generating " + Path.Combine(DestinationPath, "jQueryUI", className));
+            Utils.CreateFile(Path.Combine(DestinationPath, "jQueryUI")
+                            , className
+                            , string.Format(content, Utils.GetNamespace(null), fields.ToString()));
         }
 
         /// <summary>
