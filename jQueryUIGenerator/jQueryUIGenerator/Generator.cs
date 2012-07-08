@@ -244,7 +244,16 @@ namespace {8} {{
                                     , Utils.GetNamespace(entry));
             }
 
-            Utils.CreateFile(Path.Combine(DestinationPath, Utils.PascalCase(entry.Category), Utils.PascalCase(entry.Name)), className, formatedContent);
+            string name = Utils.PascalCase(entry.Name);
+            if ((name == "jQueryUI") || (name == "Position")) {
+                name = "";
+            }
+            string category = Utils.PascalCase(entry.Category);
+            if ((category == "Widgets") && (name == "Widget")) {
+                category = "";
+                name = "";
+            }
+            Utils.CreateFile(Path.Combine(DestinationPath, category, name), className, formatedContent);
         }
 
         private void RenderOptions(Entry entry) {
@@ -336,7 +345,16 @@ namespace {4} {{
         }");
             }
 
-            Utils.CreateFile(Path.Combine(DestinationPath, Utils.PascalCase(entry.Category), Utils.PascalCase(entry.Name)), className
+            string name = Utils.PascalCase(entry.Name);
+            if ((name == "jQueryUI") || (name == "Position")) {
+                name = "";
+            }
+            string category = Utils.PascalCase(entry.Category);
+            if ((category == "Widgets") && (name == "Widget")) {
+                category = "";
+                name = "";
+            }
+            Utils.CreateFile(Path.Combine(DestinationPath, category, name), className
                 , string.Format(content
                                 , className
                                 , eventsContent.ToString()
@@ -440,7 +458,16 @@ namespace {2} {{
                 enumValues.Append("        " + Utils.PascalCase(option.Key) + ",");
             }
 
-            Utils.CreateFile(Path.Combine(DestinationPath, Utils.PascalCase(entry.Category), Utils.PascalCase(entry.Name)), className
+            string name = Utils.PascalCase(entry.Name);
+            if ((name == "jQueryUI") || (name == "Position")) {
+                name = "";
+            }
+            string category = Utils.PascalCase(entry.Category);
+            if ((category == "Widgets") && (name == "Widget")) {
+                category = "";
+                name = "";
+            }
+            Utils.CreateFile(Path.Combine(DestinationPath, category, name), className
                 , string.Format(content, className, enumValues.ToString().Trim(','), Utils.GetNamespace(entry)));
         }
 
@@ -483,7 +510,16 @@ namespace {2} {{
                 enumValues.Append("        " + Utils.PascalCase(@event.Key) + ",");
             }
 
-            Utils.CreateFile(Path.Combine(DestinationPath, Utils.PascalCase(entry.Category), Utils.PascalCase(entry.Name)), className
+            string name = Utils.PascalCase(entry.Name);
+            if ((name == "jQueryUI") || (name == "Position")) {
+                name = "";
+            }
+            string category = Utils.PascalCase(entry.Category);
+            if ((category == "Widgets") && (name == "Widget")) {
+                category = "";
+                name = "";
+            }
+            Utils.CreateFile(Path.Combine(DestinationPath, category, name), className
                 , string.Format(content, className, enumValues.ToString().Trim(','), Utils.GetNamespace(entry)));
         }
 
@@ -536,7 +572,16 @@ namespace {2} {{
                 enumValues.Append("        " + Utils.PascalCase(method.Key) + ",");
             }
 
-            Utils.CreateFile(Path.Combine(DestinationPath, Utils.PascalCase(entry.Category), Utils.PascalCase(entry.Name)), className
+            string name = Utils.PascalCase(entry.Name);
+            if ((name == "jQueryUI") || (name == "Position")) {
+                name = "";
+            }
+            string category = Utils.PascalCase(entry.Category);
+            if ((category == "Widgets") && (name == "Widget")) {
+                category = "";
+                name = "";
+            }
+            Utils.CreateFile(Path.Combine(DestinationPath, category, name), className
                 , string.Format(content, className, enumValues.ToString().Trim(','), Utils.GetNamespace(entry)));
         }
 
@@ -544,7 +589,8 @@ namespace {2} {{
             string className = "jQueryUIEventHandler";
 
             string content =
-@"using System.Runtime.CompilerServices;
+@"using System;
+using System.Runtime.CompilerServices;
 
 namespace " + Utils.GetNamespace(null) + @" {
 
@@ -553,21 +599,24 @@ namespace " + Utils.GetNamespace(null) + @" {
     public delegate void " + className + @"<T>(jQueryEvent e, T uiEvent);
 }";
 
-            Messages.WriteLine("Generating " + Path.Combine(DestinationPath, "jQueryUI", className));
-            Utils.CreateFile(Path.Combine(DestinationPath, "jQueryUI"), className, content);
+            Messages.WriteLine("Generating " + Path.Combine(DestinationPath, className));
+            Utils.CreateFile(DestinationPath, className, content);
         }
 
         private void RenderJQueryUI() {
             string className = "jQueryUI";
 
             string content =
-@"using System.Runtime.CompilerServices;
+@"using System;
+using System.Runtime.CompilerServices;
 
 namespace " + Utils.GetNamespace(null) + @" {
+
     [Imported]
     [IgnoreNamespace]
     [ScriptName(""$"")]
     public static class jQueryUI {
+
         /// <summary>
         /// Create stateful jQuery plugins using the same abstraction that all jQuery UI widgets.
         /// </summary>
@@ -582,21 +631,24 @@ namespace " + Utils.GetNamespace(null) + @" {
         }
     }
 }";
-            Messages.WriteLine("Generating " + Path.Combine(DestinationPath, "jQueryUI", className));
-            Utils.CreateFile(Path.Combine(DestinationPath, "jQueryUI"), className, content);
+            Messages.WriteLine("Generating " + Path.Combine(DestinationPath, className));
+            Utils.CreateFile(DestinationPath, className, content);
         }
 
         private void RenderWidgetType(IList<Entry> entries) {
             string className = "WidgetType";
 
             string content =
-@"using System.Runtime.CompilerServices;
+@"using System;
+using System.Runtime.CompilerServices;
 
 namespace {0} {{
+
     [Imported]
     [IgnoreNamespace]
     [ScriptName(""$.ui"")]
     public sealed class WidgetType {{
+
          private WidgetType() {{
          }}
          {1}
@@ -616,8 +668,8 @@ namespace {0} {{
                 }
             }
 
-            Messages.WriteLine("Generating " + Path.Combine(DestinationPath, "jQueryUI", className));
-            Utils.CreateFile(Path.Combine(DestinationPath, "jQueryUI")
+            Messages.WriteLine("Generating " + Path.Combine(DestinationPath, className));
+            Utils.CreateFile(DestinationPath
                             , className
                             , string.Format(content, Utils.GetNamespace(null), fields.ToString()));
         }
@@ -671,8 +723,22 @@ namespace {0} {{
   </PropertyGroup>
   <ItemGroup>
 ";
+            bool includedRootFiles = false;
             foreach (Entry entry in entries) {
-                content += @"    <Compile Include=""" + Path.Combine(Utils.PascalCase(entry.Category), Utils.PascalCase(entry.Name)) + @"\*.cs"" />
+                string name = Utils.PascalCase(entry.Name);
+                if ((name == "jQueryUI") || (name == "Position")) {
+                    if (includedRootFiles == false) {
+                        content += @"    <Compile Include=""*.cs"" />
+";
+                        includedRootFiles = true;
+                    }
+                    continue;
+                }
+                string category = Utils.PascalCase(entry.Category);
+                if ((category == "Widgets") && (name == "Widget")) {
+                    continue;
+                }
+                content += @"    <Compile Include=""" + Path.Combine(Utils.PascalCase(entry.Category), name) + @"\*.cs"" />
 ";
             }
 
