@@ -48,7 +48,7 @@
     <Compile Include="Widgets\Button\*.cs" />
     <Compile Include="Widgets\ButtonSet\*.cs" />
     <Compile Include="Effects\Clip\*.cs" />
-    <Compile Include="jQueryUI\*.cs" />
+    <Compile Include="*.cs" />
     <Compile Include="Widgets\DatePicker\*.cs" />
     <Compile Include="Widgets\Dialog\*.cs" />
     <Compile Include="Interactions\Draggable\*.cs" />
@@ -60,7 +60,6 @@
     <Compile Include="Effects\Fold\*.cs" />
     <Compile Include="Effects\Highlight\*.cs" />
     <Compile Include="Widgets\Menu\*.cs" />
-    <Compile Include="Position\*.cs" />
     <Compile Include="Widgets\ProgressBar\*.cs" />
     <Compile Include="Effects\Puff\*.cs" />
     <Compile Include="Effects\Pulsate\*.cs" />
@@ -76,7 +75,6 @@
     <Compile Include="Widgets\Tabs\*.cs" />
     <Compile Include="Widgets\Tooltip\*.cs" />
     <Compile Include="Effects\Transfer\*.cs" />
-    <Compile Include="Widgets\Widget\*.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\..\..\ScriptSharp.cs">
       <Link>Properties\ScriptSharp.cs</Link>
