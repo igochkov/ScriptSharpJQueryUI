@@ -629,6 +629,13 @@ namespace " + Utils.GetNamespace(null) + @" {
         public static WidgetObject CreateWidget(string name, WidgetType baseWidgetType, object options) {
             return null;
         }
+
+        /// <summary>
+        /// Connects the object to jQuery's API under the specified name
+        /// </summary>
+        [ScriptName(""widget.bridge"")]
+        public static void Bridge(string name, object @object) {
+        }
     }
 }";
             Messages.WriteLine("Generating " + Path.Combine(DestinationPath, className));
