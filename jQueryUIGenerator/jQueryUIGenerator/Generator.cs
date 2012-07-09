@@ -111,7 +111,8 @@ namespace {8} {{
 + (abstractObjects.Contains(entry.Name.ToLower()) ? "abstract" : "sealed") + @" class {0} : "
 + (string.IsNullOrEmpty(entry.Type) ? "jQuery" : Utils.PascalCase(entry.Type)) + @"Object {{
 
-        " + ((entry.Name.ToLower() == "widget") ? "protected" : "public") + @" {0}() {{
+        "
++ (abstractObjects.Contains(entry.Name.ToLower()) ? "protected" : "private") + @" {0}() {{
         }}{3}{4}{5}{6}
     }}
 }}";
