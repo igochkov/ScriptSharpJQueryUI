@@ -18,7 +18,7 @@ namespace jQueryApi.UI.Effects {
     [IgnoreNamespace]
     public sealed class ClipObject : EffectObject {
 
-        public ClipObject() {
+        private ClipObject() {
         }
 
         [ScriptName("clip")]

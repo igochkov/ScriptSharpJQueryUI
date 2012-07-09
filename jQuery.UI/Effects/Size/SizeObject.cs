@@ -18,7 +18,7 @@ namespace jQueryApi.UI.Effects {
     [IgnoreNamespace]
     public sealed class SizeObject : EffectObject {
 
-        public SizeObject() {
+        private SizeObject() {
         }
 
         [ScriptName("size")]

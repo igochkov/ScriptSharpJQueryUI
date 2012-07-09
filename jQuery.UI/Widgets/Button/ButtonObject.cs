@@ -18,7 +18,7 @@ namespace jQueryApi.UI.Widgets {
     [IgnoreNamespace]
     public sealed class ButtonObject : WidgetObject {
 
-        public ButtonObject() {
+        private ButtonObject() {
         }
 
         [ScriptName("button")]

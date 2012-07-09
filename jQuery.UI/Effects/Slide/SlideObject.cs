@@ -18,7 +18,7 @@ namespace jQueryApi.UI.Effects {
     [IgnoreNamespace]
     public sealed class SlideObject : EffectObject {
 
-        public SlideObject() {
+        private SlideObject() {
         }
 
         [ScriptName("slide")]

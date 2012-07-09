@@ -18,7 +18,7 @@ namespace jQueryApi.UI {
     [IgnoreNamespace]
     public sealed class PositionObject : jQueryUIObject {
 
-        public PositionObject() {
+        private PositionObject() {
         }
 
         [ScriptName("position")]

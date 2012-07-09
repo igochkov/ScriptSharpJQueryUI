@@ -18,7 +18,7 @@ namespace jQueryApi.UI.Widgets {
     [IgnoreNamespace]
     public sealed class MenuObject : WidgetObject {
 
-        public MenuObject() {
+        private MenuObject() {
         }
 
         [ScriptName("menu")]

@@ -18,7 +18,7 @@ namespace jQueryApi.UI.Effects {
     [IgnoreNamespace]
     public sealed class DropObject : EffectObject {
 
-        public DropObject() {
+        private DropObject() {
         }
 
         [ScriptName("drop")]

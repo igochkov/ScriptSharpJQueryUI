@@ -18,7 +18,7 @@ namespace jQueryApi.UI.Widgets {
     [IgnoreNamespace]
     public sealed class AutoCompleteObject : WidgetObject {
 
-        public AutoCompleteObject() {
+        private AutoCompleteObject() {
         }
 
         [ScriptName("autocomplete")]

@@ -18,7 +18,7 @@ namespace jQueryApi.UI.Effects {
     [IgnoreNamespace]
     public sealed class HighlightObject : EffectObject {
 
-        public HighlightObject() {
+        private HighlightObject() {
         }
 
         [ScriptName("highlight")]

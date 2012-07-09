@@ -18,7 +18,7 @@ namespace jQueryApi.UI.Widgets {
     [IgnoreNamespace]
     public sealed class SpinnerObject : WidgetObject {
 
-        public SpinnerObject() {
+        private SpinnerObject() {
         }
 
         [ScriptName("spinner")]

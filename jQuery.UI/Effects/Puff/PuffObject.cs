@@ -18,7 +18,7 @@ namespace jQueryApi.UI.Effects {
     [IgnoreNamespace]
     public sealed class PuffObject : EffectObject {
 
-        public PuffObject() {
+        private PuffObject() {
         }
 
         [ScriptName("puff")]

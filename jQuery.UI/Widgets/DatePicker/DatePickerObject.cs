@@ -18,7 +18,7 @@ namespace jQueryApi.UI.Widgets {
     [IgnoreNamespace]
     public sealed class DatePickerObject : WidgetObject {
 
-        public DatePickerObject() {
+        private DatePickerObject() {
         }
 
         [ScriptName("datepicker")]

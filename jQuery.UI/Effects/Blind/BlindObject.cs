@@ -18,7 +18,7 @@ namespace jQueryApi.UI.Effects {
     [IgnoreNamespace]
     public sealed class BlindObject : EffectObject {
 
-        public BlindObject() {
+        private BlindObject() {
         }
 
         [ScriptName("blind")]

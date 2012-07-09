@@ -18,7 +18,7 @@ namespace jQueryApi.UI.Effects {
     [IgnoreNamespace]
     public sealed class ShakeObject : EffectObject {
 
-        public ShakeObject() {
+        private ShakeObject() {
         }
 
         [ScriptName("shake")]

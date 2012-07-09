@@ -18,7 +18,7 @@ namespace jQueryApi.UI.Widgets {
     [IgnoreNamespace]
     public sealed class DialogObject : WidgetObject {
 
-        public DialogObject() {
+        private DialogObject() {
         }
 
         [ScriptName("dialog")]

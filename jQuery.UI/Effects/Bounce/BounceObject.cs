@@ -18,7 +18,7 @@ namespace jQueryApi.UI.Effects {
     [IgnoreNamespace]
     public sealed class BounceObject : EffectObject {
 
-        public BounceObject() {
+        private BounceObject() {
         }
 
         [ScriptName("bounce")]

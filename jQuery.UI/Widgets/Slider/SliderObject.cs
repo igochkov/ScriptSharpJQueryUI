@@ -18,7 +18,7 @@ namespace jQueryApi.UI.Widgets {
     [IgnoreNamespace]
     public sealed class SliderObject : WidgetObject {
 
-        public SliderObject() {
+        private SliderObject() {
         }
 
         [ScriptName("slider")]

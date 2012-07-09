@@ -18,7 +18,7 @@ namespace jQueryApi.UI.Widgets {
     [IgnoreNamespace]
     public sealed class TabsObject : WidgetObject {
 
-        public TabsObject() {
+        private TabsObject() {
         }
 
         [ScriptName("tabs")]

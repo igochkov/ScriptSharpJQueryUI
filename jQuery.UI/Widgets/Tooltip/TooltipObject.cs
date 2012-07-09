@@ -18,7 +18,7 @@ namespace jQueryApi.UI.Widgets {
     [IgnoreNamespace]
     public sealed class TooltipObject : WidgetObject {
 
-        public TooltipObject() {
+        private TooltipObject() {
         }
 
         [ScriptName("tooltip")]

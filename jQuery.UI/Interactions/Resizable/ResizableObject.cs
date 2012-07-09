@@ -18,7 +18,7 @@ namespace jQueryApi.UI.Interactions {
     [IgnoreNamespace]
     public sealed class ResizableObject : WidgetObject {
 
-        public ResizableObject() {
+        private ResizableObject() {
         }
 
         [ScriptName("resizable")]
