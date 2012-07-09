@@ -269,6 +269,9 @@ using System.Runtime.CompilerServices;
 
 namespace {4} {{
 
+    /// <summary>
+    /// Options used to initialize or customize {5}.
+    /// </summary>
     [Imported]
     [IgnoreNamespace]
     [ScriptName(""Object"")]
@@ -360,7 +363,8 @@ namespace {4} {{
                                 , eventsContent.ToString()
                                 , optionsContent.ToString()
                                 , (entry.Name.ToLower() != "widget") ? "sealed" : string.Empty
-                                , Utils.GetNamespace(entry)));
+                                , Utils.GetNamespace(entry)
+                                , Utils.PascalCase(entry.Name)));
         }
 
         private void RenderEvents(Entry entry) {
@@ -432,6 +436,9 @@ using System.Runtime.CompilerServices;
 
 namespace {2} {{
 
+    /// <summary>
+    /// Options for use with {3}.
+    /// </summary>
     [Imported]
     [IgnoreNamespace]
     [NamedValues]
@@ -468,7 +475,7 @@ namespace {2} {{
                 name = "";
             }
             Utils.CreateFile(Path.Combine(DestinationPath, category, name), className
-                , string.Format(content, className, enumValues.ToString().Trim(','), Utils.GetNamespace(entry)));
+                , string.Format(content, className, enumValues.ToString().Trim(','), Utils.GetNamespace(entry), Utils.PascalCase(entry.Name)));
         }
 
         private void RenderEventsEnum(Entry entry, Entry baseEntry = null) {
@@ -484,6 +491,9 @@ using System.Runtime.CompilerServices;
 
 namespace {2} {{
 
+    /// <summary>
+    /// Events raised by {3}.
+    /// </summary>
     [Imported]
     [IgnoreNamespace]
     [NamedValues]
@@ -520,7 +530,7 @@ namespace {2} {{
                 name = "";
             }
             Utils.CreateFile(Path.Combine(DestinationPath, category, name), className
-                , string.Format(content, className, enumValues.ToString().Trim(','), Utils.GetNamespace(entry)));
+                , string.Format(content, className, enumValues.ToString().Trim(','), Utils.GetNamespace(entry), Utils.PascalCase(entry.Name)));
         }
 
         private void RenderMethodEnum(Entry entry, Entry baseEntry = null) {
@@ -540,6 +550,9 @@ using System.Runtime.CompilerServices;
 
 namespace {2} {{
 
+    /// <summary>
+    /// Operations supported by {3}.
+    /// </summary>
     [Imported]
     [IgnoreNamespace]
     [NamedValues]
@@ -582,7 +595,7 @@ namespace {2} {{
                 name = "";
             }
             Utils.CreateFile(Path.Combine(DestinationPath, category, name), className
-                , string.Format(content, className, enumValues.ToString().Trim(','), Utils.GetNamespace(entry)));
+                , string.Format(content, className, enumValues.ToString().Trim(','), Utils.GetNamespace(entry), Utils.PascalCase(entry.Name)));
         }
 
         private void RenderEventHandler() {
@@ -594,6 +607,12 @@ using System.Runtime.CompilerServices;
 
 namespace " + Utils.GetNamespace(null) + @" {
 
+    /// <summary>
+    /// Handles a widget event.
+    /// </summary>
+    /// <typeparam name=""T"">The type of the widget event object.</typeparam>
+    /// <param name=""e"">The associated jQuery event object.</param>
+    /// <param name=""uiEvent"">The widget event information.</param>
     [Imported]
     [IgnoreNamespace]
     public delegate void " + className + @"<T>(jQueryEvent e, T uiEvent);
@@ -612,29 +631,53 @@ using System.Runtime.CompilerServices;
 
 namespace " + Utils.GetNamespace(null) + @" {
 
+    /// <summary>
+    /// Top-level jQueryUI methods.
+    /// </summary>
     [Imported]
     [IgnoreNamespace]
     [ScriptName(""$"")]
     public static class jQueryUI {
 
         /// <summary>
-        /// Create stateful jQuery plugins using the same abstraction that all jQuery UI widgets.
+        /// Exposes the widget with the specified name on the top-level jQuery API.
         /// </summary>
-        [ScriptName(""widget"")]
-        public static WidgetObject CreateWidget(string name, object options) {
-            return null;
+        /// <param name=""name"">The name of the widget.</param>
+        /// <param name=""widget"">The widget object.</param>
+        [ScriptName(""widget.bridge"")]
+        public static void Bridge(string name, object widget) {
         }
 
+        /// <summary>
+        /// Create stateful jQuery plugins using the same abstraction that all jQuery UI widgets.
+        /// </summary>
+        /// <param name=""name"">The name of the widget.</param>
+        /// <param name=""widget"">The widget object.</param>
         [ScriptName(""widget"")]
-        public static WidgetObject CreateWidget(string name, WidgetType baseWidgetType, object options) {
+        public static WidgetObject CreateWidget(string name, object widget) {
             return null;
         }
 
         /// <summary>
-        /// Connects the object to jQuery's API under the specified name
+        /// Create stateful jQuery plugins using the same abstraction that all jQuery UI widgets.
         /// </summary>
-        [ScriptName(""widget.bridge"")]
-        public static void Bridge(string name, object @object) {
+        /// <param name=""name"">The name of the widget.</param>
+        /// <param name=""baseWidgetType"">The widget type to inherit from.</param>
+        /// <param name=""widget"">The widget object.</param>
+        [ScriptName(""widget"")]
+        public static WidgetObject CreateWidget(string name, WidgetType baseWidgetType, object widget) {
+            return null;
+        }
+
+        /// <summary>
+        /// Create stateful jQuery plugins using the same abstraction that all jQuery UI widgets.
+        /// </summary>
+        /// <param name=""name"">The name of the widget.</param>
+        /// <param name=""baseWidgetType"">The widget type to inherit from.</param>
+        /// <param name=""widget"">The widget object.</param>
+        [ScriptName(""widget"")]
+        public static WidgetObject CreateWidget(string name, object baseWidgetType, object widget) {
+            return null;
         }
     }
 }";
@@ -651,6 +694,9 @@ using System.Runtime.CompilerServices;
 
 namespace {0} {{
 
+    /// <summary>
+    /// The default widgets that are part of jQueryUI.
+    /// </summary>
     [Imported]
     [IgnoreNamespace]
     [ScriptName(""$.ui"")]
