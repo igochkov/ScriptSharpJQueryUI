@@ -8,6 +8,9 @@ using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI.Effects {
 
+    /// <summary>
+    /// Options used to initialize or customize Slide.
+    /// </summary>
     [Imported]
     [IgnoreNamespace]
     [ScriptName("Object")]

@@ -8,6 +8,9 @@ using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI.Effects {
 
+    /// <summary>
+    /// Options for use with Scale.
+    /// </summary>
     [Imported]
     [IgnoreNamespace]
     [NamedValues]

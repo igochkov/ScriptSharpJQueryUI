@@ -8,6 +8,9 @@ using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI {
 
+    /// <summary>
+    /// Options for use with Position.
+    /// </summary>
     [Imported]
     [IgnoreNamespace]
     [NamedValues]

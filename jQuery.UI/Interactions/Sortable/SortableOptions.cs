@@ -8,6 +8,9 @@ using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI.Interactions {
 
+    /// <summary>
+    /// Options used to initialize or customize Sortable.
+    /// </summary>
     [Imported]
     [IgnoreNamespace]
     [ScriptName("Object")]

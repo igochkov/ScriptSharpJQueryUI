@@ -8,6 +8,9 @@ using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI.Interactions {
 
+    /// <summary>
+    /// Events raised by Droppable.
+    /// </summary>
     [Imported]
     [IgnoreNamespace]
     [NamedValues]

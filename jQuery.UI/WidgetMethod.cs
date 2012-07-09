@@ -8,6 +8,9 @@ using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI {
 
+    /// <summary>
+    /// Operations supported by Widget.
+    /// </summary>
     [Imported]
     [IgnoreNamespace]
     [NamedValues]

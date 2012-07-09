@@ -8,6 +8,9 @@ using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI.Interactions {
 
+    /// <summary>
+    /// Options for use with Selectable.
+    /// </summary>
     [Imported]
     [IgnoreNamespace]
     [NamedValues]

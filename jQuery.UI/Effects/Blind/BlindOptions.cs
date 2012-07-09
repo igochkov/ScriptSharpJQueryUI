@@ -8,6 +8,9 @@ using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI.Effects {
 
+    /// <summary>
+    /// Options used to initialize or customize Blind.
+    /// </summary>
     [Imported]
     [IgnoreNamespace]
     [ScriptName("Object")]

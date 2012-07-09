@@ -8,6 +8,9 @@ using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI {
 
+    /// <summary>
+    /// Options used to initialize or customize Position.
+    /// </summary>
     [Imported]
     [IgnoreNamespace]
     [ScriptName("Object")]

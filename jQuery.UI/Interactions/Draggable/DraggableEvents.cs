@@ -8,6 +8,9 @@ using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI.Interactions {
 
+    /// <summary>
+    /// Events raised by Draggable.
+    /// </summary>
     [Imported]
     [IgnoreNamespace]
     [NamedValues]

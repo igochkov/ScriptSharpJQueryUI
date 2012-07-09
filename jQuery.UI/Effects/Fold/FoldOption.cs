@@ -8,6 +8,9 @@ using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI.Effects {
 
+    /// <summary>
+    /// Options for use with Fold.
+    /// </summary>
     [Imported]
     [IgnoreNamespace]
     [NamedValues]

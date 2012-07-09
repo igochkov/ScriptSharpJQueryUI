@@ -8,6 +8,9 @@ using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI.Widgets {
 
+    /// <summary>
+    /// Operations supported by Dialog.
+    /// </summary>
     [Imported]
     [IgnoreNamespace]
     [NamedValues]

@@ -8,6 +8,9 @@ using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI.Widgets {
 
+    /// <summary>
+    /// Options used to initialize or customize Tooltip.
+    /// </summary>
     [Imported]
     [IgnoreNamespace]
     [ScriptName("Object")]

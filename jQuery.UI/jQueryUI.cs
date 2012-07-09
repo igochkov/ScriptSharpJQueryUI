@@ -8,29 +8,53 @@ using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI {
 
+    /// <summary>
+    /// Top-level jQueryUI methods.
+    /// </summary>
     [Imported]
     [IgnoreNamespace]
     [ScriptName("$")]
     public static class jQueryUI {
 
         /// <summary>
-        /// Create stateful jQuery plugins using the same abstraction that all jQuery UI widgets.
+        /// Exposes the widget with the specified name on the top-level jQuery API.
         /// </summary>
-        [ScriptName("widget")]
-        public static WidgetObject CreateWidget(string name, object options) {
-            return null;
+        /// <param name="name">The name of the widget.</param>
+        /// <param name="widget">The widget object.</param>
+        [ScriptName("widget.bridge")]
+        public static void Bridge(string name, object widget) {
         }
 
+        /// <summary>
+        /// Create stateful jQuery plugins using the same abstraction that all jQuery UI widgets.
+        /// </summary>
+        /// <param name="name">The name of the widget.</param>
+        /// <param name="widget">The widget object.</param>
         [ScriptName("widget")]
-        public static WidgetObject CreateWidget(string name, WidgetType baseWidgetType, object options) {
+        public static WidgetObject CreateWidget(string name, object widget) {
             return null;
         }
 
         /// <summary>
-        /// Connects the object to jQuery's API under the specified name
+        /// Create stateful jQuery plugins using the same abstraction that all jQuery UI widgets.
         /// </summary>
-        [ScriptName("widget.bridge")]
-        public static void Bridge(string name, object @object) {
+        /// <param name="name">The name of the widget.</param>
+        /// <param name="baseWidgetType">The widget type to inherit from.</param>
+        /// <param name="widget">The widget object.</param>
+        [ScriptName("widget")]
+        public static WidgetObject CreateWidget(string name, WidgetType baseWidgetType, object widget) {
+            return null;
+        }
+
+        /// <summary>
+        /// Create stateful jQuery plugins using the same abstraction that all jQuery UI widgets.
+        /// </summary>
+        /// <param name="name">The name of the widget.</param>
+        /// <param name="baseWidgetType">The widget type to inherit from.</param>
+        /// <param name="widget">The widget object.</param>
+        [ScriptName("widget")]
+        public static WidgetObject CreateWidget(string name, object baseWidgetType, object widget) {
+            return null;
         }
     }
 }

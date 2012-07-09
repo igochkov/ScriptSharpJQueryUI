@@ -8,6 +8,9 @@ using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI {
 
+    /// <summary>
+    /// The default widgets that are part of jQueryUI.
+    /// </summary>
     [Imported]
     [IgnoreNamespace]
     [ScriptName("$.ui")]

@@ -8,6 +8,9 @@ using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI {
 
+    /// <summary>
+    /// Operations supported by jQueryUI.
+    /// </summary>
     [Imported]
     [IgnoreNamespace]
     [NamedValues]

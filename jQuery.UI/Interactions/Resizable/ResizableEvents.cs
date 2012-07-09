@@ -8,6 +8,9 @@ using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI.Interactions {
 
+    /// <summary>
+    /// Events raised by Resizable.
+    /// </summary>
     [Imported]
     [IgnoreNamespace]
     [NamedValues]

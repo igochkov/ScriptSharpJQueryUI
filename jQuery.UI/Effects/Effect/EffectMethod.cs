@@ -8,6 +8,9 @@ using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI.Effects {
 
+    /// <summary>
+    /// Operations supported by Effect.
+    /// </summary>
     [Imported]
     [IgnoreNamespace]
     [NamedValues]

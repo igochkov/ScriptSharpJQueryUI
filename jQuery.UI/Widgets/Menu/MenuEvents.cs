@@ -8,6 +8,9 @@ using System.Runtime.CompilerServices;
 
 namespace jQueryApi.UI.Widgets {
 
+    /// <summary>
+    /// Events raised by Menu.
+    /// </summary>
     [Imported]
     [IgnoreNamespace]
     [NamedValues]
