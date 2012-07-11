@@ -24,7 +24,7 @@ namespace Sample.Accordion {
                         ResizableEvents.Resize, new Action(delegate() {
                             jQuery.Select("#accordion2")
                                 .Plugin<AccordionObject>()
-                                .Accordion(AccordionMethod.Refresh);
+                                .Accordion(AccordionMethod.Resize);
                         })
                    ));
             });

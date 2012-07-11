@@ -204,7 +204,9 @@ namespace {8} {{
                     methodsContent.AppendLine("        [ScriptName(\"" + method.Name + "\")]");
                 }
 
-                methodsContent.Append("        public " + (string.IsNullOrEmpty(method.ReturnType) ? "void" : Utils.MapDataType(method.ReturnType)) + " " + Utils.PascalCase(method.Name) + "(");
+                methodsContent.Append("        public " 
+                    + (method.Name.ToLower() == "length" ? "new " : string.Empty)
+                    + (string.IsNullOrEmpty(method.ReturnType) ? "void" : Utils.MapDataType(method.ReturnType)) + " " + Utils.PascalCase(method.Name) + "(");
                 List<string> args = new List<string>();
                 foreach (Argument arg in method.Arguments) {
                     args.Add(Utils.MapDataType(arg.Type) + " " + (arg.Name == "event" ? "@event" : arg.Name));

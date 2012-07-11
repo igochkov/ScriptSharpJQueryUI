@@ -590,6 +590,19 @@ Sample.Tabs._cookie = function Sample_Tabs__cookie() {
 // Sample.Tabs._manipulation
 
 Sample.Tabs._manipulation = function Sample_Tabs__manipulation() {
+    /// <field name="_tab_title_input" type="jQueryObject" static="true">
+    /// </field>
+    /// <field name="_tab_content_input" type="jQueryObject" static="true">
+    /// </field>
+    /// <field name="_tab_counter" type="Number" integer="true" static="true">
+    /// </field>
+}
+Sample.Tabs._manipulation._addTab = function Sample_Tabs__manipulation$_addTab(tabs) {
+    /// <param name="tabs" type="TabsObject">
+    /// </param>
+    var tab_title = Sample.Tabs._manipulation._tab_title_input.val() || ('Tab ' + Sample.Tabs._manipulation._tab_counter);
+    tabs.tabs('add', '#tabs-' + Sample.Tabs._manipulation._tab_counter, tab_title);
+    Sample.Tabs._manipulation._tab_counter++;
 }
 
 
@@ -742,7 +755,7 @@ Sample.Widget._default.registerClass('Sample.Widget._default');
     $(function() {
         $('#accordion2').accordion({ fillSpace: true });
         $('#accordionResizer').resizable({ minHeight: 140, resize: function() {
-            $('#accordion2').accordion('refresh');
+            $('#accordion2').accordion('resize');
         } });
     });
 })();
@@ -1304,29 +1317,25 @@ Sample.Widget._default.registerClass('Sample.Widget._default');
         $('#tabs8').tabs({ cookie: { expires: 1 } });
     });
 })();
+Sample.Tabs._manipulation._tab_title_input = $('#tab_title');
+Sample.Tabs._manipulation._tab_content_input = $('#tab_content');
+Sample.Tabs._manipulation._tab_counter = 2;
 (function () {
     $(function() {
-        var tab_title_input = $('#tab_title');
-        var tab_content_input = $('#tab_content');
-        var tab_counter = 2;
         var tabs = $('#tabs6').tabs({ tabTemplate: "<li><a href='#{href}'>#{label}</a> <span class='ui-icon ui-icon-close'>Remove Tab</span></li>", add: function(eevent, ui) {
-            var tab_content = tab_content_input.val() || ('Tab ' + tab_counter + ' content.');
+            var tab_content = Sample.Tabs._manipulation._tab_content_input.val() || ('Tab ' + Sample.Tabs._manipulation._tab_counter + ' content.');
             $(ui.panel).append('<p>' + tab_content + '</p>');
         } });
-        var addTab = function() {
-            var tab_title = tab_title_input.val() || ('Tab ' + tab_counter);
-            tab_counter++;
-        };
         var dialog = $('#dialog11').dialog({ autoOpen: false, modal: true, buttons: { Add: function() {
-            addTab();
+            Sample.Tabs._manipulation._addTab(tabs);
             $(this).dialog('close');
         }, Cancel: function() {
             $(this).dialog('open');
         } }, open: function() {
-            tab_title_input.focus();
+            Sample.Tabs._manipulation._tab_title_input.focus();
         }, close: function() {
             $('form', $(this)).submit(function(e) {
-                addTab();
+                Sample.Tabs._manipulation._addTab(tabs);
                 $(this).dialog('close');
                 e.preventDefault();
                 e.stopPropagation();
@@ -1335,9 +1344,9 @@ Sample.Widget._default.registerClass('Sample.Widget._default');
         $('#add_tab').button().click(function(e) {
             dialog.dialog('open');
         });
-        $('#tabs span.ui-icon-close').live('click', function(e) {
+        $('#tabs6 span.ui-icon-close').live('click', function(e) {
             var index = $('li', tabs).index($(this).parent()[0]);
-            tabs.tabs({ remove: index });
+            tabs.tabs('remove', index);
         });
     });
 })();

@@ -82,6 +82,7 @@ Sample.Tabs._Collapsible=function(){}
 Sample.Tabs._Bottom=function(){}
 Sample.Tabs._Cookie=function(){}
 Sample.Tabs._Manipulation=function(){}
+Sample.Tabs._Manipulation.$3=function($p0){var $0=Sample.Tabs._Manipulation.$0.val()||('Tab '+Sample.Tabs._Manipulation.$2);$p0.tabs('add','#tabs-'+Sample.Tabs._Manipulation.$2,$0);Sample.Tabs._Manipulation.$2++;}
 Sample.Tabs._Sortable=function(){}
 Sample.Tabs._MouseOver=function(){}
 Sample.Tabs._Default=function(){}
@@ -103,7 +104,7 @@ $('#accordion8').accordion({header:'> div > h3'}).sortable({axis:'y',handle:'h3'
 $p2_1.item.children('h3').triggerHandler('focusout');}});});})();
 (function(){$(function(){
 $('#accordion2').accordion({fillSpace:true});$('#accordionResizer').resizable({minHeight:140,resize:function(){
-$('#accordion2').accordion('refresh');}});});})();
+$('#accordion2').accordion('resize');}});});})();
 (function(){$(function(){
 $('#accordion1').accordion();});})();
 (function(){$(function(){
@@ -272,17 +273,16 @@ $('#tabs4').tabs({collapsible:true});});})();
 $('#tabs7').tabs();$('.tabs-bottom .ui-tabs-nav, .tabs-bottom .ui-tabs-nav > *').removeClass('ui-corner-all ui-corner-top').addClass('ui-corner-bottom');});})();
 (function(){$(function(){
 $('#tabs8').tabs({cookie:{expires:1}});});})();
-(function(){$(function(){
-var $1_0=$('#tab_title');var $1_1=$('#tab_content');var $1_2=2;var $1_3=$('#tabs6').tabs({tabTemplate:"<li><a href='#{href}'>#{label}</a> <span class='ui-icon ui-icon-close'>Remove Tab</span></li>",add:function($p2_0,$p2_1){
-var $2_0=$1_1.val()||('Tab '+$1_2+' content.');$($p2_1.panel).append('<p>'+$2_0+'</p>');}});var $1_4=function(){
-var $2_0=$1_0.val()||('Tab '+$1_2);$1_2++;};var $1_5=$('#dialog11').dialog({autoOpen:false,modal:true,buttons:{Add:function(){
-$1_4();$(this).dialog('close');},Cancel:function(){
+Sample.Tabs._Manipulation.$0=$('#tab_title');Sample.Tabs._Manipulation.$1=$('#tab_content');Sample.Tabs._Manipulation.$2=2;(function(){$(function(){
+var $1_0=$('#tabs6').tabs({tabTemplate:"<li><a href='#{href}'>#{label}</a> <span class='ui-icon ui-icon-close'>Remove Tab</span></li>",add:function($p2_0,$p2_1){
+var $2_0=Sample.Tabs._Manipulation.$1.val()||('Tab '+Sample.Tabs._Manipulation.$2+' content.');$($p2_1.panel).append('<p>'+$2_0+'</p>');}});var $1_1=$('#dialog11').dialog({autoOpen:false,modal:true,buttons:{Add:function(){
+Sample.Tabs._Manipulation.$3($1_0);$(this).dialog('close');},Cancel:function(){
 $(this).dialog('open');}},open:function(){
-$1_0.focus();},close:function(){
+Sample.Tabs._Manipulation.$0.focus();},close:function(){
 $('form',$(this)).submit(function($p3_0){
-$1_4();$(this).dialog('close');$p3_0.preventDefault();$p3_0.stopPropagation();});}});$('#add_tab').button().click(function($p2_0){
-$1_5.dialog('open');});$('#tabs span.ui-icon-close').live('click',function($p2_0){
-var $2_0=$('li',$1_3).index($(this).parent()[0]);$1_3.tabs({remove:$2_0});});});})();
+Sample.Tabs._Manipulation.$3($1_0);$(this).dialog('close');$p3_0.preventDefault();$p3_0.stopPropagation();});}});$('#add_tab').button().click(function($p2_0){
+$1_1.dialog('open');});$('#tabs6 span.ui-icon-close').live('click',function($p2_0){
+var $2_0=$('li',$1_0).index($(this).parent()[0]);$1_0.tabs('remove',$2_0);});});})();
 (function(){$(function(){
 $('#tabs5').tabs().find('.ui-tabs-nav').sortable({axis:'x'});});})();
 (function(){$(function(){

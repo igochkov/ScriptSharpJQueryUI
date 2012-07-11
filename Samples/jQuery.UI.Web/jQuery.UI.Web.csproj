@@ -419,13 +419,13 @@
     <Content Include="Views\Tabs\Sortable.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Tabs\Manipulation.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Tabs\Bottom.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Tabs\Content3Slow.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Tabs\Manipulation.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
