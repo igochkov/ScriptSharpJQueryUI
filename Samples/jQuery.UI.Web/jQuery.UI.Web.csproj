@@ -72,6 +72,8 @@
     <Compile Include="Controllers\AutoCompleteController.cs" />
     <Compile Include="Controllers\AccordionController.cs" />
     <Compile Include="Controllers\ButtonController.cs" />
+    <Compile Include="Controllers\DatePickerController.cs" />
+    <Compile Include="Controllers\SliderController.cs" />
     <Compile Include="Controllers\TabsController.cs" />
     <Compile Include="Controllers\DialogController.cs" />
     <Compile Include="Controllers\PositionController.cs" />
@@ -326,9 +328,6 @@
     <Content Include="Views\Widget\Default.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Position\Cycling.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Position\Default.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -426,6 +425,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Tabs\Manipulation.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_SliderLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_DatePicker.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DatePicker\Default.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Slider\Default.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

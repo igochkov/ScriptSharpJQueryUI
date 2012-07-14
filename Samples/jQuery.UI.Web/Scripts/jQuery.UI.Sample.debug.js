@@ -127,6 +127,15 @@ Sample.Button._default = function Sample_Button__default() {
 }
 
 
+Type.registerNamespace('Sample.DatePicker');
+
+////////////////////////////////////////////////////////////////////////////////
+// Sample.DatePicker._default
+
+Sample.DatePicker._default = function Sample_DatePicker__default() {
+}
+
+
 Type.registerNamespace('Sample.Dialog');
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -174,13 +183,6 @@ Sample.Dialog._default = function Sample_Dialog__default() {
 Type.registerNamespace('Sample.Position');
 
 ////////////////////////////////////////////////////////////////////////////////
-// Sample.Position._cycling
-
-Sample.Position._cycling = function Sample_Position__cycling() {
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
 // Sample.Position._default
 
 Sample.Position._default = function Sample_Position__default() {
@@ -189,6 +191,15 @@ Sample.Position._default._position = function Sample_Position__default$_position
     /// <param name="e" type="jQueryEvent">
     /// </param>
     $('.positionable').position({ my: $('#my_horizontal').val() + ' ' + $('#my_vertical').val(), at: $('#at_horizontal').val() + ' ' + $('#at_vertical').val(), offset: $('#offset').val(), collision: $('#collision_horizontal').val() + ' ' + $('#collision_vertical').val() });
+}
+
+
+Type.registerNamespace('Sample.Slider');
+
+////////////////////////////////////////////////////////////////////////////////
+// Sample.Slider._default
+
+Sample.Slider._default = function Sample_Slider__default() {
 }
 
 
@@ -652,14 +663,15 @@ Sample.Button._toolBar.registerClass('Sample.Button._toolBar');
 Sample.Button._icons.registerClass('Sample.Button._icons');
 Sample.Button._radios.registerClass('Sample.Button._radios');
 Sample.Button._default.registerClass('Sample.Button._default');
+Sample.DatePicker._default.registerClass('Sample.DatePicker._default');
 Sample.Dialog._animatedDialog.registerClass('Sample.Dialog._animatedDialog');
 Sample.Dialog._modalForm.registerClass('Sample.Dialog._modalForm');
 Sample.Dialog._modalConfirmation.registerClass('Sample.Dialog._modalConfirmation');
 Sample.Dialog._modalMessage.registerClass('Sample.Dialog._modalMessage');
 Sample.Dialog._modalDialog.registerClass('Sample.Dialog._modalDialog');
 Sample.Dialog._default.registerClass('Sample.Dialog._default');
-Sample.Position._cycling.registerClass('Sample.Position._cycling');
 Sample.Position._default.registerClass('Sample.Position._default');
+Sample.Slider._default.registerClass('Sample.Slider._default');
 Sample.Sortable._connectLists.registerClass('Sample.Sortable._connectLists');
 Sample.Sortable._connectListsTabs.registerClass('Sample.Sortable._connectListsTabs');
 Sample.Sortable._portlets.registerClass('Sample.Sortable._portlets');
@@ -845,6 +857,11 @@ Sample.Widget._default.registerClass('Sample.Widget._default');
 })();
 (function () {
     $(function() {
+        $('#datepicker1').datepicker();
+    });
+})();
+(function () {
+    $(function() {
         $('#dialog2').dialog({ autoOpen: false, show: 'blind', hide: 'explode' });
         $('#opener').click(function(e) {
             $('#dialog2').dialog('open');
@@ -937,14 +954,15 @@ Sample.Widget._default.registerClass('Sample.Widget._default');
 })();
 (function () {
     $(function() {
-    });
-})();
-(function () {
-    $(function() {
         $('.positionable').css('opacity', '0.5');
         $(':input').bind('click keyup change', Sample.Position._default._position);
         $('#parent').draggable({ drag: Sample.Position._default._position });
         Sample.Position._default._position(null);
+    });
+})();
+(function () {
+    $(function() {
+        $('#slider1').slider();
     });
 })();
 (function () {
