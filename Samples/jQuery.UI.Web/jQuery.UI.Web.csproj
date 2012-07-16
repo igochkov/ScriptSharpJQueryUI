@@ -430,7 +430,7 @@
     <Content Include="Views\Shared\_SliderLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_DatePicker.cshtml" />
+    <Content Include="Views\Shared\_DatePickerLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\DatePicker\Default.cshtml" />
